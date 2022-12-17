@@ -7,32 +7,33 @@
 @tailwind utilities;
 
 .light {
-    --background: #FFFFFF;
-    --secondary: #F6F6F6;
-    --tertiary: #E7E7E7;
-    --400: #8D8D8D;
-    --300: #6B6B6B;
-    --200: #3E3E3E;
-    --100: #272727;
+	--background: #ffffff;
+	--secondary: #f6f6f6;
+	--tertiary: #e7e7e7;
+	--400: #8d8d8d;
+	--300: #6b6b6b;
+	--200: #3e3e3e;
+	--100: #272727;
 }
 
 .dark {
-    --background: #1C1C1C;
-    --secondary: #282828;
-    --tertiary: #333333;
-    --400: #8D8D8D;
-    --300: #B0B0B0;
-    --200: #DDDDDD;
-    --100: #F4F4F4;
+	--background: #1c1c1c;
+	--secondary: #282828;
+	--tertiary: #333333;
+	--400: #8d8d8d;
+	--300: #b0b0b0;
+	--200: #dddddd;
+	--100: #f4f4f4;
 }
 
 :root {
-    color: var(--100);
-    background-color: var(--background);
-    font-family: "Nunito Sans", sans-serif;
+	color: var(--100);
+	background-color: var(--background);
+	font-family: "Nunito Sans", sans-serif;
 }
 
-html, body {
-    height: 100vh;
-    width: 100vw;
+html,
+body {
+	height: 100vh;
+	width: 100vw;
 }
