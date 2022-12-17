@@ -25,6 +25,15 @@ body {
 	margin-top: var(--navbar_height);
 }
 
+input {
+	caret-color: var(--accent-200);
+}
+
+::selection {
+	background-color: var(--accent-tertiary);
+	color: var(--accent-100);
+}
+
 ::-webkit-scrollbar {
 	background-color: var(--secondary);
 	width: 0.75rem;

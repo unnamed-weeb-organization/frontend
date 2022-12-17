@@ -22,11 +22,11 @@
     .search_wrapper input {
         background: none;
         border-radius: inherit;
-        @apply flex-grow text-custom-200 text-sm;
+        @apply h-8 flex-grow text-custom-200 font-head text-sm;
     }
 
     .search_wrapper input::placeholder {
-        @apply font-head text-sm whitespace-pre-line text-custom-400;
+        @apply text-custom-400;
     }
 
     .search_wrapper .icon_wrapper {
