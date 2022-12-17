@@ -10,6 +10,8 @@ const config = {
 			head: ["Rubik", "ui-serif"]
 		},
 		colors: {
+			transparent: "transparent",
+			current: "currentColor",
 			custom: {
 				background: "var(--background)",
 				secondary: "var(--secondary)",
