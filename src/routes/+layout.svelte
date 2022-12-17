@@ -15,5 +15,6 @@
 
 <div class="relative flex flex-col">
 	<NavigationBar />
+	<div class="escape_navbar" />
 	<slot />
 </div>

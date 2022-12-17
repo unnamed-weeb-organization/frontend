@@ -18,6 +18,26 @@
     --100: #f4f4f4;
 }
 
+.light {
+    --accent-background: #F5FAFF;
+    --accent-secondary: #E1F0FF;
+    --accent-tertiary: #CEE7FE;
+    --accent-400: #96C7F2;
+    --accent-300: #0091FF;
+    --accent-200: #006ADC;
+    --accent-100: #00254D;
+}
+
+.dark {
+    --accent-background: #0F1B2D;
+    --accent-secondary: #10243E;
+    --accent-tertiary: #102A4C;
+    --accent-400: #0954A5;
+    --accent-300: #0091FF;
+    --accent-200: #52A9FF;
+    --accent-100: #EAF6FF;
+}
+
 input {
     background-color: var(--secondary);
     border: none;
