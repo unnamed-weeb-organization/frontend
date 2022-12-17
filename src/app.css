@@ -7,7 +7,6 @@
 @tailwind components;
 @tailwind utilities;
 
-
 :root {
 	--navbar_height: 4rem;
 
@@ -33,4 +32,10 @@ body {
 
 ::-webkit-scrollbar-thumb {
 	background-color: var(--tertiary);
+}
+
+.icon_wrapper {
+	background: none;
+	@apply flex justify-center items-center rounded-md overflow-hidden
+	fill-current;
 }
