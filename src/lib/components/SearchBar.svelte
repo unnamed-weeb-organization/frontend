@@ -11,7 +11,9 @@
 
 <style lang="postcss">
     .search_wrapper {
-        @apply flex items-center h-8 md:w-64 bg-custom-secondary rounded-md px-2 gap-2
+        @apply flex items-center justify-center md:justify-start
+		h-8 w-8 md:w-56 lg:w-64
+		md:bg-custom-secondary rounded-md md:px-2 gap-2
         transition-colors duration-150 ease-in;
     }
 
@@ -22,7 +24,7 @@
     .search_wrapper input {
         background: none;
         border-radius: inherit;
-        @apply h-8 flex-grow text-custom-200 font-head text-sm;
+        @apply hidden md:block h-8 flex-grow text-custom-200 font-head text-sm;
     }
 
     .search_wrapper input::placeholder {
@@ -30,6 +32,7 @@
     }
 
     .search_wrapper .icon_wrapper {
-        @apply w-5 h-5 bg-transparent fill-custom-400;
+        @apply w-6 h-6 md:w-5 md:h-5
+		bg-transparent fill-custom-400;
     }
 </style>
