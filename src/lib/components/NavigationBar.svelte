@@ -1,6 +1,24 @@
 <script lang="ts">
+	import {goto} from "$app/navigation";
 	import AccountIcon from "$lib/assets/icons/account.svg?component";
 	import SearchBar from "$lib/components/SearchBar.svelte";
+	import DownArrow from "$lib/assets/icons/down-arrow.svg?component";
+	import DropdownMenu from "$lib/components/DropdownMenu.svelte";
+	import { Route } from "$lib/routes";
+
+	let showMore = false;
+
+	const moreRouteItems = {
+		"Albums": Route.Albums,
+		"Artists": Route.Artists,
+		"Anime": Route.Anime,
+		"Songs": Route.Songs,
+	}
+
+	function onMoreItemPress(item: string) {
+		showMore = false;
+		goto(moreRouteItems[item]);
+	}
 </script>
 
 <div class="navbar">
@@ -10,10 +28,26 @@
 	</a>
 
 	<div class="links">
-		<a href="/artists">Albums</a>
-		<a href="/artists">Artists</a>
-		<a href="/artists">Anime</a>
-		<a href="/artists">Songs</a>
+		{#each Object.entries(moreRouteItems) as [name, route]}
+			<a href={route}>{name}</a>
+		{/each}
+
+		<button
+			class="more"
+			class:expanded={showMore}
+			on:click|preventDefault={() => (showMore = !showMore)}
+		>
+			<span>More</span>
+			<DownArrow class="h-6 w-6 more_icon" />
+		</button>
+
+		{#if showMore}
+			<DropdownMenu
+				class="top-12 -left-2"
+				onSelect={onMoreItemPress}
+				onDismiss="{() => (showMore = false)}"
+				items={Object.keys(moreRouteItems)} />
+		{/if}
 	</div>
 
 	<div class="flex-1" />
@@ -32,7 +66,25 @@
 	}
 
 	.links {
-		@apply hidden ml-2 lg:flex items-end gap-2 text-custom-400 text-sm;
+		@apply ml-2 relative flex items-end gap-2 text-sm select-none;
+	}
+
+	.links > * {
+		@apply transition-colors duration-200 ease-in-out;
+	}
+
+	.links > a {
+		@apply hidden lg:block text-custom-400 hover:text-custom-300;
+	}
+
+	.more {
+		@apply flex lg:hidden items-center -ml-2 pl-2 rounded fill-current
+        text-custom-400 hover:text-custom-300
+        hover:bg-custom-secondary;
+	}
+
+	.more.expanded {
+		@apply bg-custom-secondary text-custom-300;
 	}
 
 	.account {

@@ -13,7 +13,7 @@
 	<title>unnamed_weeb_music_database</title>
 </svelte:head>
 
-<div class="relative flex flex-col">
+<div class="relative flex flex-col h-full">
 	<NavigationBar />
 	<div class="escape_navbar" />
 	<slot />
