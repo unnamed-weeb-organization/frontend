@@ -11,6 +11,6 @@ SvelteKit frontend for the \*[`unnamed_weeb_music_database/frontend`](https://gi
 
 1. Bootstrapped with [`create-svelte`](https://github.com/sveltejs/kit/tree/master/packages/create-svelte)
 
-# License
+## License
 
 This repository is licensed under [GPL3](./LICENSE.md).
