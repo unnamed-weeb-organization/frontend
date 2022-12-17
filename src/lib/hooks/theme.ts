@@ -31,7 +31,6 @@ export const initializeTheme = () => {
 
 	document.documentElement.classList.add(theme);
 	document.documentElement.classList.add(palette);
-	console.log(`Theme initialized: ${theme} ${palette}`);
 };
 
 export const changeTheme = (theme: ThemePalette | "preserve", mode: ThemeMode | "preserve") => {
