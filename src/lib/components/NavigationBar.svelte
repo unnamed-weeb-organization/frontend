@@ -1,12 +1,14 @@
 <script lang="ts">
 	import { goto } from "$app/navigation";
-	import AccountIcon from "$lib/assets/icons/account.svg?component";
-	import SearchBar from "$lib/components/SearchBar.svelte";
-	import DownArrow from "$lib/assets/icons/down-arrow.svg?component";
-	import DropdownMenu from "$lib/components/DropdownMenu.svelte";
 	import { Route } from "$lib/routes";
+	import AccountIcon from "$lib/assets/icons/account.svg?component";
+	import DownArrow from "$lib/assets/icons/down-arrow.svg?component";
+	import SearchBar from "$lib/components/SearchBar.svelte";
+	import UserCard from "$lib/components/UserCard.svelte";
+	import DropdownMenu from "$lib/components/DropdownMenu.svelte";
 
 	let showMore = false;
+	let showUserCard = false;
 
 	const moreRouteItems = {
 		Albums: Route.Albums,
@@ -21,7 +23,7 @@
 	}
 </script>
 
-<div class="navbar">
+<nav>
 	<a href="/" class="font-head select-none">
 		<span class="hidden md:block">unnamed_weeb_music_database</span>
 		<span class="md:hidden">uwmdb</span>
@@ -52,15 +54,21 @@
 	</div>
 
 	<div class="flex-1" />
-
 	<SearchBar />
-	<div class="icon_wrapper account" aria-label="account">
-		<AccountIcon class="h-8 w-8" />
+
+	<div class="relative account">
+		<button class="icon_wrapper" on:click={() => (showUserCard = !showUserCard)}>
+			<AccountIcon class="h-8 w-8" />
+		</button>
+
+		{#if showUserCard}
+			<UserCard class="top-14 right-2" onDismiss={() => (showUserCard = false)} />
+		{/if}
 	</div>
-</div>
+</nav>
 
 <style lang="postcss">
-	.navbar {
+	nav {
 		@apply fixed top-0 left-0 w-full flex items-center bg-custom-background
         px-6 border-b-2 border-b-custom-tertiary gap-4;
 		height: var(--navbar_height);
@@ -89,11 +97,15 @@
 	}
 
 	.account {
+		@apply relative flex;
+	}
+
+	.account button {
 		@apply h-10 w-10 bg-custom-secondary fill-custom-400
         transition-colors duration-150 ease-in;
 	}
 
-	.account:active {
+	.account button:active {
 		@apply bg-custom-tertiary fill-custom-300;
 	}
 </style>
