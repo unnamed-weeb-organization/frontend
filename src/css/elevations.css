@@ -1,0 +1,17 @@
+@layer elevations {
+    .elevation-layer {
+        @apply absolute z-0 top-0 h-full w-full -z-10;
+    }
+
+    .elevation-background-1 {
+        @apply bg-accent-background opacity-25;
+    }
+
+    .elevation-background-2 {
+        @apply bg-accent-background opacity-50;
+    }
+
+    .elevation-background-3 {
+        @apply bg-accent-background opacity-75;
+    }
+}

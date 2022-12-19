@@ -19,7 +19,7 @@ const config = {
 				400: "var(--accent-400)",
 				300: "var(--accent-300)",
 				200: "var(--accent-200)",
-				100: "var(--accent-100)",
+				100: "var(--accent-100)"
 			},
 			custom: {
 				background: "var(--background)",

@@ -1,5 +1,5 @@
 <script lang="ts">
-	import {goto} from "$app/navigation";
+	import { goto } from "$app/navigation";
 	import AccountIcon from "$lib/assets/icons/account.svg?component";
 	import SearchBar from "$lib/components/SearchBar.svelte";
 	import DownArrow from "$lib/assets/icons/down-arrow.svg?component";
@@ -9,11 +9,11 @@
 	let showMore = false;
 
 	const moreRouteItems = {
-		"Albums": Route.Albums,
-		"Artists": Route.Artists,
-		"Anime": Route.Anime,
-		"Songs": Route.Songs,
-	}
+		Albums: Route.Albums,
+		Artists: Route.Artists,
+		Anime: Route.Anime,
+		Songs: Route.Songs
+	};
 
 	function onMoreItemPress(item: string) {
 		showMore = false;
@@ -38,15 +38,16 @@
 			on:click|preventDefault={() => (showMore = !showMore)}
 		>
 			<span>More</span>
-			<DownArrow class="h-6 w-6 more_icon" />
+			<DownArrow class="h-6 w-6" />
 		</button>
 
 		{#if showMore}
 			<DropdownMenu
 				class="top-12 -left-2"
 				onSelect={onMoreItemPress}
-				onDismiss="{() => (showMore = false)}"
-				items={Object.keys(moreRouteItems)} />
+				onDismiss={() => (showMore = false)}
+				items={Object.keys(moreRouteItems)}
+			/>
 		{/if}
 	</div>
 

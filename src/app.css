@@ -1,8 +1,9 @@
-@import "./themes.css";
-@import "@fontsource/nunito-sans";
 @import "@fontsource/rubik";
+@import "@fontsource/nunito-sans";
+@import "./css/themes.css";
+@import "./css/elevations.css";
+@import "./css/components.css";
 
-/* Write your global styles here, in PostCSS syntax */
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -21,10 +22,6 @@ body {
 	width: 100%;
 }
 
-.escape_navbar {
-	margin-top: var(--navbar_height);
-}
-
 input {
 	caret-color: var(--accent-200);
 }
@@ -41,10 +38,4 @@ input {
 
 ::-webkit-scrollbar-thumb {
 	background-color: var(--tertiary);
-}
-
-.icon_wrapper {
-	background: none;
-	@apply flex justify-center items-center rounded-md overflow-hidden
-	fill-current;
 }

@@ -1,0 +1,11 @@
+@layer components {
+    .escape_navbar {
+        margin-top: var(--navbar_height);
+    }
+
+    .icon_wrapper {
+        background: none;
+        @apply flex justify-center items-center rounded-md overflow-hidden
+        fill-current;
+    }
+}
