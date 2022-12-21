@@ -19,8 +19,5 @@ export function getRoleName(role: Role): string {
 }
 
 export function getHigherOrderRole(roles: Role[]): Role {
-	const highest = roles.reduce((a, b) => (a > b ? a : b));
-
-console.log(highest);
-	return highest;
+	return roles.reduce((a, b) => (a > b ? a : b));
 }
