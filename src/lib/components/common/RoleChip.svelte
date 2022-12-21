@@ -6,7 +6,7 @@
 </script>
 
 <div
-	class="flex w-fit px-2 font-head text-sm bg-accent-secondary rounded text-accent-200 select-none"
+	class="flex items-center w-fit px-2 font-head text-sm bg-accent-secondary rounded text-accent-200 select-none"
 >
 	{getRoleName(role)}
 </div>

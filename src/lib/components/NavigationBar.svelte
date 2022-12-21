@@ -6,6 +6,7 @@
 	import SearchBar from "$lib/components/common/SearchBar.svelte";
 	import UserCard from "$lib/components/UserCard.svelte";
 	import DropdownMenu from "$lib/components/common/DropdownMenu.svelte";
+	import Button from "$lib/components/common/Button.svelte";
 
 	let showMore = false;
 	let showUserCard = false;
@@ -57,9 +58,12 @@
 	<SearchBar />
 
 	<div class="relative account">
-		<button class="icon_wrapper" on:click={() => (showUserCard = !showUserCard)}>
-			<AccountIcon class="h-8 w-8" />
-		</button>
+		<Button
+			class="h-10 w-10 bg-custom-secondary focus-within:bg-custom-tertiary focus-within:fill-custom-200"
+			on:click={() => (showUserCard = !showUserCard)}
+		>
+			<AccountIcon class="h-9 w-9" />
+		</Button>
 
 		{#if showUserCard}
 			<UserCard class="top-14 right-2" onDismiss={() => (showUserCard = false)} />
@@ -98,14 +102,5 @@
 
 	.account {
 		@apply relative flex;
-	}
-
-	.account button {
-		@apply h-10 w-10 bg-custom-secondary fill-custom-400
-        transition-colors duration-150 ease-in;
-	}
-
-	.account button:active {
-		@apply bg-custom-tertiary fill-custom-300;
 	}
 </style>

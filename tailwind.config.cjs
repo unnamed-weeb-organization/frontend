@@ -1,3 +1,5 @@
+const colors = require('tailwindcss/colors')
+
 /**
  * @type {import("tailwindcss").Config}
  */
@@ -12,6 +14,8 @@ const config = {
 		colors: {
 			transparent: "transparent",
 			current: "currentColor",
+			red: colors.red,
+			yellow: colors.amber,
 			accent: {
 				background: "var(--accent-background)",
 				secondary: "var(--accent-secondary)",
