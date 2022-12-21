@@ -3,9 +3,9 @@
 	import { Route } from "$lib/routes";
 	import AccountIcon from "$lib/assets/icons/account.svg?component";
 	import DownArrow from "$lib/assets/icons/down-arrow.svg?component";
-	import SearchBar from "$lib/components/SearchBar.svelte";
+	import SearchBar from "$lib/components/common/SearchBar.svelte";
 	import UserCard from "$lib/components/UserCard.svelte";
-	import DropdownMenu from "$lib/components/DropdownMenu.svelte";
+	import DropdownMenu from "$lib/components/common/DropdownMenu.svelte";
 
 	let showMore = false;
 	let showUserCard = false;

@@ -4,8 +4,8 @@
 	import { Route } from "$lib/routes.js";
 	import { isDark } from "$lib/hooks/theme";
 	import { changeTheme } from "$lib/hooks/theme.js";
-	import DismissBackground from "$lib/components/DismissBackground.svelte";
-	import RoleChip from "$lib/components/RoleChip.svelte";
+	import DismissBackground from "$lib/components/common/DismissBackground.svelte";
+	import RoleChip from "$lib/components/common/RoleChip.svelte";
 
 	import AccountIcon from "$lib/assets/icons/account.svg?component";
 	import SettingsIcon from "$lib/assets/icons/settings.svg?component";

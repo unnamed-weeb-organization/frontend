@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { slide } from "svelte/transition";
-	import DismissBackground from "$lib/components/DismissBackground.svelte";
+	import DismissBackground from "$lib/components/common/DismissBackground.svelte";
 
 	export let items: string[];
 	export let onDismiss: () => void;
