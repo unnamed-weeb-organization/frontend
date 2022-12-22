@@ -7,5 +7,22 @@ export enum Route {
 	User = "/user",
 	Settings = "/settings",
 	Me = "/me",
-	EditMe = "/me/edit"
+	EditMe = "/me/edit",
+
+	Logout = "/me/logout"
+}
+
+export interface RouteParameters {
+	[Route.Logout]: {
+		from: string
+	},
+}
+
+
+// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+// @ts-ignore
+export function withParameter<T = Route>(route: T, params: RouteParameters[T]) {
+	return  route + "?" +  Object.entries(params as object)
+		.map(([key, val]) => `${key}=${val}`)
+		.join("&");
 }

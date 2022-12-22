@@ -1,19 +1,22 @@
 <script lang="ts">
 	import { slide } from "svelte/transition";
-	import { Role, getHigherOrderRole } from "$lib/typings/server/user";
-	import { Route } from "$lib/routes.js";
+	import { page } from "$app/stores";
+	import { goto } from "$app/navigation";
+	import { Route, withParameter } from "$lib/routes";
 	import { isDark } from "$lib/hooks/theme";
-	import { changeTheme } from "$lib/hooks/theme.js";
+	import { changeTheme } from "$lib/hooks/theme";
+	import { Role, getHigherOrderRole } from "$lib/typings/server/user";
+
 	import DismissBackground from "$lib/components/common/DismissBackground.svelte";
 	import RoleChip from "$lib/components/common/RoleChip.svelte";
+	import Button from "$lib/components/common/Button.svelte";
 
 	import AccountIcon from "$lib/assets/icons/account.svg?component";
 	import SettingsIcon from "$lib/assets/icons/settings.svg?component";
 	import BrightnessHighIcon from "$lib/assets/icons/brightness-high.svg?component";
 	import BrightnessLowIcon from "$lib/assets/icons/brightness-low.svg?component";
 	import LogoutIcon from "$lib/assets/icons/logout.svg?component";
-	import Button from "$lib/components/common/Button.svelte";
-	import { goto } from "$app/navigation";
+	import EditIcon from "$lib/assets/icons/edit.svg?component";
 
 	export let onDismiss: () => void;
 
@@ -28,14 +31,15 @@
 	}
 
 	function logout() {
-		// TODO
+		goto(withParameter(Route.Logout, { from: $page.url.pathname }));
 	}
 </script>
 
 <div transition:slide={{ duration: 150 }} class="wrapper {$$props.class}">
 	<div class="flex items-center border-b border-b-custom-tertiary px-2 py-2">
 		<Button
-			class="h-16 w-16 bg-custom-secondary text-custom-400"
+			styleType="none"
+			class="h-16 w-16 bg-custom-secondary fill-custom-400"
 			on:click={() => goto(Route.Me)}
 		>
 			<AccountIcon class="h-16 w-16" />
@@ -47,6 +51,7 @@
 		</div>
 
 		<Button
+			styleType="none"
 			class="h-8 w-8 fill-custom-300 hover:bg-custom-secondary hover:fill-red-500"
 			on:click={logout}
 		>
@@ -54,8 +59,8 @@
 		</Button>
 	</div>
 
-	<div class="grid grid-cols-1">
-		<Button class="h-10" label="Change Theme Mode" on:click={toggleThemeMode}>
+	<div class="grid grid-cols-2">
+		<Button class="h-10 col-start-1 col-end-3" label="Change Theme Mode" on:click={toggleThemeMode}>
 			{#if isItDark}
 				<BrightnessHighIcon class="h-5 w-5" />
 			{:else}
@@ -63,6 +68,9 @@
 			{/if}
 		</Button>
 
+		<Button class="h-10" label="Edit Profile" on:click={() => goto(Route.EditMe)}>
+			<EditIcon class="h-5 w-5" />
+		</Button>
 		<Button class="h-10" label="Settings" on:click={() => goto(Route.Settings)}>
 			<SettingsIcon class="h-5 w-5" />
 		</Button>
