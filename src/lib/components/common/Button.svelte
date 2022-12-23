@@ -4,6 +4,7 @@
 
 	const styles = {
 		default: "font-sans text-sm text-custom-300 fill-current",
+		iconButton: "fill-custom-400 active:bg-custom-secondary",
 		none: ""
 	}
 </script>
@@ -24,6 +25,6 @@
 	button:hover,
 	button:focus,
 	button:focus-within {
-		@apply transition-colors
+		@apply transition-colors ease-in;
 	}
 </style>

@@ -1,32 +1,61 @@
 <script lang="ts">
-	import SearchIcon from "$lib/assets/icons/magnifier.svg?component";
+	import { slide } from "svelte/transition";
 	import Button from "$lib/components/common/Button.svelte";
+
+	import SearchIcon from "$lib/assets/icons/magnifier.svg?component";
+	import CloseIcon from "$lib/assets/icons/close.svg?component";
+	import DismissBackground from "$lib/components/common/DismissBackground.svelte";
+
+	let showMobileSearch = true;
+	let searchQuery = "";
 </script>
 
-<div class="search_wrapper">
-	<Button class="w-6 h-6 md:w-5 md:h-5 bg-transparent fill-custom-400">
-		<SearchIcon class="h-6 w-6" />
+<div class="desktop_search">
+	<Button styleType="none" class="w-5 h-5 fill-custom-400">
+		<SearchIcon class="h-5 w-5" />
 	</Button>
-
-	<input placeholder="Search" />
+	<input bind:value={searchQuery} placeholder="Search" />
 </div>
 
+<div class="flex md:hidden items-center justify-center">
+	<Button styleType="iconButton" class="w-8 h-8" on:click={() => (showMobileSearch = !showMobileSearch)}>
+		<SearchIcon class="h-6 w-6" />
+	</Button>
+</div>
+
+{#if showMobileSearch}
+	<div transition:slide={{ duration: 150 }} class="mobile_search">
+		<div class="flex h-16 items-center px-4 gap-2 z-10">
+			<input bind:value={searchQuery} placeholder="Search" class="flex-1" />
+			<Button styleType="iconButton" class="w-8 h-8" on:click={() => (showMobileSearch = false)}>
+				<CloseIcon class="h-6 w-6" />
+			</Button>
+		</div>
+
+		<DismissBackground styleType="dimmed" onDismiss={() => (showMobileSearch = false)} />
+	</div>
+{/if}
+
 <style lang="postcss">
-	.search_wrapper {
-		@apply flex items-center justify-center md:justify-start
-        h-8 w-8 md:w-56 lg:w-64
-        md:bg-custom-secondary rounded-md md:px-2 gap-2
+	.desktop_search {
+		@apply hidden md:flex items-center w-56 w-64
+        bg-custom-secondary rounded-md px-2 gap-2
         transition-colors duration-150 ease-in;
 	}
 
-	.search_wrapper:active {
-		@apply md:bg-custom-tertiary;
+	.desktop_search:active {
+		@apply bg-custom-tertiary;
+	}
+
+	.mobile_search {
+		@apply absolute top-0 left-0 w-full h-full bg-custom-background flex flex-col z-10;
 	}
 
 	input {
 		background: none;
 		border-radius: inherit;
-		@apply hidden md:block h-8 flex-grow text-custom-200 font-head text-sm;
+		@apply h-8 flex-grow
+        text-custom-200 font-head text-sm;
 	}
 
 	input::placeholder {
