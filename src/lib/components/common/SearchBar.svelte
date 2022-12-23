@@ -6,7 +6,7 @@
 	import CloseIcon from "$lib/assets/icons/close.svg?component";
 	import DismissBackground from "$lib/components/common/DismissBackground.svelte";
 
-	let showMobileSearch = true;
+	let showMobileSearch = false;
 	let searchQuery = "";
 </script>
 
