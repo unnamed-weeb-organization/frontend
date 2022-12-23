@@ -1,5 +1,14 @@
+/* Rubik normal [400], medium [500] */
 @import "@fontsource/rubik";
-@import "@fontsource/nunito-sans";
+@import "@fontsource/rubik/500.css";
+
+/* Noto Sans normal [400], medium [500] */
+@import "@fontsource/noto-sans";
+@import "@fontsource/noto-sans/500.css";
+
+/* Noto Sans JP for Japanese support */
+@import "@fontsource/noto-sans-jp";
+
 @import "./css/themes.css";
 @import "./css/elevations.css";
 @import "./css/components.css";
@@ -13,7 +22,7 @@
 
 	color: var(--100);
 	background-color: var(--background);
-	font-family: "Nunito Sans", sans-serif;
+	font-family: "Nunito Sans", "Nunito Sans Jp", sans-serif;
 }
 
 html,

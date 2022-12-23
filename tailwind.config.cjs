@@ -8,7 +8,7 @@ const config = {
 	content: ["./src/**/*.{html,js,svelte,ts}"],
 	theme: {
 		fontFamily: {
-			sans: ["Nunito Sans", "sans-serif"],
+			sans: ["Noto Sans", "Noto Sans JP", "sans-serif"],
 			head: ["Rubik", "ui-serif"]
 		},
 		colors: {

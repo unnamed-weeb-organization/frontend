@@ -1,7 +1,8 @@
 lockfileVersion: 5.4
 
 specifiers:
-  '@fontsource/nunito-sans': ^4.5.10
+  '@fontsource/noto-sans': ^4.5.11
+  '@fontsource/noto-sans-jp': ^4.5.12
   '@fontsource/rubik': ^4.5.13
   '@poppanator/sveltekit-svg': ^2.0.0
   '@sveltejs/adapter-auto': ^1.0.0
@@ -26,7 +27,8 @@ specifiers:
   vitest: ^0.25.3
 
 dependencies:
-  '@fontsource/nunito-sans': 4.5.10
+  '@fontsource/noto-sans': 4.5.11
+  '@fontsource/noto-sans-jp': 4.5.12
   '@fontsource/rubik': 4.5.13
 
 devDependencies:
@@ -269,8 +271,12 @@ packages:
       - supports-color
     dev: true
 
-  /@fontsource/nunito-sans/4.5.10:
-    resolution: {integrity: sha512-GVKc3mEfnk3fLEuiQXNYhlP/Z9SrCgD831xZJ7J+6OgFzEf6LNnyHPiqWfjW671sAmOBQTLgm/21z78K/beWEw==}
+  /@fontsource/noto-sans-jp/4.5.12:
+    resolution: {integrity: sha512-tdJAUEyuyyCRD4Ot4ZE8+3uyGeSJQD/soSHr7LoltEQr22IotDDWOlqQKF7CpTaJPwt4iOBoXWtAoSN0huVW6A==}
+    dev: false
+
+  /@fontsource/noto-sans/4.5.11:
+    resolution: {integrity: sha512-lBX7FCjIjSrQ+iMuXUuO+mbjbnUsJyZANg/04PgkeeAYe+cwnX81ibbgrAk1F56M6/btIrWQoDjxsK6Sz8KoVQ==}
     dev: false
 
   /@fontsource/rubik/4.5.13:
