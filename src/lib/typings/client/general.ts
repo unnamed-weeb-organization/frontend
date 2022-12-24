@@ -4,10 +4,10 @@ export interface ItemCardData {
 	type: CTXType;
 	label: string;
 	imageURL: string;
-	link: string;
+	id: string;
 	alt: {
 		type: CTXType;
 		label: string;
-		link: string;
+		id: string;
 	}
 }

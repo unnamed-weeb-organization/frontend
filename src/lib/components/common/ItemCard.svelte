@@ -9,9 +9,9 @@
 <div class="item_container">
 	<div class="flex-grow" />
 	<div class="info_container">
-		<a href={data.link} class="text-custom-200">{data.label}</a>
+		<a href={data.id} class="text-custom-200">{data.label}</a>
 		<span class="text-custom-400 text-xs">{joiningString}</span>
-		<a href={data.alt.link} class="text-custom-300 max-w-[50%]">
+		<a href={data.alt.id} class="text-custom-300 max-w-[50%]">
 			{data.alt.label}
 		</a>
 	</div>

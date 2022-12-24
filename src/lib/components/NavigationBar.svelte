@@ -1,38 +1,40 @@
 <script lang="ts">
 	import { goto } from "$app/navigation";
-	import { Route } from "$lib/routes";
+	import { RoutePoint, Route, withParameter } from "$lib/routes";
+
+	import UserCard from "$lib/components/UserCard.svelte";
+	import Button from "$lib/components/common/Button.svelte";
+	import SearchBar from "$lib/components/common/SearchBar.svelte";
+
 	import AccountIcon from "$lib/assets/icons/account.svg?component";
 	import DownArrow from "$lib/assets/icons/down-arrow.svg?component";
-	import SearchBar from "$lib/components/common/SearchBar.svelte";
-	import UserCard from "$lib/components/UserCard.svelte";
 	import DropdownMenu from "$lib/components/common/DropdownMenu.svelte";
-	import Button from "$lib/components/common/Button.svelte";
 
 	let showMore = false;
 	let showUserCard = false;
 
 	const moreRouteItems = {
-		Albums: Route.Albums,
-		Artists: Route.Artists,
-		Anime: Route.Anime,
-		Songs: Route.Songs
+		Albums: RoutePoint.Albums,
+		Artists: RoutePoint.Artists,
+		Anime: RoutePoint.AnimeList,
+		Songs: RoutePoint.Songs
 	};
 
-	function onMoreItemPress(item: string) {
+	function onMoreItemPress(item: string | number) {
 		showMore = false;
-		goto(moreRouteItems[item]);
+		goto(withParameter(moreRouteItems[item], null));
 	}
 </script>
 
 <nav>
-	<a href="/" class="font-head select-none">
+	<a href={Route[RoutePoint.Home].route} class="font-head select-none">
 		<span class="hidden md:block">unnamed_weeb_music_database</span>
 		<span class="md:hidden">uwmdb</span>
 	</a>
 
 	<div class="links">
 		{#each Object.entries(moreRouteItems) as [name, route]}
-			<a href={route}>{name}</a>
+			<a href={Route[route].route}>{name}</a>
 		{/each}
 
 		<button
@@ -57,7 +59,7 @@
 	<div class="flex-1" />
 	<SearchBar />
 
-	<div class="relative account">
+	<div class="account">
 		<Button
 			class="h-10 w-10 bg-custom-secondary focus-within:bg-custom-tertiary focus-within:fill-custom-200"
 			on:click={() => (showUserCard = !showUserCard)}
@@ -92,7 +94,7 @@
 
 	.more {
 		@apply flex lg:hidden items-center -ml-2 pl-2 rounded fill-current
-        text-custom-400 hover:text-custom-300
+        font-head text-custom-400 hover:text-custom-300
         hover:bg-custom-secondary;
 	}
 

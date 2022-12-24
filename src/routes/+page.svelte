@@ -8,16 +8,16 @@
 		{
 			type: CTXType.Album,
 			label: "Eureka",
-			link: "",
+			id: "",
 			imageURL: "",
-			alt: { label: "きのこ帝国", link: "", type: CTXType.Artist },
+			alt: { label: "きのこ帝国", id: "", type: CTXType.Artist },
 		},
 		{
 			type: CTXType.Album,
 			label: "これでいいんだよ",
-			link: "",
+			id: "",
 			imageURL: "",
-			alt: { label: "Yuko Ando", link: "", type: CTXType.Artist }
+			alt: { label: "Yuko Ando", id: "", type: CTXType.Artist }
 		}
 	];
 </script>
