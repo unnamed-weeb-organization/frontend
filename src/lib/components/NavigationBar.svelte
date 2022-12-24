@@ -1,6 +1,5 @@
 <script lang="ts">
-	import { goto } from "$app/navigation";
-	import { RoutePoint, Route, withParameter } from "$lib/routes";
+	import { RoutePoint, Route, goto } from "$lib/routes";
 
 	import UserCard from "$lib/components/UserCard.svelte";
 	import Button from "$lib/components/common/Button.svelte";
@@ -22,7 +21,7 @@
 
 	function onMoreItemPress(item: string | number) {
 		showMore = false;
-		goto(withParameter(moreRouteItems[item], null));
+		goto(moreRouteItems[item]);
 	}
 </script>
 

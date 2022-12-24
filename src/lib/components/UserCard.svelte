@@ -1,10 +1,8 @@
 <script lang="ts">
 	import { slide } from "svelte/transition";
 	import { page } from "$app/stores";
-	import { goto } from "$app/navigation";
-	import { Route, withParameter } from "$lib/routes";
-	import { isDark } from "$lib/hooks/theme";
-	import { changeTheme } from "$lib/hooks/theme";
+	import { RoutePoint, goto } from "$lib/routes";
+	import { isDark, changeTheme } from "$lib/hooks/theme";
 	import { Role, getHigherOrderRole } from "$lib/typings/server/user";
 
 	import DismissBackground from "$lib/components/common/DismissBackground.svelte";
@@ -31,7 +29,7 @@
 	}
 
 	function logout() {
-		goto(withParameter(Route.Logout, { from: $page.url.pathname }));
+		goto(RoutePoint.Logout, { from: $page.url.pathname });
 	}
 </script>
 
@@ -40,7 +38,7 @@
 		<Button
 			styleType="none"
 			class="h-16 w-16 bg-custom-secondary fill-custom-400"
-			on:click={() => goto(Route.Me)}
+			on:click={() => goto(RoutePoint.Me)}
 		>
 			<AccountIcon class="h-16 w-16" />
 		</Button>
@@ -60,7 +58,11 @@
 	</div>
 
 	<div class="grid grid-cols-2">
-		<Button class="h-10 col-start-1 col-end-3" label="Change Theme Mode" on:click={toggleThemeMode}>
+		<Button
+			class="h-10 col-start-1 col-end-3"
+			label="Change Theme Mode"
+			on:click={toggleThemeMode}
+		>
 			{#if isItDark}
 				<BrightnessHighIcon class="h-5 w-5" />
 			{:else}
@@ -68,10 +70,10 @@
 			{/if}
 		</Button>
 
-		<Button class="h-10" label="Edit Profile" on:click={() => goto(Route.EditMe)}>
+		<Button class="h-10" label="Edit Profile" on:click={() => goto(RoutePoint.EditMe)}>
 			<EditIcon class="h-5 w-5" />
 		</Button>
-		<Button class="h-10" label="Settings" on:click={() => goto(Route.Settings)}>
+		<Button class="h-10" label="Settings" on:click={() => goto(RoutePoint.Settings)}>
 			<SettingsIcon class="h-5 w-5" />
 		</Button>
 	</div>

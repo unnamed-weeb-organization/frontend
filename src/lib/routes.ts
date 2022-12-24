@@ -1,3 +1,6 @@
+import { goto as sGoto } from "$app/navigation";
+import { CTXType } from "$lib/typings/server/general";
+
 interface RouteOptions {
 	/**
 	 * **NOTE**:
@@ -36,6 +39,16 @@ export enum RoutePoint {
 	Login,
 	Logout
 }
+
+/**
+ * {@link CTXType} to {@link RoutePoint} mapping.
+ */
+export const CTXRouteRelation: Record<CTXType, RoutePoint> = {
+	[CTXType.Artist]: RoutePoint.Artist,
+	[CTXType.Album]: RoutePoint.Album,
+	[CTXType.Anime]: RoutePoint.Anime,
+	[CTXType.Song]: RoutePoint.Song
+};
 
 /**
  * Contains all the routes possible for the application.
@@ -79,26 +92,38 @@ export type RouteParameters = {
  * Returns the {@link RouteOptions.route} for a given route
  * while replacing and typehint-ing its possible parameters.
  */
-export function withParameter<T extends RoutePoint>(routePoint: T, params?: RouteParameters[T]) {
-	let route = Route[routePoint].route;
+export function withParameter<T extends RoutePoint>(
+	routePoint: T,
+	params?: RouteParameters[T]
+): RouteOptions {
+	// How the heck do I clone this object?
+	const option: RouteOptions = Object.create(Route[routePoint]);
 
 	if (params != null) {
 		const keys: string[] = Object.keys(params as object);
-		const replaceableKeys = route.split("/").filter((key) => key.startsWith(":"));
+		const replaceableKeys = option.route.split("/").filter((key) => key.startsWith(":"));
 
 		keys.forEach((key) => {
 			const value = encodeURIComponent(params[key as keyof RouteParameters[T]] as string);
 
-			if (key in replaceableKeys) {
-				return (route = route.replace(`:${key}`, value));
+			if (replaceableKeys.includes(`:${key}`)) {
+				return (option.route = option.route.replace(`:${key}`, value));
 			}
 
-			if (!route.endsWith("/")) {
-				if (route.endsWith("?")) route += `${key}=${value}`;
-				else route += `?${key}=${value}`;
+			if (!option.route.endsWith("/")) {
+				if (option.route.endsWith("?")) option.route += `${key}=${value}`;
+				else option.route += `?${key}=${value}`;
 			}
 		});
 	}
 
-	return route;
+	return option;
 }
+
+export const goto = async <T extends RoutePoint>(
+	routePoint: T,
+	params?: RouteParameters[T],
+	options?: Parameters<typeof sGoto>[1]
+) => {
+	await sGoto(withParameter(routePoint, params).route, options);
+};
