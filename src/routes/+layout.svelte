@@ -28,7 +28,6 @@
 {:else}
 	<div
 		out:fade={{ duration: 150 }}
-		style="background-color: #1c1c1c"
 		class="flex flex-col h-full justify-center items-center"
 	>
 		<Spinner height="56" width="56" />

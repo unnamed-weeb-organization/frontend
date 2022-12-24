@@ -1,3 +1,4 @@
+.light,
 .palette-default.light {
     --background: #ffffff;
     --secondary: #F1F1F1;
@@ -8,6 +9,7 @@
     --100: #272727;
 }
 
+.dark,
 .palette-default.dark {
     --background: #1c1c1c;
     --secondary: #282828;

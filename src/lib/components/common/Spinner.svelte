@@ -63,11 +63,11 @@
 	}
 
 	.spinner-ring {
-		stroke: var(--tertiary, #333333);
+		stroke: var(--tertiary);
 	}
 
 	.spinner .spinner-fill {
-		stroke: var(--accent-300, #0091FF);
+		stroke: var(--accent-300);
 		stroke-dasharray: 43.75;
 		animation: spinner-indeterminate 2s linear infinite;
 	}
