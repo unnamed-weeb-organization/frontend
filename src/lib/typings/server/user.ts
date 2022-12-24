@@ -1,23 +1,20 @@
+export interface User {
+	id: string;
+	name: string;
+	roles: Role[];
+}
+
 export enum Role {
-	User,
-	Contributor,
-	Moderator,
-	Admin ,
+	User = "User",
+	Contributor = "Contributor",
+	Moderator = "Moderator",
+	Admin = "Admin"
 }
 
-export function getRoleName(role: Role): string {
-	switch (role) {
-		case Role.Admin:
-			return "Admin";
-		case Role.Moderator:
-			return "Moderator";
-		case Role.Contributor:
-			return "Contributor";
-		case Role.User:
-			return "User";
-	}
-}
+export const getHigherOrderRole = (roles: Role[]): Role => {
+	const roleObject = Object.keys(Role);
 
-export function getHigherOrderRole(roles: Role[]): Role {
-	return roles.reduce((a, b) => (a > b ? a : b));
-}
+	return roles.reduce((acc, role) =>
+		roleObject.indexOf(role) > roleObject.indexOf(acc) ? role : acc
+	);
+};
