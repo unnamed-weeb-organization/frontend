@@ -28,8 +28,8 @@ export enum RoutePoint {
 	Settings,
 	Artists,
 	Artist,
-	Albums,
-	Album,
+	Releases,
+	Release,
 	AnimeList,
 	Anime,
 	Songs,
@@ -45,7 +45,7 @@ export enum RoutePoint {
  */
 export const CTXRouteRelation: Record<CTXType, RoutePoint> = {
 	[CTXType.Artist]: RoutePoint.Artist,
-	[CTXType.Album]: RoutePoint.Album,
+	[CTXType.Release]: RoutePoint.Release,
 	[CTXType.Anime]: RoutePoint.Anime,
 	[CTXType.Song]: RoutePoint.Song
 };
@@ -63,8 +63,8 @@ export const Route: Record<RoutePoint, RouteOptions> = {
 	[RoutePoint.Artists]: { route: "/artists" },
 	[RoutePoint.Artist]: { route: "/artist/:id" },
 
-	[RoutePoint.Albums]: { route: "/albums" },
-	[RoutePoint.Album]: { route: "/album/:id" },
+	[RoutePoint.Releases]: { route: "/releases" },
+	[RoutePoint.Release]: { route: "/release/:id" },
 
 	[RoutePoint.AnimeList]: { route: "/anime" },
 	[RoutePoint.Anime]: { route: "/anime/:id" },
@@ -81,7 +81,7 @@ export const Route: Record<RoutePoint, RouteOptions> = {
 export type RouteParameters = {
 	[key: string | number]: { [key: string]: string };
 	[RoutePoint.Artist]: { id: string };
-	[RoutePoint.Album]: { id: string };
+	[RoutePoint.Release]: { id: string };
 	[RoutePoint.Anime]: { id: string };
 	[RoutePoint.Song]: { id: string };
 	[RoutePoint.Login]: { from?: string };

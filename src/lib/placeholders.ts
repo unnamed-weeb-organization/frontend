@@ -3,7 +3,7 @@ import type { Artist } from "$lib/typings/server/artist";
 import type { ItemCardData } from "$lib/typings/client/general";
 import { type Release, ReleaseType } from "$lib/typings/server/release";
 
-export const album: Release = {
+export const release: Release = {
 	id: "1",
 	name: "eureka",
 	release_type: ReleaseType.Album,
@@ -17,14 +17,14 @@ export const artist: Artist = {
 
 export const RAData: ItemCardData[] = [
 	{
-		type: CTXType.Album,
+		type: CTXType.Release,
 		label: "eureka",
 		id: "1",
 		imageURL: "2",
 		alt: { label: "きのこ帝国", id: "3", type: CTXType.Artist }
 	},
 	{
-		type: CTXType.Album,
+		type: CTXType.Release,
 		label: "これでいいんだよ",
 		id: "4",
 		imageURL: "5",

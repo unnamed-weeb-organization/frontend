@@ -1,11 +1,11 @@
 import type { PageLoad } from "./$types";
-import { album, artist } from "$lib/placeholders";
+import { release, artist } from "$lib/placeholders";
 
 // TODO: Replace placeholder data with graphql requests.
 export const load = (() => {
 	return {
-		title: `${album.name} by ${artist.name}`,
+		title: `${release.name} by ${artist.name}`,
 		artist,
-		album
+		release
 	};
 }) satisfies PageLoad;

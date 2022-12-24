@@ -9,7 +9,7 @@ const config = {
 	theme: {
 		fontFamily: {
 			sans: ["Noto Sans", "Noto Sans JP", "sans-serif"],
-			head: ["Rubik", "ui-serif"]
+			head: ["Rubik", "Noto Sans JP", "ui-serif"]
 		},
 		colors: {
 			transparent: "transparent",

@@ -1,5 +1,5 @@
 export enum CTXType {
-	Album,
+	Release,
 	Artist,
 	Anime,
 	Song
@@ -13,7 +13,7 @@ export const getCTXTypes = (): CTXType[] => {
 
 export const getCTXTypeName = (type: CTXType) => {
 	switch (type) {
-		case CTXType.Album:
+		case CTXType.Release:
 			return "Album";
 		case CTXType.Artist:
 			return "Artist";
@@ -37,7 +37,7 @@ export const getJoiningGrammar = (base: CTXType, to: CTXType) => {
 		throw new Error("Invalid join");
 	}
 
-	if (base === CTXType.Album) {
+	if (base === CTXType.Release) {
 		switch (to) {
 			case CTXType.Artist:
 				return "by";
@@ -48,7 +48,7 @@ export const getJoiningGrammar = (base: CTXType, to: CTXType) => {
 
 	if (base === CTXType.Song) {
 		switch (to) {
-			case CTXType.Album:
+			case CTXType.Release:
 				return "from";
 			case CTXType.Anime:
 				return "appeared in";

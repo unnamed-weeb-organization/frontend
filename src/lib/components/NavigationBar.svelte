@@ -13,9 +13,9 @@
 	let showUserCard = false;
 
 	const moreRouteItems = {
-		Albums: RoutePoint.Albums,
 		Artists: RoutePoint.Artists,
 		Anime: RoutePoint.AnimeList,
+		Releases: RoutePoint.Releases,
 		Songs: RoutePoint.Songs
 	};
 
