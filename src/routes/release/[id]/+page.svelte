@@ -11,11 +11,11 @@
 	]
 </script>
 
-<div class="flex flex-col w-full h-full px-6 lg:px-10 py-4">
-	<div class="flex flex-col lg:w-80">
-		<div class="flex gap-4 lg:flex-col">
+<div class="flex flex-col w-full h-full px-6 md:px-10 py-4 md:py-6">
+	<div class="flex flex-col md:w-80">
+		<div class="flex flex-col items-center gap-4 md:items-start">
 			<div class="art_container" />
-			<div class="flex flex-col font-head">
+			<div class="flex flex-col items-center font-head md:items-start">
 				<h1 class="text-4xl font-medium">{data.release.name}</h1>
 				<span class="text-sm text-custom-200">{data.artist.name}</span>
 			</div>
@@ -33,12 +33,14 @@
 
 <style lang="postcss">
 	.art_container {
-		@apply h-56 w-56 lg:h-64 lg:w-64
-		bg-custom-secondary rounded shadow;
+		@apply h-64 w-64 min-h-[16rem]
+		bg-custom-secondary rounded
+		shadow-md hover:shadow-lg
+		transition-shadow duration-150 ease-in-out
 	}
 
 	.column_container {
-		@apply grid grid-cols-3 gap-4 mt-8 lg:grid-cols-2;
+		@apply grid grid-cols-2 gap-4 mt-8;
 	}
 
 	.column_item {
