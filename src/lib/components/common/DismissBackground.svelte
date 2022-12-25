@@ -1,11 +1,11 @@
 <script lang="ts">
 	export let onDismiss: () => void;
 
-	export let styleType: 'none' | 'dimmed' = 'none';
+	export let styleType: "none" | "dimmed" = "none";
 	const styles = {
-		none: 'opacity-0',
-		dimmed: 'bg-black opacity-50'
-	}
+		none: "opacity-0",
+		dimmed: "bg-black opacity-50"
+	};
 </script>
 
 <div

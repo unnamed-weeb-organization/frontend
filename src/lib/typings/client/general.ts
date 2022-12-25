@@ -9,5 +9,5 @@ export interface ItemCardData {
 		type: CTXType;
 		label: string;
 		id: string;
-	}
+	};
 }

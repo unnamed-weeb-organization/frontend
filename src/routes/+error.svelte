@@ -1,14 +1,14 @@
 <script>
-	import { page } from '$app/stores';
+	import { page } from "$app/stores";
 
 	const errorMessages = {
-		404: 'Page not found',
-		500: 'Internal server error'
+		404: "Page not found",
+		500: "Internal server error"
 	};
 
 	const hintMessages = {
-		404: 'The page you are looking for might have been removed, had its name changed, or is temporarily unavailable.',
-		500: 'Please try again later.'
+		404: "The page you are looking for might have been removed, had its name changed, or is temporarily unavailable.",
+		500: "Please try again later."
 	};
 </script>
 

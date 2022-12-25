@@ -28,10 +28,7 @@
 		<slot />
 	</div>
 {:else}
-	<div
-		out:fade={{ duration: 150 }}
-		class="flex flex-col h-full justify-center items-center"
-	>
+	<div out:fade={{ duration: 150 }} class="flex flex-col h-full justify-center items-center">
 		<Spinner height="56" width="56" />
 	</div>
 {/if}

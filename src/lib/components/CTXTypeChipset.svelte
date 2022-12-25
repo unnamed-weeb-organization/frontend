@@ -8,7 +8,7 @@
 	const ctxTypes = getCTXTypes();
 	function addCTXType(type: CTXType) {
 		if (singular) {
-			return selected = [type];
+			return (selected = [type]);
 		}
 
 		if (selected.includes(type)) {

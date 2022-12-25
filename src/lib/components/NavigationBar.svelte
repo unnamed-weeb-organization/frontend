@@ -29,7 +29,11 @@
 <nav>
 	<a href={Route[RoutePoint.Home].route} class="font-head select-none">
 		<span class="hidden md:block">{APP_NAME}</span>
-		<span class="md:hidden">{APP_NAME.split("_").map((str) => str[0]).join("")}</span>
+		<span class="md:hidden"
+			>{APP_NAME.split("_")
+				.map((str) => str[0])
+				.join("")}</span
+		>
 	</a>
 
 	<div class="links">

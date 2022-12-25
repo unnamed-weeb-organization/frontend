@@ -1,7 +1,7 @@
 export enum ReleaseType {
 	Album = "Album",
 	EP = "EP",
-	Single = "Single",
+	Single = "Single"
 }
 
 export interface Release {

@@ -12,7 +12,7 @@
 
 <div class="item_container">
 	<div class="flex-grow" />
-	<div class="info_container">
+	<div class="title_container">
 		<a href={baseRouteOptions.route} class="text-custom-200">{data.label}</a>
 		<span class="text-custom-400 text-xs">{joiningString}</span>
 		<a href={altRouteOptions.route} class="text-custom-300 max-w-[50%]">
@@ -28,7 +28,7 @@
         overflow-hidden;
 	}
 
-	.info_container {
+	.title_container {
 		@apply flex gap-1 items-center
         h-8 px-2 bg-custom-tertiary
         font-sans text-sm text-ellipsis;

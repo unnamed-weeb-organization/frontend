@@ -18,7 +18,11 @@
 </div>
 
 <div class="flex md:hidden items-center justify-center">
-	<Button styleType="iconButton" class="w-8 h-8" on:click={() => (showMobileSearch = !showMobileSearch)}>
+	<Button
+		styleType="iconButton"
+		class="w-8 h-8"
+		on:click={() => (showMobileSearch = !showMobileSearch)}
+	>
 		<SearchIcon class="h-6 w-6" />
 	</Button>
 </div>
@@ -27,7 +31,11 @@
 	<div transition:slide={{ duration: 150 }} class="mobile_search">
 		<div class="flex h-16 items-center px-4 gap-2 z-10">
 			<input bind:value={searchQuery} placeholder="Search" class="flex-1" />
-			<Button styleType="iconButton" class="w-8 h-8" on:click={() => (showMobileSearch = false)}>
+			<Button
+				styleType="iconButton"
+				class="w-8 h-8"
+				on:click={() => (showMobileSearch = false)}
+			>
 				<CloseIcon class="h-6 w-6" />
 			</Button>
 		</div>

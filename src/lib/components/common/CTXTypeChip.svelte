@@ -8,13 +8,7 @@
 <!--suppress HtmlWrongAttributeValue
  	Probably an issue with webstorm where boolean isn't a valid aria-select value.
  -->
-<button
-	role="option"
-	class="chip"
-	class:selected={selected}
-	aria-selected={selected}
-	on:click|preventDefault
->
+<button role="option" class="chip" class:selected aria-selected={selected} on:click|preventDefault>
 	{getCTXTypeName(ctxType)}
 </button>
 
