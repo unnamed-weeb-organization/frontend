@@ -80,7 +80,7 @@
 <style lang="postcss">
 	nav {
 		@apply fixed top-0 left-0 w-full flex items-center bg-custom-background
-        px-6 border-b-2 border-b-custom-tertiary gap-4;
+        px-6 border-b-2 border-b-custom-tertiary gap-4 z-30;
 		height: var(--navbar_height);
 	}
 

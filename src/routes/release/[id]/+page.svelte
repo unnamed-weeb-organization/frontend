@@ -7,12 +7,12 @@
 		["Release Date", 2013],
 		["Type", data?.release.release_type],
 		["Language", "Japanese"],
-		["Length", "47 Minutes, 52 Seconds"]
+		["Length", "47 Minutes, 52 Seconds"],
 	];
 </script>
 
-<div class="flex flex-col w-full h-full px-6 md:px-10 py-4 md:py-6">
-	<div class="flex flex-col md:w-80">
+<div class="flex flex-col w-full h-full pt-6">
+	<div class="details_container">
 		<div class="info_container">
 			<div class="art_container" />
 			<div class="title_container">
@@ -32,15 +32,19 @@
 </div>
 
 <style lang="postcss">
-	.art_container {
+	.details_container {
+		@apply relative z-10 flex flex-col md:w-fit md:px-8;
+	}
+
+    .info_container {
+        @apply flex flex-col items-center gap-4 md:items-start;
+    }
+
+    .art_container {
 		@apply h-64 w-64 min-h-[16rem]
         bg-custom-secondary rounded
         shadow-md hover:shadow-lg
         transition-shadow duration-150 ease-in-out;
-	}
-
-	.info_container {
-		@apply flex flex-col items-center gap-4 md:items-start;
 	}
 
 	.title_container {
@@ -57,7 +61,9 @@
 	}
 
 	.column_container {
-		@apply grid grid-cols-2 gap-4 mt-8;
+		@apply grid grid-cols-2 md:grid-cols-1 gap-4
+		justify-items-center text-center md:justify-items-start md:text-start
+		mt-8;
 	}
 
 	.column_item {
