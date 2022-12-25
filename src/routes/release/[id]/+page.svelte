@@ -17,7 +17,7 @@
 	const songs = new Array(9).fill({
 		id: "25",
 		name: "ミュージシャン",
-		artists: [artist],
+		artists: [artist, artist],
 		length: 150
 	} as Song);
 </script>
@@ -42,7 +42,7 @@
 	</div>
 
 	<div class="flex flex-col w-full xl:contents">
-		<SongList {songs} class="lg:max-w-2xl 2xl:max-w-4xl px-4 mt-8 md:mt-0 md:pl-0 md:pr-8" />
+		<SongList {songs} class="lg:max-w-3xl 2xl:max-w-4xl px-4 mt-8 md:mt-0 md:pl-0 md:pr-8" />
 		<span>extern</span>
 	</div>
 </div>
