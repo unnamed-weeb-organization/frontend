@@ -2,7 +2,7 @@
 	import { slide } from "svelte/transition";
 	import { page } from "$app/stores";
 	import { RoutePoint, goto } from "$lib/routes";
-	import { isDark, changeTheme } from "$lib/hooks/theme";
+	import { isDark, changeTheme } from "$lib/theme";
 	import { Role, getHigherOrderRole } from "$lib/typings/server/user";
 
 	import DismissBackground from "$lib/components/common/DismissBackground.svelte";

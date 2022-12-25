@@ -35,6 +35,8 @@ export const initializeTheme = () => {
 };
 
 export const changeTheme = (theme: ThemePalette | "preserve", dark: boolean | "preserve") => {
+	document.documentElement.classList.add("no-transition");
+
 	if (dark !== "preserve") {
 		const oldMode = isDark() ? "dark" : "light";
 		document.documentElement.classList.replace(oldMode, dark ? "dark" : "light");
@@ -46,4 +48,8 @@ export const changeTheme = (theme: ThemePalette | "preserve", dark: boolean | "p
 		document.documentElement.classList.replace(oldPalette, theme);
 		localStorage.setItem(THEME_PALETTE_KEY, theme);
 	}
+
+	// Triggers a reflow to make sure the transitions are stopped, in order to re-activate again.
+	document.documentElement.offsetHeight;
+	document.documentElement.classList.remove("no-transition");
 };

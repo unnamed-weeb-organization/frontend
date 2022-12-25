@@ -35,6 +35,10 @@ input {
 	caret-color: var(--accent-200);
 }
 
+:root.no-transition * {
+	transition: none !important;
+}
+
 ::selection {
 	background-color: var(--accent-tertiary);
 	color: var(--accent-100);

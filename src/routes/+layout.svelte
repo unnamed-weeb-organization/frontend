@@ -3,7 +3,9 @@
 	import { onMount } from "svelte";
 	import { fade } from "svelte/transition";
 	import { page } from "$app/stores";
-	import { initializeTheme } from "$lib/hooks/theme";
+	import { APP_NAME } from "$lib/constants";
+	import { initializeTheme } from "$lib/theme";
+
 	import Spinner from "$lib/components/common/Spinner.svelte";
 	import NavigationBar from "$lib/components/NavigationBar.svelte";
 
@@ -16,7 +18,7 @@
 </script>
 
 <svelte:head>
-	<title>{$page.data.title ?? "unnamed_weeb_database"}</title>
+	<title>{$page.data.title ?? APP_NAME}</title>
 </svelte:head>
 
 {#if loaded}
