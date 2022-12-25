@@ -1,5 +1,8 @@
 <script lang="ts">
 	import type { PageData } from "./$types";
+	import type { Song } from "$lib/typings/server/song";
+	import { artist } from "$lib/placeholders";
+	import SongList from "$lib/components/SongList.svelte";
 
 	export let data: PageData;
 
@@ -7,11 +10,19 @@
 		["Release Date", 2013],
 		["Type", data?.release.release_type],
 		["Language", "Japanese"],
-		["Length", "47 Minutes, 52 Seconds"],
+		["Tracks", 9],
+		["Length", "47 Minutes, 52 Seconds"]
 	];
+
+	const songs = new Array(9).fill({
+		id: "25",
+		name: "ミュージシャン",
+		artists: [artist],
+		length: 150
+	} as Song);
 </script>
 
-<div class="flex flex-col w-full h-full pt-6">
+<div class="flex flex-col md:flex-row w-full h-full my-6">
 	<div class="details_container">
 		<div class="info_container">
 			<div class="art_container" />
@@ -29,6 +40,11 @@
 			{/each}
 		</div>
 	</div>
+
+	<div class="flex flex-col w-full xl:contents">
+		<SongList {songs} class="lg:max-w-2xl 2xl:max-w-4xl px-4 mt-8 md:mt-0 md:pl-0 md:pr-8" />
+		<span>extern</span>
+	</div>
 </div>
 
 <style lang="postcss">
@@ -36,11 +52,11 @@
 		@apply relative z-10 flex flex-col md:w-fit md:px-8;
 	}
 
-    .info_container {
-        @apply flex flex-col items-center gap-4 md:items-start;
-    }
+	.info_container {
+		@apply flex flex-col items-center gap-4 md:items-start;
+	}
 
-    .art_container {
+	.art_container {
 		@apply h-64 w-64 min-h-[16rem]
         bg-custom-secondary rounded
         shadow-md hover:shadow-lg
@@ -62,8 +78,8 @@
 
 	.column_container {
 		@apply grid grid-cols-2 md:grid-cols-1 gap-4
-		justify-items-center text-center md:justify-items-start md:text-start
-		mt-8;
+        justify-items-center text-center md:justify-items-start md:text-start
+        mt-8;
 	}
 
 	.column_item {
