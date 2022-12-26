@@ -2,6 +2,7 @@
 	import type { Song } from "$lib/typings/server/song";
 	import { getFormattedTime } from "$lib/utils";
 	import { RoutePoint, withParameter } from "$lib/routes";
+	import { getNonEmptyName } from "$lib/typings/server/general.js";
 
 	export let song: Song;
 	export let itemNo: number;
@@ -11,10 +12,10 @@
 
 <div class="item">
 	<span class="text-xs text-custom-400">{itemNo}</span>
-	<a class="text-custom-200" href={songRouteOptions.route}>{song.name}</a>
+	<a class="text-custom-200" href={songRouteOptions.route}>{getNonEmptyName(song.name)}</a>
 	<div class="flex flex-1 justify-end">
 		{#each song.artists as { id, name }, i}
-			<a href={withParameter(RoutePoint.Artist, { id }).route}>{name}</a>
+			<a href={withParameter(RoutePoint.Artist, { id }).route}>{getNonEmptyName(name)}</a>
 			{#if i < song.artists.length - 1}
 				<span class="mr-1">,</span>
 			{/if}

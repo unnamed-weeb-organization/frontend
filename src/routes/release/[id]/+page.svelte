@@ -1,7 +1,9 @@
 <script lang="ts">
 	import type { PageData } from "./$types";
+	import { getNonEmptyName } from "$lib/typings/server/general.js";
 	import SongList from "$lib/components/SongList.svelte";
 	import ExternalSites from "$lib/components/ExternalSites.svelte";
+	import ArtContainer from "$lib/components/common/ArtContainer.svelte";
 
 	export let data: PageData;
 
@@ -17,10 +19,10 @@
 <div class="flex flex-col md:flex-row w-full py-6 overflow-y-auto">
 	<div class="details_container">
 		<div class="info_container">
-			<div class="art_container" />
+			<ArtContainer />
 			<div class="title_container">
-				<h1>{data.release.name}</h1>
-				<span>{data.artist.name}</span>
+				<h1>{getNonEmptyName(data.release.name)}</h1>
+				<span>{getNonEmptyName(data.artist.name)}</span>
 			</div>
 		</div>
 		<div class="column_container">
@@ -41,18 +43,11 @@
 
 <style lang="postcss">
 	.details_container {
-		@apply relative z-10 flex flex-col md:w-fit md:px-8;
+		@apply z-10 flex flex-col md:w-fit md:px-8;
 	}
 
 	.info_container {
 		@apply flex flex-col items-center gap-4 md:items-start;
-	}
-
-	.art_container {
-		@apply h-64 w-64 min-h-[16rem]
-        bg-custom-secondary rounded
-        shadow-md hover:shadow-lg
-        transition-shadow duration-150 ease-in-out;
 	}
 
 	.title_container {

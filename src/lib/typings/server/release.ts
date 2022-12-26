@@ -1,3 +1,5 @@
+import type { Name } from "$lib/typings/server/general";
+
 export enum ReleaseType {
 	Album = "Album",
 	EP = "EP",
@@ -6,7 +8,7 @@ export enum ReleaseType {
 
 export interface Release {
 	id: string;
-	name: string;
+	name: Name;
 	release_type: ReleaseType;
 	total_tracks: number;
 }

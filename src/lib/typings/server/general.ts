@@ -1,3 +1,17 @@
+export interface Name {
+	native?: string;
+	romanized?: string;
+	english?: string;
+}
+
+// TODO: Non-null plus based on preference.
+export const getNonEmptyName = (name: Name): string => {
+	if (name.native) return name.native;
+	if (name.romanized) return name.romanized;
+	if (name.english) return name.english;
+	throw new Error("Name object is empty.");
+}
+
 export enum CTXType {
 	Release,
 	Artist,
