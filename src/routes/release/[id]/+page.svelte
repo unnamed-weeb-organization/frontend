@@ -17,7 +17,7 @@
 	const songs = new Array(9).fill(song);
 </script>
 
-<div class="flex flex-col md:flex-row w-full h-full my-6">
+<div class="flex flex-col md:flex-row w-full py-6 overflow-y-auto">
 	<div class="details_container">
 		<div class="info_container">
 			<div class="art_container" />
