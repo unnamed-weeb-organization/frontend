@@ -1,6 +1,5 @@
 <script lang="ts">
 	import type { PageData } from "./$types";
-	import { externalSites, song } from "$lib/placeholders";
 	import SongList from "$lib/components/SongList.svelte";
 	import ExternalSites from "$lib/components/ExternalSites.svelte";
 
@@ -13,8 +12,6 @@
 		["Tracks", 9],
 		["Length", "47 Minutes, 52 Seconds"]
 	];
-
-	const songs = new Array(9).fill(song);
 </script>
 
 <div class="flex flex-col md:flex-row w-full py-6 overflow-y-auto">
@@ -37,8 +34,8 @@
 	</div>
 
 	<div class="flex flex-col w-full px-4 mt-8 gap-4 md:px-0 md:mt-0 xl:contents">
-		<SongList {songs} class="h-fit lg:max-w-3xl 2xl:max-w-4xl md:pr-8" />
-		<ExternalSites sites={externalSites} />
+		<SongList songs={data.songs} class="h-fit lg:max-w-3xl 2xl:max-w-4xl md:pr-8" />
+		<ExternalSites sites={data.externalSites} />
 	</div>
 </div>
 
