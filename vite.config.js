@@ -14,6 +14,15 @@ const config = {
 					{ name: "removeAttrs", params: { attrs: "(fill|stroke)" } }
 				]
 			}
+		}),
+		svg({
+			includePaths: ["./src/lib/assets/logos/"],
+			svgoOptions: {
+				multipass: true,
+				plugins: [
+					{ name: "preset-default", params: { overrides: { removeViewBox: false } } }
+				]
+			}
 		})
 	],
 	test: {

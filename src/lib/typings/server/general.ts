@@ -59,3 +59,34 @@ export const getJoiningGrammar = (base: CTXType, to: CTXType) => {
 		}
 	}
 };
+
+export enum ExternalSiteType {
+	AppleMusic,
+	YouTube,
+	Spotify,
+	SoundCloud,
+	Twitter,
+	Instagram,
+}
+
+export interface ExternalSite {
+	type: ExternalSiteType;
+	url: string;
+}
+
+export const getExternalSiteName = (type: ExternalSiteType) => {
+	switch (type) {
+		case ExternalSiteType.AppleMusic:
+			return "Apple Music";
+		case ExternalSiteType.YouTube:
+			return "YouTube";
+		case ExternalSiteType.Spotify:
+			return "Spotify";
+		case ExternalSiteType.SoundCloud:
+			return "SoundCloud";
+		case ExternalSiteType.Twitter:
+			return "Twitter";
+		case ExternalSiteType.Instagram:
+			return "Instagram";
+	}
+}

@@ -1,8 +1,8 @@
 <script lang="ts">
 	import type { PageData } from "./$types";
-	import type { Song } from "$lib/typings/server/song";
-	import { artist } from "$lib/placeholders";
+	import { externalSites, song } from "$lib/placeholders";
 	import SongList from "$lib/components/SongList.svelte";
+	import ExternalSites from "$lib/components/ExternalSites.svelte";
 
 	export let data: PageData;
 
@@ -14,12 +14,7 @@
 		["Length", "47 Minutes, 52 Seconds"]
 	];
 
-	const songs = new Array(9).fill({
-		id: "25",
-		name: "ミュージシャン",
-		artists: [artist, artist],
-		length: 150
-	} as Song);
+	const songs = new Array(9).fill(song);
 </script>
 
 <div class="flex flex-col md:flex-row w-full h-full my-6">
@@ -41,9 +36,9 @@
 		</div>
 	</div>
 
-	<div class="flex flex-col w-full xl:contents">
-		<SongList {songs} class="lg:max-w-3xl 2xl:max-w-4xl px-4 mt-8 md:mt-0 md:pl-0 md:pr-8" />
-		<span>extern</span>
+	<div class="flex flex-col w-full px-4 mt-8 gap-4 md:px-0 md:mt-0 xl:contents">
+		<SongList {songs} class="h-fit lg:max-w-3xl 2xl:max-w-4xl md:pr-8" />
+		<ExternalSites sites={externalSites} />
 	</div>
 </div>
 
