@@ -7,7 +7,7 @@ import type { Song } from "$lib/typings/server/song";
 export const release: Release = {
 	id: "1",
 	name: {
-		english: "eureka",
+		english: "eureka"
 	},
 	release_type: ReleaseType.Album,
 	total_tracks: 9
@@ -17,9 +17,9 @@ export const artist: Artist = {
 	id: "1",
 	name: {
 		native: "きのこ帝国",
-		romanized: "Kinoko Teikoku",
+		romanized: "Kinoko Teikoku"
 	},
-	alt_names: [],
+	alt_names: [{ native: "何か" }, { romanized: "nanika" }, { english: "Something" }],
 	description: "きのこ帝国は、2007年に結成された日本のロックバンド。"
 };
 
@@ -28,7 +28,7 @@ export const song: Song = {
 	name: {
 		native: "ミュージシャン",
 		romanized: "Myūjishan",
-		english: "Musician",
+		english: "Musician"
 	},
 	artists: [artist, artist],
 	length: 150
@@ -50,5 +50,5 @@ export const RAData: ItemCardData[] = [
 		id: "1",
 		imageURL: "2",
 		alt: { label: "きのこ帝国", id: "3", type: CTXType.Artist }
-	},
+	}
 ];

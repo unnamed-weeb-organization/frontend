@@ -2,8 +2,8 @@
 	export let imageURL: string;
 </script>
 
-<!-- Responsive images and such -->
-<div class="container" />
+<!-- TODO: Responsive images and such -->
+<div class="container {$$props.class}" />
 
 <style lang="postcss">
     .container {

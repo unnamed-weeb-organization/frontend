@@ -1,12 +1,16 @@
 <script lang="ts">
 	import type { PageData } from "./$types";
 	import { getNonEmptyName } from "$lib/typings/server/general.js";
+
 	import SongList from "$lib/components/SongList.svelte";
 	import ExternalSites from "$lib/components/ExternalSites.svelte";
 	import ArtContainer from "$lib/components/common/ArtContainer.svelte";
+	import EntryDetailsLayout from "$lib/components/layouts/EntryDetailsLayout.svelte";
+	import { RoutePoint, withParameter } from "$lib/routes";
 
 	export let data: PageData;
 
+	const artistURL = withParameter(RoutePoint.Artist, { id: data.artist.id });
 	const columnItems = [
 		["Release Date", 2013],
 		["Type", data?.release.release_type],
@@ -16,40 +20,31 @@
 	];
 </script>
 
-<div class="flex flex-col md:flex-row w-full py-6 overflow-y-auto">
-	<div class="details_container">
-		<div class="info_container">
-			<ArtContainer />
-			<div class="title_container">
-				<h1>{getNonEmptyName(data.release.name)}</h1>
-				<span>{getNonEmptyName(data.artist.name)}</span>
-			</div>
-		</div>
-		<div class="column_container">
-			{#each columnItems as [key, value]}
-				<div class="column_item">
-					<span>{key}</span>
-					<span>{value}</span>
-				</div>
-			{/each}
+<EntryDetailsLayout>
+	<div class="contents" slot="info_container">
+		<ArtContainer />
+		<div class="title_container">
+			<h1>{getNonEmptyName(data.release.name)}</h1>
+			<a href={artistURL}>{getNonEmptyName(data.artist.name)}</a>
 		</div>
 	</div>
 
-	<div class="flex flex-col w-full px-4 mt-8 gap-4 md:px-0 md:mt-0 xl:contents">
+	<div class="contents" slot="column_container">
+		{#each columnItems as [key, value]}
+			<div class="column_item">
+				<span>{key}</span>
+				<span>{value}</span>
+			</div>
+		{/each}
+	</div>
+
+	<div class="contents">
 		<SongList songs={data.songs} class="h-fit lg:max-w-3xl 2xl:max-w-4xl md:pr-8" />
 		<ExternalSites sites={data.externalSites} />
 	</div>
-</div>
+</EntryDetailsLayout>
 
 <style lang="postcss">
-	.details_container {
-		@apply z-10 flex flex-col md:w-fit md:px-8;
-	}
-
-	.info_container {
-		@apply flex flex-col items-center gap-4 md:items-start;
-	}
-
 	.title_container {
 		@apply flex flex-col items-center md:items-start
         font-head;
@@ -59,14 +54,8 @@
 		@apply text-4xl font-medium text-custom-100;
 	}
 
-	.title_container span {
+	.title_container a {
 		@apply text-sm text-custom-200;
-	}
-
-	.column_container {
-		@apply grid grid-cols-2 md:grid-cols-1 gap-4
-        justify-items-center text-center md:justify-items-start md:text-start
-        mt-8;
 	}
 
 	.column_item {
