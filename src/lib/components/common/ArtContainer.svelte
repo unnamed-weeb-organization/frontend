@@ -1,5 +1,5 @@
 <script lang="ts">
-	export let link: string;
+	export let link: string | null;
 	export let imageURL: string;
 	export let size: "small" | "medium" | "large" = "large";
 

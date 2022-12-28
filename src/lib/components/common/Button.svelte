@@ -1,6 +1,6 @@
 <script lang="ts">
 	export let label: string | null = null;
-	export let styleType: "default" | "none" = "default";
+	export let styleType: "default" | "iconButton" | "none" = "default";
 
 	const styles = {
 		default: "font-sans text-sm text-custom-300 fill-current",

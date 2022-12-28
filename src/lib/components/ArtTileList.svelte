@@ -1,13 +1,12 @@
 <script lang="ts">
-	import Button from "$lib/components/common/Button.svelte";
-	import RightArrowIcon from "$lib/assets/icons/right-arrow.svg?component";
-	import ArtTile from "$lib/components/common/ArtTile.svelte";
 	import type { ArtTileListData } from "$lib/typings/client/general";
 	import { CTXRouteRelation, withParameter } from "$lib/routes.js";
+	import Button from "$lib/components/common/Button.svelte";
+	import ArtTile from "$lib/components/common/ArtTile.svelte";
+	import RightArrowIcon from "$lib/assets/icons/right-arrow.svg?component";
 
 	export let heading: string;
 	export let onAllClick: () => void;
-
 	export let tiles: ArtTileListData[];
 </script>
 

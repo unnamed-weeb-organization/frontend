@@ -12,7 +12,6 @@
 	import EntryDetailsLayout from "$lib/components/layouts/EntryDetailsLayout.svelte";
 	import KeyValueColumn from "$lib/components/common/KeyValueColumn.svelte";
 
-
 	export let data: PageData;
 
 	const altNames = data.artist.alt_names.map((name) => getNonEmptyName(name));
@@ -23,7 +22,6 @@
 	];
 
 	const goToReleaseList = () => goto(RoutePoint.Releases, { from: data.artist.id });
-	const onReleaseClick = (id: string) => goto(RoutePoint.Release, { id });
 	const releaseTileData: ArtTileListData[] = data.releases.map((release) => ({
 		id: release.id,
 		ctx: CTXType.RELEASE,
@@ -34,7 +32,7 @@
 
 <EntryDetailsLayout>
 	<div class="contents" slot="info_container">
-		<ArtContainer />
+		<ArtContainer imageURL="" link={null} />
 		<div class="title_container">
 			<h1>{getNonEmptyName(data.artist.name)}</h1>
 			<div class="alt_name_container">
@@ -59,7 +57,6 @@
 			<ArtTileList
 				heading="Releases"
 				tiles={releaseTileData}
-				onItemClick={onReleaseClick}
 				onAllClick={goToReleaseList}
 			/>
 		</div>

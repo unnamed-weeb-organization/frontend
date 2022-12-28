@@ -1,4 +1,4 @@
-import type { Name } from "$lib/typings/server/general";
+import type { Country, Name } from "$lib/typings/server/general";
 
 export enum ArtistType {
 	SOLO = "SOLO",
@@ -23,6 +23,6 @@ export interface Artist {
 	type: ArtistType;
 	alt_names: Name[];
 	description?: string;
-	based_on: string;
+	based_on: Country;
 	founded_on: Date;
 }

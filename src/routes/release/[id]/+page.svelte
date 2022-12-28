@@ -13,17 +13,17 @@
 
 	const artistRouteOptions = withParameter(RoutePoint.Artist, { id: data.artist.id });
 	const detailColumns = [
-		["Release Date", 2013],
+		["Release Date", "2013"],
 		["Type", data?.release.release_type],
 		["Language", "Japanese"],
-		["Tracks", 9],
+		["Tracks", "9"],
 		["Length", "47 Minutes, 52 Seconds"]
 	];
 </script>
 
 <EntryDetailsLayout>
 	<div class="contents" slot="info_container">
-		<ArtContainer />
+		<ArtContainer imageURL="" link={null} />
 		<div class="title_container">
 			<h1>{getNonEmptyName(data.release.name)}</h1>
 			<a href={artistRouteOptions.route}>{getNonEmptyName(data.artist.name)}</a>
