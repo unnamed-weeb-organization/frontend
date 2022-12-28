@@ -34,8 +34,8 @@ export const song: Song = {
 		romanized: "Myūjishan",
 		english: "Musician"
 	},
-	artists: [artist, artist],
-	length: 150
+	length: 150,
+	released_on: new Date("2019-01-01"),
 };
 
 export const externalSites: ExternalSite[] = [

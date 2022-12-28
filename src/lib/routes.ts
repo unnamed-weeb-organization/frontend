@@ -82,7 +82,7 @@ export type RouteParameters = {
 	[key: string | number]: { [key: string]: string };
 	[RoutePoint.Artist]: { id: string };
 	[RoutePoint.Release]: { id: string };
-	[RoutePoint.Releases]: { from: string };
+	[RoutePoint.Releases]: { artist?: string; song?: string };
 	[RoutePoint.Anime]: { id: string };
 	[RoutePoint.Song]: { id: string };
 	[RoutePoint.Login]: { from?: string };
