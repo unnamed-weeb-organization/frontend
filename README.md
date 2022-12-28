@@ -14,7 +14,7 @@ SvelteKit frontend for the [`unnamed_weeb_music_database/backend`](https://githu
 2. Icons listed under [this](./src/lib/assets/icons) directory are part of [Unicons'](**https://iconscout.com/contributors/unicons/icons) [Line Icon Collection](https://iconscout.com/contributors/unicons/icons/unicons-line)
 
 3. Logos listed under [this](./src/lib/assets/logos) directory are under [Public Domain](https://en.wikipedia.org/wiki/Public_domain), as per their listings in respective wikimedia pages. Exceptions are listed below:
-   1. Twitter logo is licensed under [Apache License 2.0](https://github.com/twitter/opensource-website/blob/main/LICENSE)
+    1. Twitter logo is licensed under [Apache License 2.0](https://github.com/twitter/opensource-website/blob/main/LICENSE)
 
 ## License
 

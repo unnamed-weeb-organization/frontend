@@ -1,13 +1,35 @@
 <script lang="ts">
 	import type { PageData } from "./$types";
-	import { getNonEmptyName } from "$lib/typings/server/general.js";
+	import { goto, RoutePoint } from "$lib/routes";
+	import type { ArtTileListData } from "$lib/typings/client/general";
+	import { getFormattedDate } from "$lib/utils";
+	import { getArtistTypeName } from "$lib/typings/server/artist";
+	import { CTXType, getCountryName, getNonEmptyName } from "$lib/typings/server/general";
 
+	import ArtTileList from "$lib/components/ArtTileList.svelte";
+	import ExternalSites from "$lib/components/ExternalSites.svelte";
 	import ArtContainer from "$lib/components/common/ArtContainer.svelte";
 	import EntryDetailsLayout from "$lib/components/layouts/EntryDetailsLayout.svelte";
+	import KeyValueColumn from "$lib/components/common/KeyValueColumn.svelte";
+
 
 	export let data: PageData;
 
 	const altNames = data.artist.alt_names.map((name) => getNonEmptyName(name));
+	const detailColumns = [
+		["Type", getArtistTypeName(data.artist.type)],
+		["Location", getCountryName(data.artist.based_on)],
+		["Founded on", getFormattedDate(data.artist.founded_on)]
+	];
+
+	const goToReleaseList = () => goto(RoutePoint.Releases, { from: data.artist.id });
+	const onReleaseClick = (id: string) => goto(RoutePoint.Release, { id });
+	const releaseTileData: ArtTileListData[] = data.releases.map((release) => ({
+		id: release.id,
+		ctx: CTXType.RELEASE,
+		label: getNonEmptyName(release.name),
+		imageURL: ""
+	}));
 </script>
 
 <EntryDetailsLayout>
@@ -26,10 +48,23 @@
 		</div>
 	</div>
 
-	<!--	<div class="flex flex-col w-full px-4 mt-8 gap-4 md:px-0 md:mt-0 xl:contents">-->
-	<!--		<SongList songs={data.songs} class="h-fit lg:max-w-3xl 2xl:max-w-4xl md:pr-8" />-->
-	<!--		<ExternalSites sites={data.externalSites} />-->
-	<!--	</div>-->
+	<div class="contents" slot="column_container">
+		{#each detailColumns as [key, value]}
+			<KeyValueColumn {key} {value} />
+		{/each}
+	</div>
+
+	<div class="contents">
+		<div class="h-fit w-full lg:max-w-3xl 2xl:max-w-4xl md:pr-8 pb-8 md:pb-0">
+			<ArtTileList
+				heading="Releases"
+				tiles={releaseTileData}
+				onItemClick={onReleaseClick}
+				onAllClick={goToReleaseList}
+			/>
+		</div>
+		<ExternalSites class="hidden" sites={data.externalSites} />
+	</div>
 </EntryDetailsLayout>
 
 <style lang="postcss">

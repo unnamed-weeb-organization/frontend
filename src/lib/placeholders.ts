@@ -1,8 +1,9 @@
-import { CTXType, type ExternalSite, ExternalSiteType } from "$lib/typings/server/general";
+import { Country, CTXType, type ExternalSite, ExternalSiteType } from "$lib/typings/server/general";
 import type { Artist } from "$lib/typings/server/artist";
 import type { ItemCardData } from "$lib/typings/client/general";
 import { type Release, ReleaseType } from "$lib/typings/server/release";
 import type { Song } from "$lib/typings/server/song";
+import { ArtistType } from "$lib/typings/server/artist";
 
 export const release: Release = {
 	id: "1",
@@ -19,8 +20,11 @@ export const artist: Artist = {
 		native: "きのこ帝国",
 		romanized: "Kinoko Teikoku"
 	},
+	type: ArtistType.GROUP,
 	alt_names: [{ native: "何か" }, { romanized: "nanika" }, { english: "Something" }],
-	description: "きのこ帝国は、2007年に結成された日本のロックバンド。"
+	description: "きのこ帝国は、2007年に結成された日本のロックバンド。",
+	based_on: Country.Japan,
+	founded_on: new Date("2007-01-01")
 };
 
 export const song: Song = {
@@ -35,20 +39,20 @@ export const song: Song = {
 };
 
 export const externalSites: ExternalSite[] = [
-	{ type: ExternalSiteType.AppleMusic, url: "https://www.apple.com" },
-	{ type: ExternalSiteType.YouTube, url: "https://www.youtube.com" },
-	{ type: ExternalSiteType.Spotify, url: "https://www.spotify.com" },
-	{ type: ExternalSiteType.SoundCloud, url: "https://www.soundcloud.com" },
-	{ type: ExternalSiteType.Twitter, url: "https://www.twitter.com" },
-	{ type: ExternalSiteType.Instagram, url: "https://www.instagram.com" }
+	{ type: ExternalSiteType.APPLE_MUSIC, url: "https://www.apple.com" },
+	{ type: ExternalSiteType.YOU_TUBE, url: "https://www.youtube.com" },
+	{ type: ExternalSiteType.SPOTIFY, url: "https://www.spotify.com" },
+	{ type: ExternalSiteType.SOUND_CLOUD, url: "https://www.soundcloud.com" },
+	{ type: ExternalSiteType.TWITTER, url: "https://www.twitter.com" },
+	{ type: ExternalSiteType.INSTAGRAM, url: "https://www.instagram.com" }
 ];
 
 export const RAData: ItemCardData[] = [
 	{
-		type: CTXType.Release,
+		type: CTXType.RELEASE,
 		label: "eureka",
 		id: "1",
 		imageURL: "2",
-		alt: { label: "きのこ帝国", id: "3", type: CTXType.Artist }
+		alt: { label: "きのこ帝国", id: "3", type: CTXType.ARTIST }
 	}
 ];

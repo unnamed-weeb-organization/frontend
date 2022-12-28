@@ -9,6 +9,6 @@ export const load = (() => {
 		artist,
 		release,
 		externalSites,
-		songs: new Array(9).fill(song),
+		songs: new Array(9).fill(song)
 	};
 }) satisfies PageLoad;

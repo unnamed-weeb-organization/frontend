@@ -11,17 +11,17 @@
 	export let sites: ExternalSite[];
 
 	const siteItemMap = {
-		[ExternalSiteType.YouTube]: YouTubeLogo,
-		[ExternalSiteType.AppleMusic]: AppleMusicLogo,
-		[ExternalSiteType.Spotify]: SpotifyLogo,
-		[ExternalSiteType.SoundCloud]: SoundCloudLogo,
-		[ExternalSiteType.Twitter]: TwitterLogo,
-		[ExternalSiteType.Instagram]: InstagramLogo,
+		[ExternalSiteType.YOU_TUBE]: YouTubeLogo,
+		[ExternalSiteType.APPLE_MUSIC]: AppleMusicLogo,
+		[ExternalSiteType.SPOTIFY]: SpotifyLogo,
+		[ExternalSiteType.SOUND_CLOUD]: SoundCloudLogo,
+		[ExternalSiteType.TWITTER]: TwitterLogo,
+		[ExternalSiteType.INSTAGRAM]: InstagramLogo,
 	};
 </script>
 
-<div class="container {$$props.class}">
-	<h2 class="font-head font-medium text-md pb-1">External Sites</h2>
+<div class="wrapper {$$props.class}">
+	<span class="font-head font-medium text-base pb-1">External Sites</span>
 
 	{#each sites as site}
 		<a target="_blank" rel="noreferrer" href={site.url}>
@@ -32,11 +32,11 @@
 </div>
 
 <style>
-	.container {
+	.wrapper {
 		@apply flex flex-col w-fit;
 	}
 
-	.container a {
+	.wrapper a {
 		@apply flex items-center gap-2
         py-2 w-fit
 		text-sm text-custom-200;

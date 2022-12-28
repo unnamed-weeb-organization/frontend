@@ -1,4 +1,4 @@
-<div class="flex flex-col md:flex-row w-full py-6 overflow-y-auto">
+<div class="flex flex-col md:flex-row w-full py-6">
 	<div class="details_container">
 		<div class="info_container">
 			<slot name="info_container" />

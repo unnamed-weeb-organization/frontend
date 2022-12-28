@@ -11,3 +11,10 @@ export interface ItemCardData {
 		id: string;
 	};
 }
+
+export interface ArtTileListData {
+	id: string;
+	ctx: CTXType;
+	imageURL: string;
+	label: string;
+}

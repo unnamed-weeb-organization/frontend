@@ -1,3 +1,14 @@
+export enum Country {
+	Japan = "JP",
+}
+
+export const getCountryName = (country: Country) => {
+	switch (country) {
+		case Country.Japan:
+			return "Japan";
+	}
+}
+
 export interface Name {
 	native?: string;
 	romanized?: string;
@@ -10,30 +21,28 @@ export const getNonEmptyName = (name: Name): string => {
 	if (name.romanized) return name.romanized;
 	if (name.english) return name.english;
 	throw new Error("Name object is empty.");
-}
+};
 
 export enum CTXType {
-	Release,
-	Artist,
-	Anime,
-	Song
+	RELEASE = "RELEASE",
+	ARTIST = "ARTIST",
+	ANIME = "ANIME",
+	SONG = "SONG"
 }
 
 export const getCTXTypes = (): CTXType[] => {
-	return Object.keys(CTXType)
-		.filter((key) => isNaN(Number(key)))
-		.map((key) => CTXType[key as keyof typeof CTXType]);
+	return Object.keys(CTXType).map((key) => CTXType[key as keyof typeof CTXType]);
 };
 
 export const getCTXTypeName = (type: CTXType) => {
 	switch (type) {
-		case CTXType.Release:
+		case CTXType.RELEASE:
 			return "Album";
-		case CTXType.Artist:
+		case CTXType.ARTIST:
 			return "Artist";
-		case CTXType.Anime:
+		case CTXType.ANIME:
 			return "Anime";
-		case CTXType.Song:
+		case CTXType.SONG:
 			return "Song";
 	}
 };
@@ -47,26 +56,26 @@ export const getCTXTypeName = (type: CTXType) => {
  * @throws Error when this join is invalid
  */
 export const getJoiningGrammar = (base: CTXType, to: CTXType) => {
-	if (base === CTXType.Artist || base === CTXType.Anime) {
+	if (base === CTXType.ARTIST || base === CTXType.ANIME) {
 		throw new Error("Invalid join");
 	}
 
-	if (base === CTXType.Release) {
+	if (base === CTXType.RELEASE) {
 		switch (to) {
-			case CTXType.Artist:
+			case CTXType.ARTIST:
 				return "by";
 			default:
 				throw new Error("Invalid join");
 		}
 	}
 
-	if (base === CTXType.Song) {
+	if (base === CTXType.SONG) {
 		switch (to) {
-			case CTXType.Release:
+			case CTXType.RELEASE:
 				return "from";
-			case CTXType.Anime:
+			case CTXType.ANIME:
 				return "appeared in";
-			case CTXType.Artist:
+			case CTXType.ARTIST:
 				return "by";
 			default:
 				throw new Error("Invalid join");
@@ -75,12 +84,12 @@ export const getJoiningGrammar = (base: CTXType, to: CTXType) => {
 };
 
 export enum ExternalSiteType {
-	AppleMusic,
-	YouTube,
-	Spotify,
-	SoundCloud,
-	Twitter,
-	Instagram,
+	APPLE_MUSIC,
+	YOU_TUBE,
+	SPOTIFY,
+	SOUND_CLOUD,
+	TWITTER,
+	INSTAGRAM
 }
 
 export interface ExternalSite {
@@ -90,17 +99,17 @@ export interface ExternalSite {
 
 export const getExternalSiteName = (type: ExternalSiteType) => {
 	switch (type) {
-		case ExternalSiteType.AppleMusic:
+		case ExternalSiteType.APPLE_MUSIC:
 			return "Apple Music";
-		case ExternalSiteType.YouTube:
+		case ExternalSiteType.YOU_TUBE:
 			return "YouTube";
-		case ExternalSiteType.Spotify:
+		case ExternalSiteType.SPOTIFY:
 			return "Spotify";
-		case ExternalSiteType.SoundCloud:
+		case ExternalSiteType.SOUND_CLOUD:
 			return "SoundCloud";
-		case ExternalSiteType.Twitter:
+		case ExternalSiteType.TWITTER:
 			return "Twitter";
-		case ExternalSiteType.Instagram:
+		case ExternalSiteType.INSTAGRAM:
 			return "Instagram";
 	}
-}
+};

@@ -3,7 +3,7 @@
 	import { CTXType } from "$lib/typings/server/general";
 	import ItemCardList from "$lib/components/ItemCardList.svelte";
 
-	let RACTXType = CTXType.Release;
+	let RACTXType = CTXType.RELEASE;
 </script>
 
 <div class="mt-4 flex flex-col gap-2 px-4">

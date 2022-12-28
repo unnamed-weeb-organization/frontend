@@ -44,10 +44,10 @@ export enum RoutePoint {
  * {@link CTXType} to {@link RoutePoint} mapping.
  */
 export const CTXRouteRelation: Record<CTXType, RoutePoint> = {
-	[CTXType.Artist]: RoutePoint.Artist,
-	[CTXType.Release]: RoutePoint.Release,
-	[CTXType.Anime]: RoutePoint.Anime,
-	[CTXType.Song]: RoutePoint.Song
+	[CTXType.ARTIST]: RoutePoint.Artist,
+	[CTXType.RELEASE]: RoutePoint.Release,
+	[CTXType.ANIME]: RoutePoint.Anime,
+	[CTXType.SONG]: RoutePoint.Song
 };
 
 /**
@@ -82,6 +82,7 @@ export type RouteParameters = {
 	[key: string | number]: { [key: string]: string };
 	[RoutePoint.Artist]: { id: string };
 	[RoutePoint.Release]: { id: string };
+	[RoutePoint.Releases]: { from: string };
 	[RoutePoint.Anime]: { id: string };
 	[RoutePoint.Song]: { id: string };
 	[RoutePoint.Login]: { from?: string };

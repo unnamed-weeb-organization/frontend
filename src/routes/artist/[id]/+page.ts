@@ -8,6 +8,6 @@ export const load = (() => {
 		title: getNonEmptyName(artist.name),
 		artist,
 		externalSites,
-		releases: new Array(4).fill(release)
+		releases: new Array(5).fill(release)
 	};
 }) satisfies PageLoad;
