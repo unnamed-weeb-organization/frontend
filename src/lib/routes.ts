@@ -37,8 +37,9 @@ export enum RoutePoint {
 	Songs,
 	Song,
 	Me,
-	Login,
-	Logout
+	AuthLogin,
+	AuthLogout,
+	AuthReset,
 }
 
 /**
@@ -75,8 +76,9 @@ export const Route: Record<RoutePoint, RouteOptions> = {
 	[RoutePoint.Song]: { route: "/song/:id" },
 
 	[RoutePoint.Me]: { route: "/me", authenticated: true },
-	[RoutePoint.Login]: { route: "/login" },
-	[RoutePoint.Logout]: { route: "/logout", authenticated: true }
+	[RoutePoint.AuthLogin]: { route: "/auth/login" },
+	[RoutePoint.AuthLogout]: { route: "/auth/logout", authenticated: true },
+	[RoutePoint.AuthReset]: { route: "/auth/reset" }
 };
 
 export const getMatchedRoute = (pathname: string): RouteOptions => {
@@ -93,8 +95,8 @@ export type RouteParameters = {
 	[RoutePoint.Releases]: { artist?: string; song?: string };
 	[RoutePoint.Anime]: { id: string };
 	[RoutePoint.Song]: { id: string };
-	[RoutePoint.Login]: { from?: string };
-	[RoutePoint.Logout]: { from?: string };
+	[RoutePoint.AuthLogin]: { from?: string };
+	[RoutePoint.AuthLogout]: { from?: string };
 };
 
 /**

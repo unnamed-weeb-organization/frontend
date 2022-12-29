@@ -5,12 +5,12 @@
 	const styles = {
 		default: "font-sans text-sm text-custom-300 fill-current",
 		iconButton: "fill-custom-400 active:bg-custom-secondary",
-		labelButton: "font-sans text-sm text-custom-300 rounded px-4 py-1 bg-custom-secondary hover:bg-custom-tertiary",
+		labelButton: "font-sans text-sm text-accent-300 rounded px-4 py-1 bg-accent-secondary hover:bg-accent-tertiary",
 		none: ""
 	};
 </script>
 
-<button on:click|preventDefault class="{styles[styleType]} {$$props.class}">
+<button {...$$props} on:click class="{styles[styleType]} {$$props.class}">
 	<slot />
 	{#if label}
 		<span>{label}</span>

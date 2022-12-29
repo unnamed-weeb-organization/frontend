@@ -13,7 +13,7 @@
 		<Button
 			label="Login"
 			styleType="labelButton"
-			on:click={() => goto(RoutePoint.Login, { from: $page.url.pathname })}
+			on:click={() => goto(RoutePoint.AuthLogin, { from: $page.url.pathname })}
 		/>
 	{/if}
 </div>
