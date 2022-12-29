@@ -10,7 +10,7 @@
 	export let tiles: ArtTileListData[];
 </script>
 
-<div class="flex flex-col">
+<div class="flex flex-col w-fit max-w-full">
 	<div class="flex justify-between items-center pb-1">
 		<h3 class="font-head font-medium text-base">{heading}</h3>
 		<Button styleType="iconButton" on:click={onAllClick}>
@@ -18,7 +18,7 @@
 		</Button>
 	</div>
 
-	<div class="tile_list">
+	<div class="flex overflow-x-auto gap-2">
 		{#each tiles as tile}
 			<ArtTile
 				label={tile.label}
@@ -29,8 +29,3 @@
 	</div>
 </div>
 
-<style lang="postcss">
-	.tile_list {
-		@apply flex flex-row overflow-x-auto justify-between gap-2;
-	}
-</style>
