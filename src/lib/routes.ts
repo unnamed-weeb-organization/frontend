@@ -79,6 +79,13 @@ export const Route: Record<RoutePoint, RouteOptions> = {
 	[RoutePoint.Logout]: { route: "/logout", authenticated: true }
 };
 
+export const getMatchedRoute = (pathname: string): RouteOptions => {
+	const route = Object.values(Route).find((route) => route.route === pathname);
+	if (route == undefined) throw new Error(`Route ${pathname} does not exist.`);
+
+	return route;
+}
+
 export type RouteParameters = {
 	[key: string | number]: { [key: string]: string };
 	[RoutePoint.Artist]: { id: string };

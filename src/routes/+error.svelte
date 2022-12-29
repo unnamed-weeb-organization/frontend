@@ -1,15 +1,6 @@
-<script>
+<script lang="ts">
 	import { page } from "$app/stores";
-
-	const errorMessages = {
-		404: "Page not found",
-		500: "Internal server error"
-	};
-
-	const hintMessages = {
-		404: "The page you are looking for might have been removed, had its name changed, or is temporarily unavailable.",
-		500: "Please try again later."
-	};
+	import { errorMessages, hintMessages } from "$lib/constants";
 </script>
 
 <div class="flex-1 flex flex-col h-full justify-center items-center px-4">

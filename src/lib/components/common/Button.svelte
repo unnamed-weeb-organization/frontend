@@ -1,10 +1,11 @@
 <script lang="ts">
 	export let label: string | null = null;
-	export let styleType: "default" | "iconButton" | "none" = "default";
+	export let styleType: keyof typeof styles = "default";
 
 	const styles = {
 		default: "font-sans text-sm text-custom-300 fill-current",
 		iconButton: "fill-custom-400 active:bg-custom-secondary",
+		labelButton: "font-sans text-sm text-custom-300 rounded px-4 py-1 bg-custom-secondary hover:bg-custom-tertiary",
 		none: ""
 	};
 </script>

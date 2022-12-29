@@ -10,4 +10,8 @@ export const getFormattedDate = (date: Date) => {
 	const day = date.getDate();
 
 	return `${year}-${month}-${day}`;
-}
+};
+
+export const parseCookies = (cookie: string): Record<string, string> => {
+	return Object.fromEntries(cookie.split("; ").map((cookie) => cookie.split("=")));
+};

@@ -17,7 +17,7 @@
 			</a>
 		{/each}
 	</nav>
-	<div class="flex flex-col px-4">
+	<div class="flex flex-col px-4 flex-1">
 		<slot />
 	</div>
 </div>
