@@ -1,7 +1,7 @@
 import { goto as sGoto } from "$app/navigation";
 import { CTXType } from "$lib/typings/server/general";
 
-interface RouteOptions {
+export interface RouteOptions {
 	/**
 	 * **NOTE**:
 	 *
@@ -26,6 +26,8 @@ interface RouteOptions {
 export enum RoutePoint {
 	Home = 0,
 	Settings,
+	SettingsGeneral,
+	SettingsAccount,
 	Artists,
 	Artist,
 	Releases,
@@ -35,7 +37,6 @@ export enum RoutePoint {
 	Songs,
 	Song,
 	Me,
-	EditMe,
 	Login,
 	Logout
 }
@@ -59,6 +60,8 @@ export const CTXRouteRelation: Record<CTXType, RoutePoint> = {
 export const Route: Record<RoutePoint, RouteOptions> = {
 	[RoutePoint.Home]: { route: "/" },
 	[RoutePoint.Settings]: { route: "/settings" },
+	[RoutePoint.SettingsGeneral]: { route: "/settings/general" },
+	[RoutePoint.SettingsAccount]: { route: "/settings/account", authenticated: true },
 
 	[RoutePoint.Artists]: { route: "/artists" },
 	[RoutePoint.Artist]: { route: "/artist/:id" },
@@ -72,8 +75,6 @@ export const Route: Record<RoutePoint, RouteOptions> = {
 	[RoutePoint.Song]: { route: "/song/:id" },
 
 	[RoutePoint.Me]: { route: "/me", authenticated: true },
-	[RoutePoint.EditMe]: { route: "/me/edit", authenticated: true },
-
 	[RoutePoint.Login]: { route: "/login" },
 	[RoutePoint.Logout]: { route: "/logout", authenticated: true }
 };

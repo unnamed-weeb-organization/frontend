@@ -70,7 +70,7 @@
 			{/if}
 		</Button>
 
-		<Button class="h-10" label="Edit Profile" on:click={() => goto(RoutePoint.EditMe)}>
+		<Button class="h-10" label="Edit Profile" on:click={() => goto(RoutePoint.SettingsAccount)}>
 			<EditIcon class="h-5 w-5" />
 		</Button>
 		<Button class="h-10" label="Settings" on:click={() => goto(RoutePoint.Settings)}>
