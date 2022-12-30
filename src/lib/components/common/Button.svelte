@@ -3,9 +3,9 @@
 	export let styleType: keyof typeof styles = "default";
 
 	const styles = {
-		default: "font-sans text-sm text-custom-300 fill-current",
+		default: "font-head text-sm text-custom-300 fill-current",
 		iconButton: "fill-custom-400 active:bg-custom-secondary",
-		labelButton: "font-sans text-sm text-accent-300 rounded px-4 py-1 bg-accent-secondary hover:bg-accent-tertiary",
+		labelButton: "font-head text-sm text-accent-300 rounded px-4 py-1 bg-accent-secondary hover:bg-accent-tertiary",
 		none: ""
 	};
 </script>

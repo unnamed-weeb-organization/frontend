@@ -22,7 +22,7 @@
 
 	function onMoreItemPress(item: string | number) {
 		showMore = false;
-		goto(moreRouteItems[item]);
+		goto(moreRouteItems[item as keyof typeof moreRouteItems]);
 	}
 </script>
 

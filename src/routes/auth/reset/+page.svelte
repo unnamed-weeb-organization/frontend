@@ -1,16 +1,25 @@
 <script lang="ts">
+	import { page } from "$app/stores";
+	import { RoutePoint, withParameter } from "$lib/routes";
 	import Button from "$lib/components/common/Button.svelte";
 	import TextField from "$lib/components/common/TextField.svelte";
+
+	const from = $page.url.searchParams.get("from") ?? undefined;
+	const loginOptions = withParameter(RoutePoint.AuthLogin, { from });
 </script>
 
-<form method="POST" class="-mt-8 flex flex-col gap-4 w-96">
-	<h1 class="font-head font-medium text-xl text-custom-100 self-start">Reset Your Password</h1>
-    <label for="email">
+<form method="POST" class="contents">
+	<input hidden name="from" value={from} />
+	
+	<label for="email">
 		<span>Enter your email</span>
 		<TextField type="email" name="email" placeholder="Email" />
 	</label>
 
-	<Button label="Reset" styleType="labelButton" />
+	<div class="flex justify-between items-center">
+		<a class="linked" href={loginOptions.route}>Back to login</a>
+		<Button class="w-24" label="Reset" styleType="labelButton" />
+	</div>
 </form>
 
 <style lang="postcss">
@@ -20,5 +29,9 @@
 
 	label span {
 		@apply font-head font-medium text-sm text-custom-200;
+	}
+
+	.linked {
+		@apply font-head text-sm text-custom-300;
 	}
 </style>

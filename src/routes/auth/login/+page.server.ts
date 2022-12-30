@@ -3,16 +3,15 @@ import { redirect } from "@sveltejs/kit";
 import type { Actions, PageServerLoad } from "./$types";
 
 export const actions: Actions = {
-	login: async ({ request }) => {
-		console.log(await request.formData());
-	},
-	reset: async () => {
-		throw redirect(301, Route[RoutePoint.AuthReset].route);
+	default: async ({ request }) => {
+		const data = await request.formData();
+		throw redirect(304, data.get("from")?.toString() ?? Route[RoutePoint.Home].route);
 	}
 };
 
 export const load = (async () => {
 	return {
+		title: "auth/login",
 		header: "Login"
 	};
-}) satisfies PageServerLoad; 
+}) satisfies PageServerLoad;

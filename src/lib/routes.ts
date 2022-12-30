@@ -97,6 +97,7 @@ export type RouteParameters = {
 	[RoutePoint.Song]: { id: string };
 	[RoutePoint.AuthLogin]: { from?: string };
 	[RoutePoint.AuthLogout]: { from?: string };
+	[RoutePoint.AuthReset]: { from?: string };
 };
 
 /**
