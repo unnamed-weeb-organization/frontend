@@ -9,8 +9,8 @@
 					? localStorage.getItem("is-theme-mode-dark") === "true"
 					: window.matchMedia("(prefers-color-scheme: dark)").matches;
 
-			if (isDark) {
-				document.documentElement.classList.add();
+					if (isDark) {
+				document.documentElement.classList.add("dark");
 			}
 		</script>
 
