@@ -47,7 +47,7 @@
 
 <style lang="postcss">
 	.desktop_search {
-		@apply hidden md:flex items-center w-56 w-64
+		@apply hidden md:flex items-center w-64
         bg-custom-secondary rounded-md px-2 gap-2
         transition-colors duration-150 ease-in;
 	}
