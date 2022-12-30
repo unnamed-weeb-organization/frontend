@@ -1,5 +1,4 @@
-.light,
-.palette-default.light {
+:root {
 	--background: #ffffff;
 	--secondary: #f1f1f1;
 	--tertiary: #e7e7e7;
@@ -9,8 +8,8 @@
 	--100: #272727;
 }
 
-.dark,
-.palette-default.dark {
+
+:root.dark {
 	--background: #1c1c1c;
 	--secondary: #282828;
 	--tertiary: #333333;
@@ -20,7 +19,7 @@
 	--100: #f4f4f4;
 }
 
-.light {
+:root {
 	--accent-background: #f5faff;
 	--accent-secondary: #e1f0ff;
 	--accent-tertiary: #cee7fe;
@@ -30,7 +29,7 @@
 	--accent-100: #00254d;
 }
 
-.dark {
+:root.dark {
 	--accent-background: #0f1b2d;
 	--accent-secondary: #10243e;
 	--accent-tertiary: #102a4c;
@@ -38,10 +37,4 @@
 	--accent-300: #0091ff;
 	--accent-200: #52a9ff;
 	--accent-100: #eaf6ff;
-}
-
-input {
-	background-color: var(--secondary);
-	border: none;
-	outline: none;
 }

@@ -24,12 +24,12 @@
 	let isItDark = isDark();
 
 	function toggleThemeMode() {
-		changeTheme("preserve", !isItDark);
-		isItDark = !isItDark;
+		changeTheme(!isItDark);
+		isItDark = isDark();
 	}
 
 	function logout() {
-		goto(RoutePoint.Logout, { from: $page.url.pathname });
+		goto(RoutePoint.AuthLogout, { from: $page.url.pathname });
 	}
 </script>
 

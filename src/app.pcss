@@ -1,3 +1,7 @@
+@import "./css/themes.css";
+@import "./css/elevations.css";
+@import "./css/components.css";
+
 /* Rubik normal [400], medium [500] */
 @import "@fontsource/rubik";
 @import "@fontsource/rubik/500.css";
@@ -8,10 +12,6 @@
 
 /* Noto Sans JP for Japanese support */
 @import "@fontsource/noto-sans-jp";
-
-@import "./css/themes.css";
-@import "./css/elevations.css";
-@import "./css/components.css";
 
 @tailwind base;
 @tailwind components;
@@ -37,6 +37,9 @@ body {
 
 input {
 	caret-color: var(--accent-200);
+	background-color: var(--secondary);
+	border: none;
+	outline: none;
 }
 
 input[type="checkbox"] {
