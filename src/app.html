@@ -2,6 +2,18 @@
 <html lang="en" class="no-transition">
 	<head>
 		<meta charset="utf-8" />
+		<!-- I hate to do this, but we need this to avoid the initial color flash from onMount delay in SSR -->
+		<script>
+			const isDark =
+				"is-theme-mode-dark" in localStorage
+					? localStorage.getItem("is-theme-mode-dark") === "true"
+					: window.matchMedia("(prefers-color-scheme: dark)").matches;
+
+			if (isDark) {
+				document.documentElement.classList.add();
+			}
+		</script>
+
 		<link rel="icon" href="%sveltekit.assets%/favicon.png" />
 		<meta name="viewport" content="width=device-width" />
 		<meta name="description" content="A database for songs related to the weeb culture." />

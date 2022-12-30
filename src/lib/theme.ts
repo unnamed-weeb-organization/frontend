@@ -7,14 +7,6 @@ export const isDark = () => {
 	else return window.matchMedia("(prefers-color-scheme: dark)").matches;
 };
 
-export const initializeTheme = () => {
-	if (isDark()) document.documentElement.classList.add("dark");
-
-	// no-transition class is applied prior to the initial load.
-	document.documentElement.offsetHeight;
-	document.documentElement.classList.remove("no-transition");
-};
-
 export const changeTheme = (dark: boolean) => {
 	// Prevents the transitions from happening when the theme is changed.
 	document.documentElement.classList.add("no-transition");
