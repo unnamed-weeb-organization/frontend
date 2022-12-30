@@ -86,7 +86,7 @@
 <style lang="postcss">
 	.wrapper {
 		@apply absolute z-10 flex flex-col
-        min-w-[16rem] md:min-w-[22rem]
+        min-w-[16rem] md:min-w-[18rem]
         bg-custom-background rounded-md shadow-md;
 	}
 </style>
