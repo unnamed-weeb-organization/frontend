@@ -40,6 +40,7 @@ export enum RoutePoint {
 	AuthLogin,
 	AuthLogout,
 	AuthReset,
+	AuthCreate,
 }
 
 /**
@@ -78,7 +79,8 @@ export const Route: Record<RoutePoint, RouteOptions> = {
 	[RoutePoint.Me]: { route: "/me", authenticated: true },
 	[RoutePoint.AuthLogin]: { route: "/auth/login" },
 	[RoutePoint.AuthLogout]: { route: "/auth/logout", authenticated: true },
-	[RoutePoint.AuthReset]: { route: "/auth/reset" }
+	[RoutePoint.AuthReset]: { route: "/auth/reset" },
+	[RoutePoint.AuthCreate]: { route: "/auth/create" }
 };
 
 export const getMatchedRoute = (pathname: string): RouteOptions => {
@@ -98,6 +100,7 @@ export type RouteParameters = {
 	[RoutePoint.AuthLogin]: { from?: string };
 	[RoutePoint.AuthLogout]: { from?: string };
 	[RoutePoint.AuthReset]: { from?: string };
+	[RoutePoint.AuthCreate]: { from?: string };
 };
 
 /**

@@ -5,13 +5,16 @@
 	import TextField from "$lib/components/common/TextField.svelte";
 
 	const from = $page.url.searchParams.get("from") ?? undefined;
-	const forgetPasswordOptions = withParameter(RoutePoint.AuthReset, { from });
-	const createAccountOptions = withParameter(RoutePoint.AuthCreate, { from });
+	const loginOptions = withParameter(RoutePoint.AuthLogin, { from });
 </script>
 
 <form method="POST" class="contents">
 	<input hidden name="from" value={from} />
 
+	<label for="email">
+		<span>Email</span>
+		<TextField type="email" name="email" placeholder="Email" />
+	</label>
 	<label for="username">
 		<span>Username</span>
 		<TextField type="text" name="username" placeholder="Username" />
@@ -22,16 +25,8 @@
 	</label>
 
 	<div class="flex justify-between items-center">
-		<label class="inline">
-			<input type="checkbox" name="remember" />
-			<span>Remember me</span>
-		</label>
-		<a class="linked" href={forgetPasswordOptions.route}>Forget password</a>
-	</div>
-
-	<div class="flex justify-between items-center mt-4">
-		<a class="linked" href={createAccountOptions.route}>Don't have an account?</a>
-		<Button class="w-24" label="Continue" styleType="labelButton" />
+		<a class="linked" href={loginOptions.route}>Already have an account?</a>
+		<Button class="w-24" label="Create" styleType="labelButton" />
 	</div>
 </form>
 
@@ -42,14 +37,6 @@
 
 	label span {
 		@apply font-head font-medium text-sm text-custom-200;
-	}
-
-	label.inline {
-		@apply flex flex-row w-fit items-center gap-2;
-	}
-
-	label.inline span {
-		@apply font-normal text-custom-300;
 	}
 
 	.linked {
