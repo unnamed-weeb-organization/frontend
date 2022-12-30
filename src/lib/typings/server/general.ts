@@ -33,7 +33,7 @@ export const getLocaleName = (locale: Locale) => {
 export type Name = Partial<Record<Locale, string>>;
 
 // TODO: Non-null plus based on preference.
-export const getValidName = (name: Name, preferedLocale: Locale = Locale.English): string => {
+export const getValidName = (name: Name, preferedLocale: Locale = Locale.Native): string => {
 	const nm =
 		name[preferedLocale] ||
 		name[Locale.English] ||
