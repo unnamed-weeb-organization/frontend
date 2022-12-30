@@ -19,8 +19,9 @@
 
 <div class="flex md:hidden items-center justify-center">
 	<Button
+	class="w-8 h-8"
 		styleType="iconButton"
-		class="w-8 h-8"
+		aria-label="Search"
 		on:click={() => (showMobileSearch = !showMobileSearch)}
 	>
 		<SearchIcon class="h-6 w-6" />
@@ -32,8 +33,8 @@
 		<div class="flex h-16 items-center px-4 gap-2 z-10">
 			<input bind:value={searchQuery} placeholder="Search" class="flex-1" />
 			<Button
+			class="w-8 h-8"
 				styleType="iconButton"
-				class="w-8 h-8"
 				on:click={() => (showMobileSearch = false)}
 			>
 				<CloseIcon class="h-6 w-6" />

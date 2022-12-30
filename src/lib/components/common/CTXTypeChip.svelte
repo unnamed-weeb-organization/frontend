@@ -5,17 +5,14 @@
 	export let ctxType: CTXType;
 </script>
 
-<!--suppress HtmlWrongAttributeValue
- 	Probably an issue with webstorm where boolean isn't a valid aria-select value.
- -->
-<button role="option" class="chip" class:selected aria-selected={selected} on:click|preventDefault>
+<option class="chip" class:selected aria-selected={selected} on:click|preventDefault>
 	{getCTXTypeName(ctxType)}
-</button>
+</option>
 
 <style lang="postcss">
 	.chip {
 		@apply flex items-center w-fit h-fit px-1 rounded
-        font-head text-xs text-custom-400
+        font-head text-xs text-custom-400 select-none
         border border-custom-400
 		transition-colors duration-150;
 	}

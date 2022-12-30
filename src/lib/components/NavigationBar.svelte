@@ -29,11 +29,9 @@
 <nav>
 	<a href={Route[RoutePoint.Home].route} class="font-head select-none">
 		<span class="hidden md:block">{APP_NAME}</span>
-		<span class="md:hidden"
-			>{APP_NAME.split("_")
-				.map((str) => str[0])
-				.join("")}</span
-		>
+		<span class="md:hidden">
+			{APP_NAME.split("_").map((str) => str[0]).join("")}
+		</span>
 	</a>
 
 	<div class="links">
@@ -43,6 +41,7 @@
 
 		<button
 			class="more"
+			aria-label="More"
 			class:expanded={showMore}
 			on:click|preventDefault={() => (showMore = !showMore)}
 		>
@@ -65,6 +64,7 @@
 
 	<div class="account">
 		<Button
+			aria-label="Account"
 			class="h-10 w-10 bg-custom-secondary focus-within:bg-custom-tertiary focus-within:fill-custom-200"
 			on:click={() => (showUserCard = !showUserCard)}
 		>
