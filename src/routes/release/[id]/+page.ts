@@ -1,12 +1,12 @@
 import type { PageLoad } from "./$types";
 import { release, artist, song, externalSites } from "$lib/placeholders";
-import { getNonEmptyName } from "$lib/typings/server/general";
+import { getValidName } from "$lib/typings/server/general";
 import type { Artist } from "$lib/typings/server/artist";
 
 // TODO: Replace placeholder data with graphql requests.
 export const load = (async () => {
 	return {
-		title: `${getNonEmptyName(release.name)} by ${getNonEmptyName(artist.name)}`,
+		title: `${getValidName(release.name)} by ${getValidName(artist.name)}`,
 		albumArtist: artist,
 		release,
 		externalSites,

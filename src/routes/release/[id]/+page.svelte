@@ -1,7 +1,8 @@
 <script lang="ts">
 	import type { PageData } from "./$types";
+	import { preferedTitleLocale } from "$lib/settings";
 	import { RoutePoint, withParameter } from "$lib/routes";
-	import { getNonEmptyName } from "$lib/typings/server/general.js";
+	import { getValidName } from "$lib/typings/server/general";
 
 	import SongList from "$lib/components/SongList.svelte";
 	import ExternalSites from "$lib/components/ExternalSites.svelte";
@@ -25,8 +26,10 @@
 	<div class="contents" slot="info_container">
 		<ArtContainer imageURL="" link={null} />
 		<div class="title_container">
-			<h1>{getNonEmptyName(data.release.name)}</h1>
-			<a href={artistRouteOptions.route}>{getNonEmptyName(data.albumArtist.name)}</a>
+			<h1>{getValidName(data.release.name, $preferedTitleLocale)}</h1>
+			<a href={artistRouteOptions.route}>
+				{getValidName(data.albumArtist.name, $preferedTitleLocale)}
+			</a>
 		</div>
 	</div>
 

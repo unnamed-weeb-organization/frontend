@@ -1,9 +1,10 @@
 <script lang="ts">
 	import type { PageData } from "./$types";
-	import { CTXType, getNonEmptyName } from "$lib/typings/server/general";
+	import { preferedTitleLocale } from "$lib/settings";
 	import { goto, RoutePoint, withParameter } from "$lib/routes";
 	import { getFormattedDate, getFormattedLength } from "$lib/utils";
 	import type { ArtTileListData } from "$lib/typings/client/general";
+	import { CTXType, getValidName } from "$lib/typings/server/general";
 
 	import ArtTileList from "$lib/components/ArtTileList.svelte";
 	import ExternalSites from "$lib/components/ExternalSites.svelte";
@@ -21,7 +22,7 @@
     const releaseTileData: ArtTileListData[] = data.releases.map((release) => ({
 		id: release.id,
 		ctx: CTXType.RELEASE,
-		label: getNonEmptyName(release.name),
+		label: getValidName(release.name),
 		imageURL: "",
      }));
 
@@ -34,11 +35,11 @@
 	<div class="contents" slot="info_container">
 		<ArtContainer imageURL="" link={null} />
 		<div class="title_container">
-			<h1>{getNonEmptyName(data.song.name)}</h1>
+			<h1>{getValidName(data.song.name, $preferedTitleLocale)}</h1>
 			<div class="artists">
 				{#each data.artists as { id, name }, i}
 					<a href={withParameter(RoutePoint.Artist, { id }).route}>
-						{getNonEmptyName(name)}
+						{getValidName(name, $preferedTitleLocale)}
 					</a>
                     {#if i < data.artists.length - 1}
                         <span class="mr-1">,</span>

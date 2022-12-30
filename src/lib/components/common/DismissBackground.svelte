@@ -9,7 +9,7 @@
 </script>
 
 <div
-	on:click={onDismiss}
+	on:click|preventDefault={onDismiss}
 	on:keypress={onDismiss}
 	class="z-0 fixed top-0 left-0 opacity-0 w-[100vw] h-[100vh] {styles[styleType]}"
 />

@@ -1,9 +1,10 @@
 <script lang="ts">
-	import type { Song } from "$lib/typings/server/song";
 	import { getFormattedLength } from "$lib/utils";
 	import { RoutePoint, withParameter } from "$lib/routes";
-	import { getNonEmptyName } from "$lib/typings/server/general.js";
+	import { preferedTitleLocale } from "$lib/settings";
+	import type { Song } from "$lib/typings/server/song";
 	import type { Artist } from "$lib/typings/server/artist";
+	import { getValidName } from "$lib/typings/server/general";
 
 	export let song: Song;
 	export let artists: Artist[];
@@ -14,10 +15,14 @@
 
 <div class="item">
 	<span class="text-xs text-custom-400">{itemNo}</span>
-	<a class="text-custom-200" href={songRouteOptions.route}>{getNonEmptyName(song.name)}</a>
+	<a class="text-custom-200" href={songRouteOptions.route}>
+		{getValidName(song.name, $preferedTitleLocale)}
+	</a>
 	<div class="flex flex-1 justify-end">
 		{#each artists as { id, name }, i}
-			<a href={withParameter(RoutePoint.Artist, { id }).route}>{getNonEmptyName(name)}</a>
+			<a href={withParameter(RoutePoint.Artist, { id }).route}>
+				{getValidName(name, $preferedTitleLocale)}
+			</a>
 			{#if i < artists.length - 1}
 				<span class="mr-1">,</span>
 			{/if}

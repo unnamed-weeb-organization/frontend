@@ -1,5 +1,5 @@
 export enum Country {
-	Japan = "JP",
+	Japan = "JP"
 }
 
 export const getCountryName = (country: Country) => {
@@ -7,20 +7,41 @@ export const getCountryName = (country: Country) => {
 		case Country.Japan:
 			return "Japan";
 	}
+};
+
+export enum Locale {
+	Native = "native",
+	Romanized = "romanized",
+	English = "english"
 }
 
-export interface Name {
-	native?: string;
-	romanized?: string;
-	english?: string;
-}
+export const getLocales = (): Locale[] => {
+	return Object.keys(Locale).map((key) => Locale[key as keyof typeof Locale]);
+};
+
+export const getLocaleName = (locale: Locale) => {
+	switch (locale) {
+		case Locale.Native:
+			return "Native";
+		case Locale.Romanized:
+			return "Romanized";
+		case Locale.English:
+			return "English";
+	}
+};
+
+export type Name = Partial<Record<Locale, string>>;
 
 // TODO: Non-null plus based on preference.
-export const getNonEmptyName = (name: Name): string => {
-	if (name.native) return name.native;
-	if (name.romanized) return name.romanized;
-	if (name.english) return name.english;
-	throw new Error("Name object is empty.");
+export const getValidName = (name: Name, preferedLocale: Locale = Locale.English): string => {
+	const nm =
+		name[preferedLocale] ||
+		name[Locale.English] ||
+		name[Locale.Romanized] ||
+		name[Locale.Native];
+
+	if (!nm) throw new Error("No valid name found");
+	else return nm;
 };
 
 export enum CTXType {
@@ -37,7 +58,7 @@ export const getCTXTypes = (): CTXType[] => {
 export const getCTXTypeName = (type: CTXType) => {
 	switch (type) {
 		case CTXType.RELEASE:
-			return "Album";
+			return "Release";
 		case CTXType.ARTIST:
 			return "Artist";
 		case CTXType.ANIME:

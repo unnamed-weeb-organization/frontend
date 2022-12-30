@@ -1,10 +1,11 @@
 <script lang="ts">
 	import type { PageData } from "./$types";
 	import { goto, RoutePoint } from "$lib/routes";
-	import type { ArtTileListData } from "$lib/typings/client/general";
 	import { getFormattedDate } from "$lib/utils";
+	import { preferedTitleLocale } from "$lib/settings";
 	import { getArtistTypeName } from "$lib/typings/server/artist";
-	import { CTXType, getCountryName, getNonEmptyName } from "$lib/typings/server/general";
+	import type { ArtTileListData } from "$lib/typings/client/general";
+	import { CTXType, getCountryName, getValidName } from "$lib/typings/server/general";
 
 	import ArtTileList from "$lib/components/ArtTileList.svelte";
 	import ExternalSites from "$lib/components/ExternalSites.svelte";
@@ -14,7 +15,7 @@
 
 	export let data: PageData;
 
-	const altNames = data.artist.alt_names.map((name) => getNonEmptyName(name));
+	const altNames = data.artist.alt_names.map((name) => getValidName(name, $preferedTitleLocale));
 	const detailColumns = [
 		["Type", getArtistTypeName(data.artist.type)],
 		["Location", getCountryName(data.artist.based_on)],
@@ -24,10 +25,10 @@
 	const releaseTileData: ArtTileListData[] = data.releases.map((release) => ({
 		id: release.id,
 		ctx: CTXType.RELEASE,
-		label: getNonEmptyName(release.name),
+		label: getValidName(release.name, $preferedTitleLocale),
 		imageURL: ""
 	}));
-	
+
 	const goToReleaseList = () => {
 		goto(RoutePoint.Releases, { artist: data.artist.id });
 	};
@@ -37,7 +38,7 @@
 	<div class="contents" slot="info_container">
 		<ArtContainer imageURL="" link={null} />
 		<div class="title_container">
-			<h1>{getNonEmptyName(data.artist.name)}</h1>
+			<h1>{getValidName(data.artist.name, $preferedTitleLocale)}</h1>
 			<div class="alt_name_container">
 				{#each altNames as name, i}
 					<span>{name}</span>

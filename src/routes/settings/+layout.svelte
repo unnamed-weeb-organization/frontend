@@ -8,7 +8,7 @@
 	];
 </script>
 
-<div class="flex w-full h-full my-4">
+<div class="flex flex-col md:flex-row w-full h-full md:my-4">
 	<nav>
 		<h1>Settings</h1>
 		{#each subs as [name, options]}
@@ -17,25 +17,27 @@
 			</a>
 		{/each}
 	</nav>
-	<div class="flex flex-col px-4 flex-1">
+	<div class="flex flex-col px-4 pt-2 flex-1">
 		<slot />
 	</div>
 </div>
 
 <style lang="postcss">
 	nav {
-		@apply flex flex-col w-56 px-2
-		border-r-2 border-custom-tertiary
+		@apply flex items-center md:items-start md:flex-col
+		md:w-56 mx-2 md:mx-0 px-2 py-2 md:py-0
+		border-b-2 md:border-b-0 md:border-r-2 border-custom-tertiary
 		font-head;
 	}
 
 	nav h1 {
-		@apply font-head font-medium text-sm pb-2;
+		@apply hidden md:block md:pb-2 
+		font-head font-medium text-sm;
 	}
 
 	nav a {
-		@apply flex items-center
-		pl-4 h-8 rounded
+		@apply flex items-center md:w-full
+		px-4 md:px-0 md:pl-4 h-8 rounded
 		transition-colors duration-150
 		hover:bg-custom-secondary
 		text-sm text-custom-200;

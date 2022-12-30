@@ -9,11 +9,8 @@
 
 <div transition:slide={{ duration: 150 }} class="wrapper {$$props.class}">
 	{#each items as item}
-		<option class="item" on:click={() => onSelect(item)}>
-			{item}
-		</option>
+		<option on:click|preventDefault={() => onSelect(item)}>{item}</option>
 	{/each}
-
 	<div class="elevation-layer elevation-background-1" />
 </div>
 
@@ -26,11 +23,11 @@
         rounded shadow-md flex flex-col;
 	}
 
-	.item {
-		@apply relative flex flex-grow items-center h-10 px-2;
+	option {
+		@apply relative flex flex-grow items-center h-10 px-2 select-none;
 	}
 
-	.item:hover {
+	option:hover {
 		@apply bg-accent-tertiary text-accent-100;
 	}
 </style>
