@@ -1,7 +1,3 @@
-/**
- * Mode should contain dark/light, and should be present in the root's classList
- * Palette should contain the theme's name, and should be following "theme-{name}" format.
- */
 export const THEME_MODE_KEY = "is-theme-mode-dark";
 
 export const isDark = () => {
