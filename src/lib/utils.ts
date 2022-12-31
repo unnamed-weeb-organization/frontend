@@ -12,10 +12,6 @@ export const getFormattedDate = (date: Date) => {
 	return `${year}-${month}-${day}`;
 };
 
-export const parseCookies = (cookie: string): Record<string, string> => {
-	return Object.fromEntries(cookie.split("; ").map((cookie) => cookie.split("=")));
-};
-
 export const getMissingFields = (fields: Record<string, string | undefined>) => {
 	return Object.entries(fields).flatMap(([key, value]) => (!value ? key : []));
 };
@@ -23,4 +19,16 @@ export const getMissingFields = (fields: Record<string, string | undefined>) => 
 export const getMissingErrorMessage = (missing: string[]) => {
 	const single = missing.length === 1;
 	return `${single ? "Field" : "Fields"} ${missing.join(", ")} should not be empty.`;
+}
+
+export const validateEmail = (email: string) => {
+	return email.match(/^[^@]+@[^@]+\.[^@]+$/) !== null;
+}
+
+export const validatePassword = (password: string) => {
+	return password.length >= 8;
+}
+
+export const validateUsername = (username: string) => {
+	return username.match(/^[a-zA-Z0-9]+$/) !== null;
 }

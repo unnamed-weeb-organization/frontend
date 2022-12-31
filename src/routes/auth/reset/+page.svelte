@@ -2,7 +2,7 @@
 	import { page } from "$app/stores";
 	import { RoutePoint, withParameter } from "$lib/routes";
 	import Button from "$lib/components/common/Button.svelte";
-	import TextField from "$lib/components/common/TextField.svelte";
+	import LabeledTextField from "$lib/components/LabeledTextField.svelte";
 
 	const from = $page.url.searchParams.get("from") ?? undefined;
 	const loginOptions = withParameter(RoutePoint.AuthLogin, { from });
@@ -10,11 +10,14 @@
 
 <form method="POST" class="contents">
 	<input hidden name="from" value={from} />
-	
-	<label for="email">
-		<span>Enter your email</span>
-		<TextField type="email" name="email" placeholder="Email" />
-	</label>
+
+	<LabeledTextField
+		id="email"
+		inputType="email"
+		label="Email"
+		placeholder="Email"
+		errorHint={undefined}
+	/>
 
 	<div class="flex justify-between items-center">
 		<a class="linked" href={loginOptions.route}>Back to login</a>
@@ -23,14 +26,6 @@
 </form>
 
 <style lang="postcss">
-	label {
-		@apply flex flex-col gap-1 w-full;
-	}
-
-	label span {
-		@apply font-head font-medium text-sm text-custom-200;
-	}
-
 	.linked {
 		@apply font-head text-sm text-custom-300;
 	}
