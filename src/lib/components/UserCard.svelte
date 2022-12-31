@@ -3,7 +3,7 @@
 	import { page } from "$app/stores";
 	import { RoutePoint, goto } from "$lib/routes";
 	import { isDark, changeTheme } from "$lib/theme";
-	import { Role, getHigherOrderRole } from "$lib/typings/server/user";
+	import { getHigherOrderRole, type User } from "$lib/typings/server/user";
 
 	import DismissBackground from "$lib/components/common/DismissBackground.svelte";
 	import RoleChip from "$lib/components/common/RoleChip.svelte";
@@ -18,8 +18,7 @@
 
 	export let onDismiss: () => void;
 
-	const username = "Curstantine";
-	const roles = [Role.Admin, Role.Moderator, Role.User];
+	export let user: User | null;
 
 	let isItDark = isDark();
 
@@ -35,26 +34,35 @@
 
 <div transition:slide={{ duration: 150 }} class="wrapper {$$props.class}">
 	<div class="flex items-center border-b border-b-custom-tertiary px-2 py-2">
-		<Button
-			styleType="none"
-			class="h-16 w-16 bg-custom-secondary fill-custom-400"
-			on:click={() => goto(RoutePoint.Me)}
-		>
-			<AccountIcon class="h-16 w-16" />
-		</Button>
+		{#if user != null}
+			<Button
+				styleType="none"
+				class="h-16 w-16 bg-custom-secondary fill-custom-400"
+				on:click={() => goto(RoutePoint.Me)}
+			>
+				<AccountIcon class="h-16 w-16" />
+			</Button>
 
-		<div class="flex flex-col flex-grow pl-4 justify-between gap-1">
-			<span class="font-head text-custom-100 select-none">{username}</span>
-			<RoleChip role={getHigherOrderRole(roles)} />
-		</div>
+			<div class="flex flex-col flex-grow pl-4 justify-between gap-1">
+				<span class="font-head text-custom-100 select-none">{user?.name ?? "Sign In"}</span>
+				<RoleChip role={getHigherOrderRole(user.roles)} />
+			</div>
 
-		<Button
-			styleType="none"
-			class="h-8 w-8 fill-custom-300 hover:bg-custom-secondary hover:fill-red-500"
-			on:click={logout}
-		>
-			<LogoutIcon class="h-5 w-5" />
-		</Button>
+			<Button
+				styleType="none"
+				class="h-8 w-8 fill-custom-300 hover:bg-custom-secondary hover:fill-red-500"
+				on:click={logout}
+			>
+				<LogoutIcon class="h-5 w-5" />
+			</Button>
+		{:else}
+			<Button
+				class="flex-1"
+				styleType="labelButton"
+				label="Sign In"
+				on:click={() => goto(RoutePoint.AuthLogin, { from: $page.url.pathname })}
+			/>
+		{/if}
 	</div>
 
 	<div class="grid grid-cols-2">

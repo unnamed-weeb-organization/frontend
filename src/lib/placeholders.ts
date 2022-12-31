@@ -4,6 +4,7 @@ import type { ItemCardData } from "$lib/typings/client/general";
 import { type Release, ReleaseType } from "$lib/typings/server/release";
 import type { Song } from "$lib/typings/server/song";
 import { ArtistType } from "$lib/typings/server/artist";
+import { Role, type User } from "./typings/server/user";
 
 export const release: Release = {
 	id: "1",
@@ -37,6 +38,12 @@ export const song: Song = {
 	length: 150,
 	released_on: new Date("2019-01-01"),
 };
+
+export const user: User = {
+	id: "1",
+	name: "test",
+	roles: [Role.Admin]
+}
 
 export const externalSites: ExternalSite[] = [
 	{ type: ExternalSiteType.APPLE_MUSIC, url: "https://www.apple.com" },

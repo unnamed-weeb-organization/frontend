@@ -15,3 +15,12 @@ export const getFormattedDate = (date: Date) => {
 export const parseCookies = (cookie: string): Record<string, string> => {
 	return Object.fromEntries(cookie.split("; ").map((cookie) => cookie.split("=")));
 };
+
+export const getMissingFields = (fields: Record<string, string | undefined>) => {
+	return Object.entries(fields).flatMap(([key, value]) => (!value ? key : []));
+};
+
+export const getMissingErrorMessage = (missing: string[]) => {
+	const single = missing.length === 1;
+	return `${single ? "Field" : "Fields"} ${missing.join(", ")} should not be empty.`;
+}

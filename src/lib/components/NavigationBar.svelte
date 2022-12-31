@@ -1,6 +1,7 @@
 <script lang="ts">
 	import { APP_NAME } from "$lib/constants";
 	import { RoutePoint, Route, goto } from "$lib/routes";
+	import type { User } from "$lib/typings/server/user";
 
 	import UserCard from "$lib/components/UserCard.svelte";
 	import Button from "$lib/components/common/Button.svelte";
@@ -12,6 +13,8 @@
 
 	let showMore = false;
 	let showUserCard = false;
+
+	export let user: User | null;
 
 	const moreRouteItems = {
 		Artists: RoutePoint.Artists,
@@ -72,7 +75,7 @@
 		</Button>
 
 		{#if showUserCard}
-			<UserCard class="top-14 right-2" onDismiss={() => (showUserCard = false)} />
+			<UserCard {user} class="top-14 right-2" onDismiss={() => (showUserCard = false)} />
 		{/if}
 	</div>
 </nav>
