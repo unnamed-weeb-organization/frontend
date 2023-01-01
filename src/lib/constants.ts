@@ -1,4 +1,6 @@
 export const APP_NAME = "unnamed_weeb_music_database";
+export const API_URL_DEV = "http://localhost:6001/graphql";
+export const API_URL_PROD = "";
 
 export const errorMessages: Record<number, string> = {
     401: "Not authorized",

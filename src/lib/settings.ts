@@ -1,7 +1,8 @@
 import { writable } from "svelte/store";
 import { Locale } from "./typings/server/general";
 
-export const PREFERED_TITLE_LOCALE_KEY = "settings-pref-title-locale";
+const PREFERED_TITLE_LOCALE_KEY = "settings-pref-title-locale";
+
 /**
  * The prefered title locale for the user.
  * 
