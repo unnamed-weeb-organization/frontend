@@ -1,14 +1,29 @@
 <script lang="ts">
 	import { page } from "$app/stores";
+	import { applyAction, enhance } from "$app/forms";
 	import { RoutePoint, withParameter } from "$lib/routes";
 	import Button from "$lib/components/common/Button.svelte";
 	import LabeledTextField from "$lib/components/LabeledTextField.svelte";
 
 	const from = $page.url.searchParams.get("from") ?? undefined;
 	const loginOptions = withParameter(RoutePoint.AuthLogin, { from });
+	let missing: string[] = [];
 </script>
 
-<form method="POST" class="contents">
+<form
+	method="POST"
+	class="contents"
+	use:enhance={() => {
+		return async ({ result }) => {
+			if (result.type === "failure" && result.data?.missing) {
+				missing = result.data.missing;
+				return;
+			}
+
+			applyAction(result);
+		};
+	}}
+>
 	<input hidden name="from" value={from} />
 
 	<LabeledTextField
@@ -16,7 +31,7 @@
 		inputType="email"
 		label="Email"
 		placeholder="Email"
-		errorHint={undefined}
+		errorHint={missing.includes("email") ? "Required" : undefined}
 	/>
 
 	<div class="flex justify-between items-center">

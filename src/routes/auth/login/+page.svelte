@@ -1,4 +1,5 @@
 <script lang="ts">
+	import { enhance, applyAction } from "$app/forms";
 	import { page } from "$app/stores";
 	import { RoutePoint, withParameter } from "$lib/routes";
 	import Button from "$lib/components/common/Button.svelte";
@@ -7,9 +8,23 @@
 	const from = $page.url.searchParams.get("from") ?? undefined;
 	const forgetPasswordOptions = withParameter(RoutePoint.AuthReset, { from });
 	const createAccountOptions = withParameter(RoutePoint.AuthCreate, { from });
+	let missing: string[] = [];
 </script>
 
-<form method="POST" class="contents">
+<form
+	method="POST"
+	class="contents"
+	use:enhance={() => {
+		return async ({ result }) => {
+			if (result.type === "failure" && result.data?.missing) {
+				missing = result.data.missing;
+				return;
+			}
+
+			applyAction(result);
+		};
+	}}
+>
 	<input hidden name="from" value={from} />
 
 	<LabeledTextField
@@ -17,7 +32,7 @@
 		inputType="text"
 		label="Username"
 		placeholder="Username"
-		errorHint={undefined}
+		errorHint={missing.includes("username") ? "Required" : undefined}
 	/>
 
 	<LabeledTextField
@@ -25,7 +40,7 @@
 		inputType="password"
 		label="Password"
 		placeholder="Password"
-		errorHint={undefined}
+		errorHint={missing.includes("password") ? "Required" : undefined}
 	/>
 
 	<div class="flex justify-between items-center">
