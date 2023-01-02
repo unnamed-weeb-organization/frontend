@@ -5,6 +5,7 @@ export interface User {
 }
 
 export enum Role {
+	Verified = "Verified",
 	User = "User",
 	Contributor = "Contributor",
 	Moderator = "Moderator",

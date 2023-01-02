@@ -5,7 +5,9 @@ declare namespace App {
 	interface PageData {
 		title?: string;
 	}
-	// interface Error {}
+	interface Error {
+		override?: boolean;
+	}
 	// interface Platform {}
 }
 
