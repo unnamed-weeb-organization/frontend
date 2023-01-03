@@ -2,7 +2,7 @@
 	import type { PageData } from "./$types";
 	import { preferedTitleLocale } from "$lib/settings";
 	import { RoutePoint, withParameter } from "$lib/routes";
-	import { getValidName } from "$lib/typings/server/general";
+	import { CTXType, getValidName } from "$lib/typings/server/general";
 
 	import SongList from "$lib/components/SongList.svelte";
 	import ExternalSites from "$lib/components/ExternalSites.svelte";
@@ -22,7 +22,7 @@
 	];
 </script>
 
-<EntryDetailsLayout>
+<EntryDetailsLayout id={data.release.id} ctxType={CTXType.RELEASE} externalSites={data.externalSites}>
 	<div class="contents" slot="info_container">
 		<ArtContainer imageURL="" link={null} />
 		<div class="title_container">
@@ -39,13 +39,12 @@
 		{/each}
 	</div>
 
-	<div class="contents">
+	<div class="contents" slot="content_container">
 		<SongList
 			songs={data.songs}
 			artists={data.artists}
 			class="h-fit lg:max-w-3xl 2xl:max-w-4xl md:pr-8"
 		/>
-		<ExternalSites sites={data.externalSites} />
 	</div>
 </EntryDetailsLayout>
 

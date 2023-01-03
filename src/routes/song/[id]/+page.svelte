@@ -31,7 +31,7 @@
     };
 </script>
 
-<EntryDetailsLayout>
+<EntryDetailsLayout id={data.song.id} ctxType={CTXType.SONG} externalSites={data.externalSites}>
 	<div class="contents" slot="info_container">
 		<ArtContainer imageURL="" link={null} />
 		<div class="title_container">
@@ -56,7 +56,7 @@
 		{/each}
 	</div>
 
-	<div class="contents">
+	<div class="contents" slot="content_container">
 		<div class="h-fit w-full lg:max-w-3xl 2xl:max-w-4xl md:pr-8 pb-8 md:pb-0">
 			<ArtTileList
 				heading="Releases"
@@ -64,7 +64,6 @@
 				onAllClick={goToReleases}
 			/>
 		</div>
-		<ExternalSites class="hidden" sites={data.externalSites} />
 	</div>
 </EntryDetailsLayout>
 

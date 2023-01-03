@@ -24,14 +24,14 @@
 	<span class="font-head font-medium text-base pb-1">External Sites</span>
 
 	{#each sites as site}
-		<a target="_blank" rel="noreferrer" href={site.url}>
+		<a target="_blank" rel="noreferrer" href={site.url} data-sveltekit-preload-code="off">
 			<svelte:component this={siteItemMap[site.type]} class="h-5 w-5" />
 			<span>{getExternalSiteName(site.type)}</span>
 		</a>
 	{/each}
 </div>
 
-<style>
+<style lang="postcss">
 	.wrapper {
 		@apply flex flex-col w-fit;
 	}

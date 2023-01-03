@@ -31,31 +31,42 @@ export enum RoutePoint {
 	Artists,
 	Artist,
 	ArtistCreate,
+	ArtistEdit,
 	Releases,
 	Release,
 	ReleaseCreate,
+	ReleaseEdit,
 	AnimeList,
 	Anime,
 	AnimeCreate,
+	AnimeEdit,
 	Songs,
 	Song,
 	SongCreate,
+	SongEdit,
 	Me,
 	AuthLogin,
 	AuthLogout,
 	AuthReset,
-	AuthCreate,
+	AuthCreate
 }
 
 /**
  * {@link CTXType} to {@link RoutePoint} mapping.
  */
-export const CTXRouteRelation: Record<CTXType, RoutePoint> = {
+export const CTXRouteViewLocation: Record<CTXType, RoutePoint> = {
 	[CTXType.ARTIST]: RoutePoint.Artist,
 	[CTXType.RELEASE]: RoutePoint.Release,
 	[CTXType.ANIME]: RoutePoint.Anime,
 	[CTXType.SONG]: RoutePoint.Song
 };
+
+export const CTXRouteEditLocation: Record<CTXType, RoutePoint> = {
+	[CTXType.ARTIST]: RoutePoint.ArtistEdit,
+	[CTXType.RELEASE]: RoutePoint.ReleaseEdit,
+	[CTXType.ANIME]: RoutePoint.AnimeEdit,
+	[CTXType.SONG]: RoutePoint.SongEdit
+}
 
 /**
  * Contains all the routes possible for the application.
@@ -85,6 +96,11 @@ export const Route: Record<RoutePoint, RouteOptions> = {
 	[RoutePoint.AnimeCreate]: { route: "/anime/create", authenticated: true },
 	[RoutePoint.SongCreate]: { route: "/song/create", authenticated: true },
 
+	[RoutePoint.ArtistEdit]: { route: "/artist/:id/edit", authenticated: true },
+	[RoutePoint.ReleaseEdit]: { route: "/release/:id/edit", authenticated: true },
+	[RoutePoint.AnimeEdit]: { route: "/anime/:id/edit", authenticated: true },
+	[RoutePoint.SongEdit]: { route: "/song/:id/edit", authenticated: true },
+
 	[RoutePoint.Me]: { route: "/me", authenticated: true },
 	[RoutePoint.AuthLogin]: { route: "/auth/login" },
 	[RoutePoint.AuthLogout]: { route: "/auth/logout", authenticated: true },
@@ -97,15 +113,22 @@ export const getMatchedRoute = (pathname: string): RouteOptions => {
 	if (route == undefined) throw new Error(`Route ${pathname} does not exist.`);
 
 	return route;
-}
+};
 
 export type RouteParameters = {
 	[key: string | number]: { [key: string]: string };
+
 	[RoutePoint.Artist]: { id: string };
 	[RoutePoint.Release]: { id: string };
 	[RoutePoint.Releases]: { artist?: string; song?: string };
 	[RoutePoint.Anime]: { id: string };
 	[RoutePoint.Song]: { id: string };
+
+	[RoutePoint.ArtistEdit]: { id: string };
+	[RoutePoint.ReleaseEdit]: { id: string };
+	[RoutePoint.AnimeEdit]: { id: string };
+	[RoutePoint.SongEdit]: { id: string };
+
 	[RoutePoint.AuthLogin]: { from?: string };
 	[RoutePoint.AuthLogout]: { from?: string };
 	[RoutePoint.AuthReset]: { from?: string };

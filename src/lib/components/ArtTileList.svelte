@@ -1,6 +1,6 @@
 <script lang="ts">
 	import type { ArtTileListData } from "$lib/typings/client/general";
-	import { CTXRouteRelation, withParameter } from "$lib/routes.js";
+	import { CTXRouteViewLocation, withParameter } from "$lib/routes.js";
 	import Button from "$lib/components/common/Button.svelte";
 	import ArtTile from "$lib/components/common/ArtTile.svelte";
 	import RightArrowIcon from "$lib/assets/icons/right-arrow.svg?component";
@@ -23,7 +23,7 @@
 			<ArtTile
 				label={tile.label}
 				imageURL={tile.imageURL}
-				link={withParameter(CTXRouteRelation[tile.ctx], { id: tile.id }).route}
+				link={withParameter(CTXRouteViewLocation[tile.ctx], { id: tile.id }).route}
 			/>
 		{/each}
 	</div>
