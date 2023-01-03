@@ -28,6 +28,8 @@
 		<slot name="content_container" />
 
 		<div class="actions_container">
+			<ExternalSites sites={externalSites} />
+
 			<div class="action_wrapper">
 				<h2>Actions</h2>
 
@@ -35,13 +37,10 @@
 					<EditIcon class="h-5 w-5" />
 					<span>Edit</span>
 				</a>
-				<Button class="w-fit px-2" label="Report">
+				<Button class="w-fit" label="Report">
 					<ExclamationMarkIcon class="h-5 w-5" />	
 				</Button>
 			</div>
-
-			<ExternalSites sites={externalSites} />
-			<slot name="actions_container" />
 		</div>
 	</div>
 </div>
@@ -62,19 +61,19 @@
 	}
 
 	.actions_container {
-		@apply flex flex-col;
+		@apply flex flex-col gap-4;
 	}
 
 	.action_wrapper {
-		@apply flex flex-col mb-4 gap-4;
+		@apply flex flex-col gap-4;
 	}
 
 	.action_wrapper h2 {
-		@apply block md:hidden font-head font-medium text-base text-custom-100 -mb-2;
+		@apply font-head font-medium text-base text-custom-100 -mb-2;
 	}
 
 	.action_wrapper a {
-		@apply flex items-center px-2 gap-2 w-fit
+		@apply flex items-center gap-2 w-fit
 		text-sm text-custom-300 fill-current;
 	}
 </style>
