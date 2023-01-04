@@ -7,7 +7,7 @@
 	import { dev } from "$app/environment";
 	import { concatPageTitle } from "$lib/utils";
 	import { API_URL_DEV, API_URL_PROD, APP_NAME } from "$lib/constants";
-	import { initializeSettings, preferedTitleLocale } from "$lib/settings";
+	import { initializeSettings, preferredTitleLocale } from "$lib/settings";
 
 	import NavigationBar from "$lib/components/NavigationBar.svelte";
 
@@ -24,7 +24,7 @@
 </script>
 
 <svelte:head>
-	<title>{concatPageTitle($page.data.title ?? APP_NAME, $preferedTitleLocale)}</title>
+	<title>{concatPageTitle($page.data.title ?? APP_NAME, $preferredTitleLocale)}</title>
 </svelte:head>
 
 <div class="relative flex flex-col h-full">

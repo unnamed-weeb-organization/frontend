@@ -2,7 +2,7 @@
 	import type { PageData } from "./$types";
 	import { getFormattedDate } from "$lib/utils";
 	import { goto, RoutePoint } from "$lib/routes";
-	import { preferedTitleLocale } from "$lib/settings";
+	import { preferredTitleLocale } from "$lib/settings";
 	import { getArtistTypeName } from "$lib/typings/server/artist";
 	import type { ArtTileListData } from "$lib/typings/client/general";
 	import { CTXType, getCountryName, getValidName } from "$lib/typings/server/general";
@@ -14,7 +14,7 @@
 
 	export let data: PageData;
 
-	const altNames = data.artist.alt_names.map((name) => getValidName(name, $preferedTitleLocale));
+	const altNames = data.artist.alt_names.map((name) => getValidName(name, $preferredTitleLocale));
 	const detailColumns = [
 		["Type", getArtistTypeName(data.artist.type)],
 		["Location", getCountryName(data.artist.based_on)],
@@ -24,7 +24,7 @@
 	const releaseTileData: ArtTileListData[] = data.releases.map((release) => ({
 		id: release.id,
 		ctx: CTXType.RELEASE,
-		label: getValidName(release.name, $preferedTitleLocale),
+		label: getValidName(release.name, $preferredTitleLocale),
 		imageURL: ""
 	}));
 
@@ -37,7 +37,7 @@
 	<div class="contents" slot="info_container">
 		<ArtContainer imageURL="" link={null} />
 		<div class="title_container">
-			<h1>{getValidName(data.artist.name, $preferedTitleLocale)}</h1>
+			<h1>{getValidName(data.artist.name, $preferredTitleLocale)}</h1>
 			<div class="alt_name_container">
 				{#each altNames as name, i}
 					<span>{name}</span>

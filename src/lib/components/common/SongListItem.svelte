@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { getFormattedLength } from "$lib/utils";
 	import { RoutePoint, withParameter } from "$lib/routes";
-	import { preferedTitleLocale } from "$lib/settings";
+	import { preferredTitleLocale } from "$lib/settings";
 	import type { Song } from "$lib/typings/server/song";
 	import type { Artist } from "$lib/typings/server/artist";
 	import { getValidName } from "$lib/typings/server/general";
@@ -16,12 +16,12 @@
 <div class="item">
 	<span class="text-xs text-custom-400">{itemNo}</span>
 	<a class="text-custom-200" href={songRouteOptions.route}>
-		{getValidName(song.name, $preferedTitleLocale)}
+		{getValidName(song.name, $preferredTitleLocale)}
 	</a>
 	<div class="flex flex-1 justify-end">
 		{#each artists as { id, name }, i}
 			<a href={withParameter(RoutePoint.Artist, { id }).route}>
-				{getValidName(name, $preferedTitleLocale)}
+				{getValidName(name, $preferredTitleLocale)}
 			</a>
 			{#if i < artists.length - 1}
 				<span class="mr-1">,</span>

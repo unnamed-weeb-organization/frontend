@@ -1,6 +1,6 @@
 <script lang="ts">
 	import type { PageData } from "./$types";
-	import { preferedTitleLocale } from "$lib/settings";
+	import { preferredTitleLocale } from "$lib/settings";
 	import { goto, RoutePoint, withParameter } from "$lib/routes";
 	import { getFormattedDate, getFormattedLength } from "$lib/utils";
 	import type { ArtTileListData } from "$lib/typings/client/general";
@@ -35,11 +35,11 @@
 	<div class="contents" slot="info_container">
 		<ArtContainer imageURL="" link={null} />
 		<div class="title_container">
-			<h1>{getValidName(data.song.name, $preferedTitleLocale)}</h1>
+			<h1>{getValidName(data.song.name, $preferredTitleLocale)}</h1>
 			<div class="artists">
 				{#each data.artists as { id, name }, i}
 					<a href={withParameter(RoutePoint.Artist, { id }).route}>
-						{getValidName(name, $preferedTitleLocale)}
+						{getValidName(name, $preferredTitleLocale)}
 					</a>
                     {#if i < data.artists.length - 1}
                         <span class="mr-1">,</span>

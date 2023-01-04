@@ -4,7 +4,7 @@ import { artist, externalSites } from '$lib/placeholders';
 export const load = (async () => {
     return {
         title: ["Editing", artist.name],
-        header: "Editing",
+        header:["Edit", artist.name],
         artist: artist,
         externalSites: externalSites,
     };
