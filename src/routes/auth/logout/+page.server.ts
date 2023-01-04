@@ -1,7 +1,7 @@
-import type { PageServerLoad } from "./$types";
-import { COOKIE_AUTH_OPTIONS, COOKIE_USER_ID, COOKIE_USER_PAT } from "$lib/constants";
 import { redirect } from "@sveltejs/kit";
+import type { PageServerLoad } from "./$types";
 import { Route, RoutePoint } from "$lib/routes";
+import { COOKIE_AUTH_OPTIONS, COOKIE_USER_ID, COOKIE_USER_PAT } from "$lib/constants";
 
 export const load = (async ({ cookies, locals, url }) => {
 	cookies.delete(COOKIE_USER_ID, COOKIE_AUTH_OPTIONS);

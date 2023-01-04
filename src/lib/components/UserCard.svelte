@@ -21,15 +21,27 @@
 	export let user: User | null;
 
 	let isItDark = isDark();
+	let from = $page.url.pathname;
 
 	function toggleThemeMode() {
 		changeTheme(!isItDark);
 		isItDark = isDark();
 	}
 
-	function logout() {
-		goto(RoutePoint.AuthLogout, { from: $page.url.pathname });
-	}
+	const login = () => {
+		onDismiss.call(undefined);
+		goto(RoutePoint.AuthLogin, { from }, { invalidateAll: true });
+	};
+
+	const logout = () => {
+		onDismiss.call(undefined);
+		goto(RoutePoint.AuthLogout, { from }, { invalidateAll: true });
+	};
+
+	const me = () => {
+		onDismiss.call(undefined);
+		goto(RoutePoint.Me);
+	};
 </script>
 
 <div transition:slide={{ duration: 150 }} class="wrapper {$$props.class}">
@@ -38,7 +50,7 @@
 			<Button
 				styleType="none"
 				class="h-16 w-16 bg-custom-secondary fill-custom-400"
-				on:click={() => goto(RoutePoint.Me)}
+				on:click={me}
 			>
 				<AccountIcon class="h-16 w-16" />
 			</Button>
@@ -56,12 +68,7 @@
 				<LogoutIcon class="h-5 w-5" />
 			</Button>
 		{:else}
-			<Button
-				class="flex-1"
-				styleType="labelButton"
-				label="Sign In"
-				on:click={() => goto(RoutePoint.AuthLogin, { from: $page.url.pathname })}
-			/>
+			<Button class="flex-1" styleType="labelButton" label="Sign In" on:click={login} />
 		{/if}
 	</div>
 
