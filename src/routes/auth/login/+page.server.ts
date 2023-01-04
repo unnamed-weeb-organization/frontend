@@ -14,7 +14,6 @@ export const actions: Actions = {
 		};
 
 		const missing = getMissingFields(fields);
-		console.log(missing);
 		if (missing.length > 0) return fail(400, { missing });
 
 		cookies.set(COOKIE_USER_ID, user.id, COOKIE_AUTH_OPTIONS);
