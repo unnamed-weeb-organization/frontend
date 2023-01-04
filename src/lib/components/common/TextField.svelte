@@ -1,8 +1,8 @@
 <script lang="ts">
-    type TextFieldType = "text" | "email" | "password";
+	type TextFieldType = "text" | "email" | "password" | "date";
 
-    export let name: string;
-    export let type: TextFieldType = "text";
+	export let name: string;
+	export let type: TextFieldType = "text";
 	export let placeholder: string;
 </script>
 
@@ -15,12 +15,12 @@
         font-head text-sm text-custom-200;
 	}
 
-    input::placeholder {
-        @apply font-head text-sm text-custom-400;
-    }
+	input::placeholder {
+		@apply font-head text-sm text-custom-400;
+	}
 
-    input:focus {
-        @apply border-2 border-accent-tertiary
+	input:focus {
+		@apply border-2 border-accent-tertiary
         bg-custom-tertiary;
-    }
+	}
 </style>

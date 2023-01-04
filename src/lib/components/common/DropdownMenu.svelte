@@ -5,9 +5,10 @@
 	export let items: string[];
 	export let onDismiss: () => void;
 	export let onSelect: (item: string) => void;
+	export let reverse: boolean = false;
 </script>
 
-<div transition:slide={{ duration: 150 }} class="wrapper {$$props.class}">
+<div transition:slide={{ duration: 150 }} class="wrapper {$$props.class}" class:reverse>
 	{#each items as item}
 		<option on:click|preventDefault={() => onSelect(item)}>{item}</option>
 	{/each}
@@ -21,6 +22,10 @@
 		@apply absolute z-10 max-h-96 min-w-[7rem] max-w-2xl
         overflow-y-auto bg-custom-background
         rounded shadow-md flex flex-col;
+	}
+
+	.wrapper.reverse {
+		@apply flex-col-reverse;
 	}
 
 	option {

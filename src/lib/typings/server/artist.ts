@@ -6,6 +6,10 @@ export enum ArtistType {
 	CHARACTER = "CHARACTER",
 }
 
+export const getArtistTypes = (): ArtistType[] => {
+	return Object.values(ArtistType);
+}
+
 export const getArtistTypeName = (type: ArtistType): string => {
 	switch (type) {
 		case ArtistType.SOLO:

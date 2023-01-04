@@ -17,16 +17,12 @@
 	import EditIcon from "$lib/assets/icons/edit.svg?component";
 
 	export let onDismiss: () => void;
-
 	export let user: User | null;
 
 	let isItDark = isDark();
 	let from = $page.url.pathname;
 
-	function toggleThemeMode() {
-		changeTheme(!isItDark);
-		isItDark = isDark();
-	}
+	const toggleThemeMode = () => (isItDark = changeTheme(!isItDark));
 
 	const login = () => {
 		onDismiss.call(undefined);
@@ -38,9 +34,11 @@
 		goto(RoutePoint.AuthLogout, { from }, { invalidateAll: true });
 	};
 
-	const me = () => {
-		onDismiss.call(undefined);
-		goto(RoutePoint.Me);
+	const withCloseHook = (route: RoutePoint) => {
+		return () => {
+			onDismiss.call(undefined);
+			goto(route);
+		};
 	};
 </script>
 
@@ -50,7 +48,7 @@
 			<Button
 				styleType="none"
 				class="h-16 w-16 bg-custom-secondary fill-custom-400"
-				on:click={me}
+				on:click={withCloseHook(RoutePoint.Me)}
 			>
 				<AccountIcon class="h-16 w-16" />
 			</Button>
@@ -85,10 +83,14 @@
 			{/if}
 		</Button>
 
-		<Button class="h-10" label="Edit Profile" on:click={() => goto(RoutePoint.SettingsAccount)}>
+		<Button
+			class="h-10"
+			label="Edit Profile"
+			on:click={withCloseHook(RoutePoint.SettingsAccount)}
+		>
 			<EditIcon class="h-5 w-5" />
 		</Button>
-		<Button class="h-10" label="Settings" on:click={() => goto(RoutePoint.Settings)}>
+		<Button class="h-10" label="Settings" on:click={withCloseHook(RoutePoint.Settings)}>
 			<SettingsIcon class="h-5 w-5" />
 		</Button>
 	</div>
