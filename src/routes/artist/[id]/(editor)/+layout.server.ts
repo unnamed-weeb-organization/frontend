@@ -11,6 +11,4 @@ export const load = (async ({ locals }) => {
 	if (!locals.user?.roles.includes(Role.Verified)) {
 		throw error(403, { message: NOT_VERIFIED_RESOURCE_EDIT, override: true });
 	}
-
-	return {};
 }) satisfies LayoutServerLoad;

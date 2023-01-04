@@ -42,7 +42,7 @@ export const song: Song = {
 export const user: User = {
 	id: "1",
 	name: "test",
-	roles: [Role.Admin]
+	roles: [Role.Admin, Role.Verified]
 }
 
 export const externalSites: ExternalSite[] = [
