@@ -48,27 +48,24 @@ export const getRandomizedTempId = () =>
  *
  * @see https://github.com/orgs/unnamed-weeb-organization/projects/2?pane=item&itemId=17019329
  */
-export const validateNameStruct = (name: Name): { origin: Locale; message: string } | void => {
+export const validateNameStruct = (name: Name): string | null => {
 	const { english, romanized, native } = name;
 
 	if (native && !romanized) {
-		return {
-			origin: Locale.Romanized,
-			message: "romanized field should not be empty if native is present."
-		};
+		return "Romanized field should not be empty if native is present.";
 	}
 
 	if (romanized && !native) {
-		return {
-			origin: Locale.Native,
-			message: "native field should not be empty if romanized is present."
-		};
+		return "Native field should not be empty if romanized is present.";
 	}
 
 	if (english && (romanized || native)) {
-		return {
-			origin: Locale.English,
-			message: "native and romanized fields should be empty if english is present."
-		};
+		return "Native and romanized fields must be empty if english is present.";
 	}
+
+	if (!english && !romanized && !native) {
+		return "Must contain either English, or Native and Romanized.";
+	}
+
+	return null;
 };

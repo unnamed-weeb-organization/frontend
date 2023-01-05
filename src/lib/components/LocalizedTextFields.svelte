@@ -1,12 +1,30 @@
 <script lang="ts">
-	import { getLocaleName, type Locale } from "$lib/typings/server/general";
+	import { slide } from "svelte/transition";
 	import { validateNameStruct } from "$lib/utils";
+	import { getLocaleName, Locale } from "$lib/typings/server/general";
 
 	export let locales: Map<Locale, { id: string; placeholder?: string; value?: string }>;
+
+	let error: string | null = null;
+	$: {
+		const nameRecord = {
+			english: locales.get(Locale.English)?.value,
+			native: locales.get(Locale.Native)?.value,
+			romanized: locales.get(Locale.Romanized)?.value
+		};
+
+		error = validateNameStruct(nameRecord);
+	}
 </script>
 
-<div class="flex flex-col gap-2 {$$props.class}">
-	{#each [...locales.entries()] as [locale, { id, placeholder, value }]}
+<div class="flex flex-col md:flex-row gap-2 flex-1 {$$props.class}">
+	{#if error}
+		<span transition:slide={{ duration: 150 }} class="error">
+			{error}
+		</span>
+	{/if}
+
+	{#each [...locales.entries()] as [locale, { id, placeholder, value }] (locale)}
 		<label for={id}>
 			<h2>{getLocaleName(locale)}</h2>
 			<input name={id} type="text" {placeholder} class={$$props.class} bind:value />
@@ -32,5 +50,13 @@
 
 	h2 {
 		@apply text-sm text-custom-400 w-32;
+	}
+
+	span.error {
+		@apply mt-1 text-sm font-head text-red-600;
+	}
+
+	:global(.dark) span.error {
+		@apply text-red-500;
 	}
 </style>

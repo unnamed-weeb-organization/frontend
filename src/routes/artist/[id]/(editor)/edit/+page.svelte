@@ -57,7 +57,6 @@
 <form method="POST" class="flex flex-col flex-1" use:enhance>
 	<h1 class="mb-2">Name</h1>
 	<LocalizedTextFields
-		class="md:flex-row"
 		locales={new Map([
 			[Locale.English, { id: "name_en", value: data.artist.name.english }],
 			[Locale.Native, { id: "name_nat", value: data.artist.name.native }],
@@ -79,7 +78,7 @@
 				<TrashIcon class="h-6 w-6 fill-red-600 dark:fill-red-500" />
 			</Button>
 
-			<LocalizedTextFields class="md:flex-row w-full" {locales} />
+			<LocalizedTextFields {locales} />
 		</div>
 	{/each}
 	<Button
@@ -108,7 +107,6 @@
 	/>
 	<input type="hidden" name="type" value={artistTypes.get(selectArtistType)} />
 
-	
 	<div class="contents md:flex flex-1 justify-end">
 		<Button class="mt-8 md:w-24" styleType="labelButton" label="Confirm" />
 	</div>

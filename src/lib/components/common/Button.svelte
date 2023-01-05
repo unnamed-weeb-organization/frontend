@@ -26,4 +26,8 @@
 		@apply flex justify-center items-center
 		rounded transition-colors ease-in duration-150 gap-2;
 	}
+
+	button:disabled {
+		@apply cursor-not-allowed opacity-50;
+	}
 </style>
