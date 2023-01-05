@@ -7,6 +7,10 @@ SvelteKit frontend for the [`unnamed_weeb_music_database/backend`](https://githu
 -   `pnpm install` to install dependencies.
 -   `pnpm dev` to start the dev server.
 
+## Notes
+
+1. Tailwind's `dark:` modifier doesn't work inside svelte's `<script>` tags, as these classes are scope. However, as workarounds, you can either use `dark:` directly in the `class=` property, or wrap the `.dark` class within svelte's `:global()` specifier.  
+
 ## Acknowledgements
 
 1. Bootstrapped with [`create-svelte`](https://github.com/sveltejs/kit/tree/master/packages/create-svelte)
