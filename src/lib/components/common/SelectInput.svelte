@@ -29,7 +29,7 @@
 </script>
 
 <div class="w-full relative">
-	<button bind:this={buttonElement} on:click={() => (isOpen = !isOpen)}>
+	<button bind:this={buttonElement} on:click|preventDefault={() => (isOpen = !isOpen)}>
 		<span class="text-custom-200">{selected}</span>
 	</button>
 	{#if isOpen}
