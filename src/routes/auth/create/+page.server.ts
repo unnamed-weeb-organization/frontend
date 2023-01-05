@@ -2,7 +2,7 @@ import { fail, redirect } from "@sveltejs/kit";
 import type { Actions, PageServerLoad } from "./$types";
 import { user } from "$lib/placeholders";
 import { Route, RoutePoint } from "$lib/routes";
-import { COOKIE_AUTH_OPTIONS, COOKIE_USER_ID, COOKIE_USER_PAT } from "$lib/constants";
+import { COOKIE_AUTH_OPTIONS, COOKIE_AUTH_PERSISTENT_OPTIONS, COOKIE_USER_ID, COOKIE_USER_REFRESH, COOKIE_USER_SESSION } from "$lib/constants";
 import { getMissingFields, validateEmail, validatePassword, validateUsername } from "$lib/utils";
 
 export const actions: Actions = {
@@ -29,15 +29,16 @@ export const actions: Actions = {
 			return fail(400, { error: "Password must be at least 8 characters long!" });
 		}
 
-		cookies.set(COOKIE_USER_ID, user.id, COOKIE_AUTH_OPTIONS);
-		cookies.set(COOKIE_USER_PAT, "PersonalAccessToken", COOKIE_AUTH_OPTIONS);
+		cookies.set(COOKIE_USER_ID, user.id, COOKIE_AUTH_PERSISTENT_OPTIONS);
+		cookies.set(COOKIE_USER_SESSION, "SessionToken", COOKIE_AUTH_OPTIONS);
+		cookies.set(COOKIE_USER_REFRESH, "RefreshToken", COOKIE_AUTH_PERSISTENT_OPTIONS);
 
 		throw redirect(303, data.get("from")?.toString() ?? Route[RoutePoint.Home].route);
 	}
 };
 
 export const load = (async ({ cookies }) => {
-	if (cookies.get(COOKIE_USER_PAT) != null) {
+	if (cookies.get(COOKIE_USER_SESSION) != null) {
 		throw redirect(303, Route[RoutePoint.Home].route);
 	}
 

@@ -20,9 +20,14 @@ export const hintMessages: Record<number, string> = {
 export const NOT_VERIFIED_RESOURCE_EDIT = "Only verified users can create/edit resources.";
 
 export const COOKIE_USER_ID = "user-id";
-export const COOKIE_USER_PAT = "user-pat";
+export const COOKIE_USER_REFRESH = "user-refresh";
+export const COOKIE_USER_SESSION = "user-session";
 export const COOKIE_AUTH_OPTIONS: Parameters<Cookies["set"]>[2] = {
 	httpOnly: true,
 	path: "/",
 	sameSite: "strict"
 };
+export const COOKIE_AUTH_PERSISTENT_OPTIONS: Parameters<Cookies["set"]>[2] =
+	COOKIE_AUTH_OPTIONS && {
+		expires: new Date(Date.now() + 1000 * 60 * 60 * 24 * 30)
+	};
