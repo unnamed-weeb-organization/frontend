@@ -74,7 +74,7 @@
 
 	<h1 class="mt-4 mb-2">Alternative names</h1>
 	{#each [...altNameMap.entries()] as [id, locales] (id)}
-		<div transition:slide={{ duration: 150 }} class="flex items-center gap-2 mb-3 -ml-2">
+		<div transition:slide|local={{ duration: 150 }} class="flex items-center gap-2 mb-3 -ml-2">
 			<Button
 				class="w-10 h-10"
 				styleType="iconButton"
