@@ -1,10 +1,10 @@
 import { error, redirect } from "@sveltejs/kit";
 import type { Actions } from "./$types";
+import { RoutePoint, withParameter } from "$lib/routes";
 import { getDateFromFormatted, validateNameStruct } from "$lib/utils";
 import { HTTPCode, INVALID_ARTIST_TYPE, INVALID_COUNTRY } from "$lib/constants";
 import { Country, CTXType, getCountryFromName, type Name } from "$lib/typings/server/general";
 import { ArtistType, getArtistTypeFromName, type NewArtist } from "$lib/typings/server/artist";
-import { RoutePoint, withParameter } from "$lib/routes";
 
 export const actions: Actions = {
 	default: async ({ request }) => {
