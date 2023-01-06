@@ -48,7 +48,8 @@ export enum RoutePoint {
 	AuthLogin,
 	AuthLogout,
 	AuthReset,
-	AuthCreate
+	AuthCreate,
+	LandingApproval,
 }
 
 /**
@@ -105,7 +106,9 @@ export const Route: Record<RoutePoint, RouteOptions> = {
 	[RoutePoint.AuthLogin]: { route: "/auth/login" },
 	[RoutePoint.AuthLogout]: { route: "/auth/logout", authenticated: true },
 	[RoutePoint.AuthReset]: { route: "/auth/reset" },
-	[RoutePoint.AuthCreate]: { route: "/auth/create" }
+	[RoutePoint.AuthCreate]: { route: "/auth/create" },
+
+	[RoutePoint.LandingApproval]: { route: "/landing/approval", authenticated: true }
 };
 
 export const getMatchedRoute = (pathname: string): RouteOptions => {
@@ -120,9 +123,10 @@ export type RouteParameters = {
 
 	[RoutePoint.Artist]: { id: string };
 	[RoutePoint.Release]: { id: string };
-	[RoutePoint.Releases]: { artist?: string; song?: string };
 	[RoutePoint.Anime]: { id: string };
 	[RoutePoint.Song]: { id: string };
+
+	[RoutePoint.Releases]: { artist?: string; song?: string };
 
 	[RoutePoint.ArtistEdit]: { id: string };
 	[RoutePoint.ReleaseEdit]: { id: string };
@@ -133,6 +137,8 @@ export type RouteParameters = {
 	[RoutePoint.AuthLogout]: { from?: string };
 	[RoutePoint.AuthReset]: { from?: string };
 	[RoutePoint.AuthCreate]: { from?: string };
+
+	[RoutePoint.LandingApproval]: { ctx: CTXType; id: string };
 };
 
 /**
@@ -147,6 +153,7 @@ export function withParameter<T extends RoutePoint>(
 	const option: RouteOptions = Object.create(Route[routePoint]);
 
 	if (params != null) {
+		const searchParams = new URLSearchParams();
 		const keys: string[] = Object.keys(params as object);
 		const replaceableKeys = option.route.split("/").filter((key) => key.startsWith(":"));
 
@@ -158,10 +165,11 @@ export function withParameter<T extends RoutePoint>(
 			}
 
 			if (!option.route.endsWith("/")) {
-				if (option.route.endsWith("?")) option.route += `${key}=${value}`;
-				else option.route += `?${key}=${value}`;
+				searchParams.set(key, value);
 			}
 		});
+
+		option.route += "?" + searchParams.toString();
 	}
 
 	return option;

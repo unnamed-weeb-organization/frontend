@@ -9,6 +9,7 @@ export enum HTTPCode {
 	NotModified = 304,
 	PermanentlyMoved = 307,
 	TemporarilyMoved = 308,
+	BadRequest = 400,
 	NotAuthorized = 401,
 	Forbidden = 403,
 	NotFound = 404,
@@ -17,6 +18,7 @@ export enum HTTPCode {
 }
 
 export const errorMessages: Partial<Record<HTTPCode, string>> = {
+	400: "Bad request",
 	401: "Not authorized",
 	403: "Forbidden",
 	404: "Page not found",
@@ -25,6 +27,7 @@ export const errorMessages: Partial<Record<HTTPCode, string>> = {
 };
 
 export const hintMessages: Partial<Record<HTTPCode, string>> = {
+	400: "The request could not be understood by the server due to malformed syntax.",
 	401: "You need to be logged in to access this page.",
 	403: "You do not have permission to access this page.",
 	404: "The page you are looking for might have been removed, had its name changed, or is temporarily unavailable.",
