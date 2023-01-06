@@ -5,8 +5,8 @@ export interface User {
 }
 
 export enum Role {
-	Verified = "Verified",
 	User = "User",
+	Verified = "Verified",
 	Contributor = "Contributor",
 	Moderator = "Moderator",
 	Admin = "Admin"
@@ -19,3 +19,6 @@ export const getHigherOrderRole = (roles: Role[]): Role => {
 		roleObject.indexOf(role) > roleObject.indexOf(acc) ? role : acc
 	);
 };
+
+export const isRoleHigherThan = (role: Role, otherRole: Role): boolean =>
+	Object.keys(Role).indexOf(role) > Object.keys(Role).indexOf(otherRole);

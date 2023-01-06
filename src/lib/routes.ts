@@ -169,7 +169,10 @@ export function withParameter<T extends RoutePoint>(
 			}
 		});
 
-		option.route += "?" + searchParams.toString();
+		const encodedParams = searchParams.toString();
+		if (encodedParams.length > 0) {
+			option.route += "?" + encodedParams;
+		}
 	}
 
 	return option;
