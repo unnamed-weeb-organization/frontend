@@ -1,9 +1,9 @@
 import { error } from "@sveltejs/kit";
 import type { Actions } from "./$types";
-import { Country, type Name } from "$lib/typings/server/general";
-import { ArtistType, type Artist } from "$lib/typings/server/artist";
 import { getDateFromFormatted, validateNameStruct } from "$lib/utils";
 import { HTTPCode, INVALID_ARTIST_TYPE, INVALID_COUNTRY } from "$lib/constants";
+import { Country, getCountryFromName, type Name } from "$lib/typings/server/general";
+import { ArtistType, getArtistTypeFromName, type NewArtist } from "$lib/typings/server/artist";
 
 export const actions: Actions = {
 	default: async ({ request }) => {
@@ -18,7 +18,7 @@ export const actions: Actions = {
 
 		const name_error = validateNameStruct(name);
 		if (name_error) {
-			throw error(HTTPCode.UnprocessableEntity, { message: name_error })
+			throw error(HTTPCode.UnprocessableEntity, { message: name_error });
 		}
 
 		const altNameMap = new Map<number, Name>();
@@ -41,39 +41,46 @@ export const actions: Actions = {
 
 			const name_error = validateNameStruct(name);
 			if (name_error) {
-				throw error(HTTPCode.UnprocessableEntity, { message: name_error })
+				throw error(HTTPCode.UnprocessableEntity, { message: name_error });
 			}
 
 			altNameMap.set(index, name);
 		});
 
-
-		const artistType = ArtistType[data.get("type")?.toString() as keyof typeof ArtistType];
-		if (!artistType) {
-			throw error(HTTPCode.UnprocessableEntity, { message: INVALID_ARTIST_TYPE })
+		let artistType: ArtistType;
+		try {
+			artistType = getArtistTypeFromName(data.get("type") as string);
+		} catch {
+			throw error(HTTPCode.UnprocessableEntity, { message: INVALID_ARTIST_TYPE });
 		}
 
-		const description = data.get("description")?.toString();
-		
-		const based_on = Country[data.get("based_on")?.toString() as keyof typeof Country];
-		if (!based_on) {
-			throw error(HTTPCode.UnprocessableEntity, { message: INVALID_COUNTRY })
+		let based_on: Country;
+		try {
+			based_on = getCountryFromName(data.get("based_on") as string);
+		} catch {
+			throw error(HTTPCode.UnprocessableEntity, { message: INVALID_COUNTRY });
 		}
-		
-		const founded_on_str = data.get("founded_on")?.toString();
-		const founded_on = founded_on_str ? getDateFromFormatted(founded_on_str) : undefined;
 
-		const artist: Artist = {
-			id: "",
+		let founded_on: Date | undefined;
+		try {
+			const founded_on_str = data.get("founded_on")?.toString();
+			founded_on = founded_on_str ? getDateFromFormatted(founded_on_str) : undefined;
+		} catch {
+			throw error(HTTPCode.UnprocessableEntity, { message: "Invalid date format" });
+		}
+
+		const description = data.get("description")?.toString() || undefined;
+
+		const newArtist: NewArtist = {
 			name,
-			type: artistType,
-			alt_names: [...altNameMap.values()],
 			based_on,
+			founded_on,
 			description,
-			founded_on
-		}
+			type: artistType,
+			alt_names: [...altNameMap.values()]
+		};
 
 		console.log(data);
-		console.log("Artist", artist)
+		console.log("Artist", newArtist);
 	}
 };

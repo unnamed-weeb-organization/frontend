@@ -47,7 +47,7 @@
 		altNameMap = newMap;
 	};
 
-	let selectBasedOn: string = Country[data.artist.based_on as unknown as keyof typeof Country];
+	let selectBasedOn: string = data.artist.based_on ? getCountryName(data.artist.based_on) :  Country.JP;
 	const basedOnOptions = new Map(
 		getCountries().map((country) => [getCountryName(country), country])
 	);
