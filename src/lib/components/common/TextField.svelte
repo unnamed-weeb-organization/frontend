@@ -4,9 +4,10 @@
 	export let name: string;
 	export let type: TextFieldType = "text";
 	export let placeholder: string;
+	export let value: string | undefined = undefined;
 </script>
 
-<input {name} {type} {placeholder} class={$$props.class} />
+<input {name} {type} {placeholder} {value} class={$$props.class} />
 
 <style lang="postcss">
 	input {

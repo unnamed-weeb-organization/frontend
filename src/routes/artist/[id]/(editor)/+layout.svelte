@@ -116,7 +116,11 @@
 		/>
 
 		<h1 class="mt-4 mb-2">Description</h1>
-		<TextArea name="description" placeholder="Something about the artist." />
+		<TextArea
+			name="description"
+			value={data.artist?.description}
+			placeholder="Something about the artist."
+		/>
 
 		<h1 class="mt-4 mb-2">Based on</h1>
 		<SelectInput
@@ -127,7 +131,12 @@
 		/>
 
 		<h1 class="mt-4 mb-2">Founded on</h1>
-		<TextField name="founded_on" type="date" placeholder="e.g. 2007-01-01" />
+		<TextField
+			name="founded_on"
+			type="date"
+			value={data.artist?.founded_on?.toISOString().split("T")[0] ?? ""}
+			placeholder="e.g. 2007-01-01"
+		/>
 
 		<div class="contents md:flex flex-1 justify-end">
 			<Button class="mt-8 md:w-24" styleType="labelButton" label="Confirm" />
