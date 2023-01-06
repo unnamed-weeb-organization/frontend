@@ -33,7 +33,7 @@
 			<div class="action_wrapper">
 				<h2>Actions</h2>
 
-				<a href={editRouteOptions.route} >
+				<a href={editRouteOptions.route} data-sveltekit-preload-data="off">
 					<EditIcon class="h-5 w-5" />
 					<span>Edit</span>
 				</a>

@@ -11,4 +11,6 @@ export const load = (async ({ locals }) => {
 	if (!locals.user?.roles.includes(Role.Verified)) {
 		throw error(HTTPCode.Forbidden, { message: NOT_VERIFIED_RESOURCE_EDIT });
 	}
+
+	return {};
 }) satisfies LayoutServerLoad;
