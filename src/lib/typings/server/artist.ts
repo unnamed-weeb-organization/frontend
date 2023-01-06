@@ -27,6 +27,6 @@ export interface Artist {
 	type: ArtistType;
 	alt_names: Name[];
 	description?: string;
-	based_on: Country;
-	founded_on: Date;
+	based_on?: Country;
+	founded_on?: Date;
 }

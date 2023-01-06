@@ -3,7 +3,7 @@
 	import type { PageData } from "./$types";
 	import { enhance } from "$app/forms";
 	import { getRandomizedTempId } from "$lib/utils";
-	import { Locale } from "$lib/typings/server/general";
+	import { Country, getCountries, getCountryName, Locale } from "$lib/typings/server/general";
 	import { getArtistTypeName, getArtistTypes } from "$lib/typings/server/artist";
 
 	import Button from "$lib/components/common/Button.svelte";
@@ -20,29 +20,23 @@
 		data.artist.alt_names.map((name, i) => [
 			getRandomizedTempId(),
 			new Map([
-				[Locale.English, { id: `alt_name_${i}_en`, value: name.english }],
-				[Locale.Native, { id: `alt_name_${i}_nat`, value: name.native }],
-				[Locale.Romanized, { id: `alt_name_${i}_rom`, value: name.romanized }]
+				[Locale.English, { id: `alt_names.${i}.english`, value: name.english }],
+				[Locale.Native, { id: `alt_names.${i}.native`, value: name.native }],
+				[Locale.Romanized, { id: `alt_names.${i}.romanized`, value: name.romanized }]
 			])
 		])
 	);
 
-	let selectArtistType = getArtistTypeName(data.artist.type);
-	const artistTypes = new Map(getArtistTypes().map((type) => [getArtistTypeName(type), type]));
-
-	const onArtistTypeSelect = (type_name: string) => {
-		selectArtistType = type_name;
-	};
-
 	const addArtistAltName = () => {
 		const id = getRandomizedTempId();
+		const index = altNameMap.size;
 
 		altNameMap = altNameMap.set(
 			id,
 			new Map([
-				[Locale.English, { id: `alt_name_${id}_en` }],
-				[Locale.Native, { id: `alt_name_${id}_nat` }],
-				[Locale.Romanized, { id: `alt_name_${id}_rom` }]
+				[Locale.English, { id: `alt_names.${index}.english` }],
+				[Locale.Native, { id: `alt_names.${index}.native` }],
+				[Locale.Romanized, { id: `alt_names.${index}.romanized` }]
 			])
 		);
 	};
@@ -52,15 +46,29 @@
 		newMap.delete(i);
 		altNameMap = newMap;
 	};
+
+	let selectBasedOn: string = Country[data.artist.based_on as unknown as keyof typeof Country];
+	const basedOnOptions = new Map(
+		getCountries().map((country) => [getCountryName(country), country])
+	);
+	const onBasedOnSelect = (country_name: string) => {
+		selectBasedOn = country_name;
+	};
+
+	let selectArtistType = getArtistTypeName(data.artist.type);
+	const artistTypes = new Map(getArtistTypes().map((type) => [getArtistTypeName(type), type]));
+	const onArtistTypeSelect = (type_name: string) => {
+		selectArtistType = type_name;
+	};
 </script>
 
 <form method="POST" class="flex flex-col flex-1" use:enhance>
 	<h1 class="mb-2">Name</h1>
 	<LocalizedTextFields
 		locales={new Map([
-			[Locale.English, { id: "name_en", value: data.artist.name.english }],
-			[Locale.Native, { id: "name_nat", value: data.artist.name.native }],
-			[Locale.Romanized, { id: "name_rom", value: data.artist.name.romanized }]
+			[Locale.English, { id: "name.english", value: data.artist.name.english }],
+			[Locale.Native, { id: "name.native", value: data.artist.name.native }],
+			[Locale.Romanized, { id: "name.romanized", value: data.artist.name.romanized }]
 		])}
 	/>
 
@@ -90,22 +98,27 @@
 		}}
 	/>
 
-	<h1 class="mt-4 mb-2">Description</h1>
-	<TextArea name="description" placeholder="Something about the artist." />
-
-	<h1 class="mt-4 mb-2">Based on</h1>
-	<TextField name="based_on" type="text" placeholder="e.g. Shinagawa, Tokyo, Japan" />
-
-	<h1 class="mt-4 mb-2">Founded on</h1>
-	<TextField name="founded_on" type="date" placeholder="e.g. 2007-01-01" />
-
 	<h1 class="mt-4 mb-2">Type</h1>
 	<SelectInput
+		name="type"
 		selected={selectArtistType}
 		options={Array.from(artistTypes.keys())}
 		onSelect={onArtistTypeSelect}
 	/>
-	<input type="hidden" name="type" value={artistTypes.get(selectArtistType)} />
+	
+	<h1 class="mt-4 mb-2">Description</h1>
+	<TextArea name="description" placeholder="Something about the artist." />
+
+	<h1 class="mt-4 mb-2">Based on</h1>
+	<SelectInput
+		name="based_on"
+		selected={selectBasedOn}
+		options={Array.from(basedOnOptions.keys())}
+		onSelect={onBasedOnSelect}
+	/>
+
+	<h1 class="mt-4 mb-2">Founded on</h1>
+	<TextField name="founded_on" type="date" placeholder="e.g. 2007-01-01" />
 
 	<div class="contents md:flex flex-1 justify-end">
 		<Button class="mt-8 md:w-24" styleType="labelButton" label="Confirm" />

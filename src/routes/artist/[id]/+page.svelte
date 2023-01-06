@@ -9,16 +9,16 @@
 
 	import ArtTileList from "$lib/components/ArtTileList.svelte";
 	import ArtContainer from "$lib/components/common/ArtContainer.svelte";
-	import EntryDetailsLayout from "$lib/components/layouts/EntryDetailsLayout.svelte";
 	import KeyValueColumn from "$lib/components/common/KeyValueColumn.svelte";
+	import EntryDetailsLayout from "$lib/components/layouts/EntryDetailsLayout.svelte";
 
 	export let data: PageData;
 
 	const altNames = data.artist.alt_names.map((name) => getValidName(name, $preferredTitleLocale));
-	const detailColumns = [
+	const detailColumns: Array<[string, string | number | null]> = [
 		["Type", getArtistTypeName(data.artist.type)],
-		["Location", getCountryName(data.artist.based_on)],
-		["Founded on", getFormattedDate(data.artist.founded_on)]
+		["Location", data.artist.based_on ? getCountryName(data.artist.based_on) : null],
+		["Founded on", data.artist.founded_on ? getFormattedDate(data.artist.founded_on) : null]
 	];
 
 	const releaseTileData: ArtTileListData[] = data.releases.map((release) => ({
@@ -51,7 +51,9 @@
 
 	<div class="contents" slot="column_container">
 		{#each detailColumns as [key, value]}
-			<KeyValueColumn {key} {value} />
+			{#if value}
+				<KeyValueColumn {key} {value} />
+			{/if}
 		{/each}
 	</div>
 

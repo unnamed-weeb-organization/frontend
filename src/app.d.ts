@@ -6,7 +6,8 @@ declare namespace App {
 		title?: string | (string | import("$lib/typings/server/general").Name)[];
 	}
 	interface Error {
-		override?: boolean;
+		useDefault?: boolean;
+		message?: string;
 	}
 	// interface Platform {}
 }

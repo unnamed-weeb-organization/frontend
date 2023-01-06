@@ -17,19 +17,21 @@
 	}
 </script>
 
-<div class="flex flex-col md:flex-row gap-2 flex-1 {$$props.class}">
+<div class="flex flex-col gap-2 flex-1 {$$props.class}">
 	{#if error}
 		<span transition:slide={{ duration: 150 }} class="error">
 			{error}
 		</span>
 	{/if}
 
-	{#each [...locales.entries()] as [locale, { id, placeholder, value }] (locale)}
+	<div class="contents gap-2 md:flex">
+		{#each [...locales.entries()] as [locale, { id, placeholder, value }] (locale)}
 		<label for={id}>
 			<h2>{getLocaleName(locale)}</h2>
 			<input name={id} type="text" {placeholder} class={$$props.class} bind:value />
 		</label>
-	{/each}
+		{/each}
+	</div>
 </div>
 
 <style lang="postcss">
@@ -53,7 +55,7 @@
 	}
 
 	span.error {
-		@apply mt-1 text-sm font-head text-red-600;
+		@apply text-sm font-head text-red-600;
 	}
 
 	:global(.dark) span.error {

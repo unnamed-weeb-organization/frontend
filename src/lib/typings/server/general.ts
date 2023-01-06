@@ -2,6 +2,10 @@ export enum Country {
 	Japan = "JP"
 }
 
+export const getCountries = (): Country[] => {
+	return Object.keys(Country).map((key) => Country[key as keyof typeof Country]);
+};
+
 export const getCountryName = (country: Country) => {
 	switch (country) {
 		case Country.Japan:

@@ -14,6 +14,16 @@ export const getFormattedDate = (date: Date) => {
 	return `${year}-${month}-${day}`;
 };
 
+export const getDateFromFormatted = (date: string) => {
+	const [year, month, day] = date.split("-").map((d) => Number(d));
+
+	if (isNaN(year) || isNaN(month) || isNaN(day)) {
+		throw new Error("Invalid date");
+	}
+	
+	return new Date(year, month - 1, day);
+}
+
 export const getMissingFields = (fields: Record<string, string | undefined>) => {
 	return Object.entries(fields).flatMap(([key, value]) => (!value ? key : []));
 };
