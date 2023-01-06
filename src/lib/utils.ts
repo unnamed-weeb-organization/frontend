@@ -20,9 +20,9 @@ export const getDateFromFormatted = (date: string) => {
 	if (isNaN(year) || isNaN(month) || isNaN(day)) {
 		throw new Error("Invalid date");
 	}
-	
+
 	return new Date(year, month - 1, day);
-}
+};
 
 export const getMissingFields = (fields: Record<string, string | undefined>) => {
 	return Object.entries(fields).flatMap(([key, value]) => (!value ? key : []));
@@ -45,9 +45,11 @@ export const validateUsername = (username: string) => {
 	return username.match(/^[a-zA-Z0-9]+$/) !== null;
 };
 
-export const concatPageTitle = (t: string | (string | Name)[], pftl: Locale) => {
+export const concatPageTitle = (t: string | (string | Name)[], pftl: Locale): string | null => {
 	if (typeof t === "string") return t;
-	return t.map((mo) => (typeof mo === "string" ? mo : getValidName(mo, pftl))).join(" ");
+	else if (Array.isArray(t))
+		return t.map((mo) => (typeof mo === "string" ? mo : getValidName(mo, pftl))).join(" ");
+	else return null;
 };
 
 export const getRandomizedTempId = () =>

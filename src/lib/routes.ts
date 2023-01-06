@@ -158,7 +158,7 @@ export function withParameter<T extends RoutePoint>(
 		const replaceableKeys = option.route.split("/").filter((key) => key.startsWith(":"));
 
 		keys.forEach((key) => {
-			const value = encodeURIComponent(params[key as keyof RouteParameters[T]] as string);
+			const value = params[key as keyof RouteParameters[T]] as string;
 
 			if (replaceableKeys.includes(`:${key}`)) {
 				return (option.route = option.route.replace(`:${key}`, value));
