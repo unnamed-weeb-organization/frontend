@@ -35,6 +35,6 @@
 	}
 
 	h2 {
-		@apply font-head font-medium text-sm text-custom-200;
+		@apply font-head text-sm text-custom-200;
 	}
 </style>

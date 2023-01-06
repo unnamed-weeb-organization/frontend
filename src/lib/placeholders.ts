@@ -22,9 +22,9 @@ export const artist: Artist = {
 		romanized: "Kinoko Teikoku"
 	},
 	type: ArtistType.GROUP,
-	alt_names: [{ native: "何か" }, { romanized: "nanika" }, { english: "Something" }],
+	alt_names: [{ native: "何か", romanized: "nanika" }, { english: "Something" }],
 	description: "きのこ帝国は、2007年に結成された日本のロックバンド。",
-	based_on: Country.Japan,
+	based_on: Country.JP,
 	founded_on: new Date("2007-01-01")
 };
 
@@ -42,7 +42,7 @@ export const song: Song = {
 export const user: User = {
 	id: "1",
 	name: "test",
-	roles: [Role.Admin]
+	roles: [Role.Admin, Role.Verified]
 }
 
 export const externalSites: ExternalSite[] = [

@@ -30,28 +30,44 @@ export enum RoutePoint {
 	SettingsAccount,
 	Artists,
 	Artist,
+	ArtistCreate,
+	ArtistEdit,
 	Releases,
 	Release,
+	ReleaseCreate,
+	ReleaseEdit,
 	AnimeList,
 	Anime,
+	AnimeCreate,
+	AnimeEdit,
 	Songs,
 	Song,
+	SongCreate,
+	SongEdit,
 	Me,
 	AuthLogin,
 	AuthLogout,
 	AuthReset,
 	AuthCreate,
+	LandingApproval,
 }
 
 /**
  * {@link CTXType} to {@link RoutePoint} mapping.
  */
-export const CTXRouteRelation: Record<CTXType, RoutePoint> = {
+export const CTXRouteViewLocation: Record<CTXType, RoutePoint> = {
 	[CTXType.ARTIST]: RoutePoint.Artist,
 	[CTXType.RELEASE]: RoutePoint.Release,
 	[CTXType.ANIME]: RoutePoint.Anime,
 	[CTXType.SONG]: RoutePoint.Song
 };
+
+export const CTXRouteEditLocation: Record<CTXType, RoutePoint> = {
+	[CTXType.ARTIST]: RoutePoint.ArtistEdit,
+	[CTXType.RELEASE]: RoutePoint.ReleaseEdit,
+	[CTXType.ANIME]: RoutePoint.AnimeEdit,
+	[CTXType.SONG]: RoutePoint.SongEdit
+}
 
 /**
  * Contains all the routes possible for the application.
@@ -76,11 +92,23 @@ export const Route: Record<RoutePoint, RouteOptions> = {
 	[RoutePoint.Songs]: { route: "/songs" },
 	[RoutePoint.Song]: { route: "/song/:id" },
 
+	[RoutePoint.ArtistCreate]: { route: "/artist/create", authenticated: true },
+	[RoutePoint.ReleaseCreate]: { route: "/release/create", authenticated: true },
+	[RoutePoint.AnimeCreate]: { route: "/anime/create", authenticated: true },
+	[RoutePoint.SongCreate]: { route: "/song/create", authenticated: true },
+
+	[RoutePoint.ArtistEdit]: { route: "/artist/:id/edit", authenticated: true },
+	[RoutePoint.ReleaseEdit]: { route: "/release/:id/edit", authenticated: true },
+	[RoutePoint.AnimeEdit]: { route: "/anime/:id/edit", authenticated: true },
+	[RoutePoint.SongEdit]: { route: "/song/:id/edit", authenticated: true },
+
 	[RoutePoint.Me]: { route: "/me", authenticated: true },
 	[RoutePoint.AuthLogin]: { route: "/auth/login" },
 	[RoutePoint.AuthLogout]: { route: "/auth/logout", authenticated: true },
 	[RoutePoint.AuthReset]: { route: "/auth/reset" },
-	[RoutePoint.AuthCreate]: { route: "/auth/create" }
+	[RoutePoint.AuthCreate]: { route: "/auth/create" },
+
+	[RoutePoint.LandingApproval]: { route: "/landing/approval", authenticated: true }
 };
 
 export const getMatchedRoute = (pathname: string): RouteOptions => {
@@ -88,19 +116,29 @@ export const getMatchedRoute = (pathname: string): RouteOptions => {
 	if (route == undefined) throw new Error(`Route ${pathname} does not exist.`);
 
 	return route;
-}
+};
 
 export type RouteParameters = {
 	[key: string | number]: { [key: string]: string };
+
 	[RoutePoint.Artist]: { id: string };
 	[RoutePoint.Release]: { id: string };
-	[RoutePoint.Releases]: { artist?: string; song?: string };
 	[RoutePoint.Anime]: { id: string };
 	[RoutePoint.Song]: { id: string };
+
+	[RoutePoint.Releases]: { artist?: string; song?: string };
+
+	[RoutePoint.ArtistEdit]: { id: string };
+	[RoutePoint.ReleaseEdit]: { id: string };
+	[RoutePoint.AnimeEdit]: { id: string };
+	[RoutePoint.SongEdit]: { id: string };
+
 	[RoutePoint.AuthLogin]: { from?: string };
 	[RoutePoint.AuthLogout]: { from?: string };
 	[RoutePoint.AuthReset]: { from?: string };
 	[RoutePoint.AuthCreate]: { from?: string };
+
+	[RoutePoint.LandingApproval]: { ctx: CTXType; id: string };
 };
 
 /**
@@ -115,6 +153,7 @@ export function withParameter<T extends RoutePoint>(
 	const option: RouteOptions = Object.create(Route[routePoint]);
 
 	if (params != null) {
+		const searchParams = new URLSearchParams();
 		const keys: string[] = Object.keys(params as object);
 		const replaceableKeys = option.route.split("/").filter((key) => key.startsWith(":"));
 
@@ -126,10 +165,14 @@ export function withParameter<T extends RoutePoint>(
 			}
 
 			if (!option.route.endsWith("/")) {
-				if (option.route.endsWith("?")) option.route += `${key}=${value}`;
-				else option.route += `?${key}=${value}`;
+				searchParams.set(key, value);
 			}
 		});
+
+		const encodedParams = searchParams.toString();
+		if (encodedParams.length > 0) {
+			option.route += "?" + encodedParams;
+		}
 	}
 
 	return option;

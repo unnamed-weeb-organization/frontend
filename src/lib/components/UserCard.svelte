@@ -17,19 +17,29 @@
 	import EditIcon from "$lib/assets/icons/edit.svg?component";
 
 	export let onDismiss: () => void;
-
 	export let user: User | null;
 
 	let isItDark = isDark();
+	let from = $page.url.pathname;
 
-	function toggleThemeMode() {
-		changeTheme(!isItDark);
-		isItDark = isDark();
-	}
+	const toggleThemeMode = () => (isItDark = changeTheme(!isItDark));
 
-	function logout() {
-		goto(RoutePoint.AuthLogout, { from: $page.url.pathname });
-	}
+	const login = () => {
+		onDismiss.call(undefined);
+		goto(RoutePoint.AuthLogin, { from }, { invalidateAll: true });
+	};
+
+	const logout = () => {
+		onDismiss.call(undefined);
+		goto(RoutePoint.AuthLogout, { from }, { invalidateAll: true });
+	};
+
+	const withCloseHook = (route: RoutePoint) => {
+		return () => {
+			onDismiss.call(undefined);
+			goto(route);
+		};
+	};
 </script>
 
 <div transition:slide={{ duration: 150 }} class="wrapper {$$props.class}">
@@ -38,7 +48,7 @@
 			<Button
 				styleType="none"
 				class="h-16 w-16 bg-custom-secondary fill-custom-400"
-				on:click={() => goto(RoutePoint.Me)}
+				on:click={withCloseHook(RoutePoint.Me)}
 			>
 				<AccountIcon class="h-16 w-16" />
 			</Button>
@@ -56,12 +66,7 @@
 				<LogoutIcon class="h-5 w-5" />
 			</Button>
 		{:else}
-			<Button
-				class="flex-1"
-				styleType="labelButton"
-				label="Sign In"
-				on:click={() => goto(RoutePoint.AuthLogin, { from: $page.url.pathname })}
-			/>
+			<Button class="flex-1" styleType="labelButton" label="Sign In" on:click={login} />
 		{/if}
 	</div>
 
@@ -78,10 +83,14 @@
 			{/if}
 		</Button>
 
-		<Button class="h-10" label="Edit Profile" on:click={() => goto(RoutePoint.SettingsAccount)}>
+		<Button
+			class="h-10"
+			label="Edit Profile"
+			on:click={withCloseHook(RoutePoint.SettingsAccount)}
+		>
 			<EditIcon class="h-5 w-5" />
 		</Button>
-		<Button class="h-10" label="Settings" on:click={() => goto(RoutePoint.Settings)}>
+		<Button class="h-10" label="Settings" on:click={withCloseHook(RoutePoint.Settings)}>
 			<SettingsIcon class="h-5 w-5" />
 		</Button>
 	</div>

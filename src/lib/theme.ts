@@ -17,4 +17,6 @@ export const changeTheme = (dark: boolean) => {
 	// Triggers a reflow to make sure the transitions are stopped, in order to re-activate again.
 	document.documentElement.offsetHeight;
 	document.documentElement.classList.remove("no-transition");
+
+	return dark;
 };

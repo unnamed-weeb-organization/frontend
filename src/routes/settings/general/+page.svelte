@@ -1,16 +1,16 @@
 <script lang="ts">
 	import { getLocaleName, getLocales, Locale } from "$lib/typings/server/general";
-	import { preferedTitleLocale, setPreferedTitleLocale } from "$lib/settings";
+	import { preferredTitleLocale, setPreferredTitleLocale } from "$lib/settings";
 	import SelectInput from "$lib/components/common/SelectInput.svelte";
 	import SettingContainer from "$lib/components/common/SettingContainer.svelte";
 
-	$: selectedPrefLocale = getLocaleName($preferedTitleLocale);
+	$: selectedPrefLocale = getLocaleName($preferredTitleLocale);
 	const locales = new Map<string, Locale>(
 		getLocales().map((locale) => [getLocaleName(locale), locale])
 	);
 
 	const onPrefLocaleSelect = (locale_name: string) => {
-		setPreferedTitleLocale(locales.get(locale_name)!);
+		setPreferredTitleLocale(locales.get(locale_name)!);
 		selectedPrefLocale = locale_name;
 	};
 </script>

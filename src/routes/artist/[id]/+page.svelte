@@ -1,31 +1,30 @@
 <script lang="ts">
 	import type { PageData } from "./$types";
-	import { goto, RoutePoint } from "$lib/routes";
 	import { getFormattedDate } from "$lib/utils";
-	import { preferedTitleLocale } from "$lib/settings";
+	import { goto, RoutePoint } from "$lib/routes";
+	import { preferredTitleLocale } from "$lib/settings";
 	import { getArtistTypeName } from "$lib/typings/server/artist";
 	import type { ArtTileListData } from "$lib/typings/client/general";
 	import { CTXType, getCountryName, getValidName } from "$lib/typings/server/general";
 
 	import ArtTileList from "$lib/components/ArtTileList.svelte";
-	import ExternalSites from "$lib/components/ExternalSites.svelte";
 	import ArtContainer from "$lib/components/common/ArtContainer.svelte";
-	import EntryDetailsLayout from "$lib/components/layouts/EntryDetailsLayout.svelte";
 	import KeyValueColumn from "$lib/components/common/KeyValueColumn.svelte";
+	import EntryDetailsLayout from "$lib/components/layouts/EntryDetailsLayout.svelte";
 
 	export let data: PageData;
 
-	const altNames = data.artist.alt_names.map((name) => getValidName(name, $preferedTitleLocale));
-	const detailColumns = [
+	const altNames = data.artist.alt_names.map((name) => getValidName(name, $preferredTitleLocale));
+	const detailColumns: Array<[string, string | number | null]> = [
 		["Type", getArtistTypeName(data.artist.type)],
-		["Location", getCountryName(data.artist.based_on)],
-		["Founded on", getFormattedDate(data.artist.founded_on)]
+		["Location", data.artist.based_on ? getCountryName(data.artist.based_on) : null],
+		["Founded on", data.artist.founded_on ? getFormattedDate(data.artist.founded_on) : null]
 	];
 
 	const releaseTileData: ArtTileListData[] = data.releases.map((release) => ({
 		id: release.id,
 		ctx: CTXType.RELEASE,
-		label: getValidName(release.name, $preferedTitleLocale),
+		label: getValidName(release.name, $preferredTitleLocale),
 		imageURL: ""
 	}));
 
@@ -34,11 +33,11 @@
 	};
 </script>
 
-<EntryDetailsLayout>
+<EntryDetailsLayout id={data.artist.id} ctxType={CTXType.ARTIST} externalSites={data.externalSites}>
 	<div class="contents" slot="info_container">
 		<ArtContainer imageURL="" link={null} />
 		<div class="title_container">
-			<h1>{getValidName(data.artist.name, $preferedTitleLocale)}</h1>
+			<h1>{getValidName(data.artist.name, $preferredTitleLocale)}</h1>
 			<div class="alt_name_container">
 				{#each altNames as name, i}
 					<span>{name}</span>
@@ -52,15 +51,16 @@
 
 	<div class="contents" slot="column_container">
 		{#each detailColumns as [key, value]}
-			<KeyValueColumn {key} {value} />
+			{#if value}
+				<KeyValueColumn {key} {value} />
+			{/if}
 		{/each}
 	</div>
 
-	<div class="contents">
+	<div class="contents" slot="content_container">
 		<div class="h-fit w-full lg:max-w-3xl 2xl:max-w-4xl md:pr-8 pb-8 md:pb-0">
 			<ArtTileList heading="Releases" tiles={releaseTileData} onAllClick={goToReleaseList} />
 		</div>
-		<ExternalSites class="hidden" sites={data.externalSites} />
 	</div>
 </EntryDetailsLayout>
 

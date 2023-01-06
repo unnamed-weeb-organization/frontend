@@ -1,11 +1,31 @@
 export enum Country {
-	Japan = "JP"
+	JP = "JP",
+	KR = "KR"
 }
 
-export const getCountryName = (country: Country) => {
+export const getCountries = (): Country[] => {
+	return Object.values(Country);
+};
+
+export const getCountryName = (country: Country): string => {
 	switch (country) {
-		case Country.Japan:
+		case Country.JP:
 			return "Japan";
+		case Country.KR:
+			return "South Korea";
+		default:
+			throw new Error(`Invalid country: ${country}`);
+	}
+};
+
+export const getCountryFromName = (name: string): Country => {
+	switch (name) {
+		case "Japan":
+			return Country.JP;
+		case "South Korea":
+			return Country.KR;
+		default:
+			throw new Error(`Invalid country name: ${name}`);
 	}
 };
 
@@ -19,7 +39,7 @@ export const getLocales = (): Locale[] => {
 	return Object.keys(Locale).map((key) => Locale[key as keyof typeof Locale]);
 };
 
-export const getLocaleName = (locale: Locale) => {
+export const getLocaleName = (locale: Locale): string => {
 	switch (locale) {
 		case Locale.Native:
 			return "Native";

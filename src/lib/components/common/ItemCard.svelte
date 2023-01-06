@@ -1,13 +1,13 @@
 <script lang="ts">
-	import { CTXRouteRelation, withParameter } from "$lib/routes";
+	import { CTXRouteViewLocation, withParameter } from "$lib/routes";
 	import type { ItemCardData } from "$lib/typings/client/general";
 	import { getJoiningGrammar } from "$lib/typings/server/general";
 
 	export let data: ItemCardData;
 
 	const joiningString = getJoiningGrammar(data.type, data.alt.type);
-	const baseRouteOptions = withParameter(CTXRouteRelation[data.type], { id: data.id });
-	const altRouteOptions = withParameter(CTXRouteRelation[data.alt.type], { id: data.alt.id });
+	const baseRouteOptions = withParameter(CTXRouteViewLocation[data.type], { id: data.id });
+	const altRouteOptions = withParameter(CTXRouteViewLocation[data.alt.type], { id: data.alt.id });
 </script>
 
 <div class="item_container">

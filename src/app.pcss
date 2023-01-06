@@ -35,7 +35,7 @@ body {
 	width: 100%;
 }
 
-input {
+input, textarea {
 	caret-color: var(--accent-200);
 	background-color: var(--secondary);
 	border: none;
@@ -55,6 +55,10 @@ input[type="checkbox"]:checked {
 input[type="checkbox"]:checked::before {
 	content: "✓";
 	@apply text-xs;
+}
+
+.dark input[type="date"] {
+	color-scheme: dark;
 }
 
 ::selection {

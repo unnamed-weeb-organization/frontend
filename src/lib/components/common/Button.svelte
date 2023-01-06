@@ -2,10 +2,14 @@
 	export let label: string | null = null;
 	export let styleType: keyof typeof styles = "default";
 
+	const req = "font-head text-sm ";
+	const textual = req + "rounded px-4 py-1 ";
+
 	const styles = {
-		default: "font-head text-sm text-custom-300 fill-current",
+		default: req + "text-custom-300 fill-current",
 		iconButton: "fill-custom-400 active:bg-custom-secondary",
-		labelButton: "font-head text-sm text-accent-300 rounded px-4 py-1 bg-accent-secondary hover:bg-accent-tertiary",
+		labelButton: textual + "text-accent-300 bg-accent-secondary hover:bg-accent-tertiary",
+		bordered: textual + "text-custom-300 border-2 border-custom-tertiary hover:border-accent-tertiary hover:text-accent-300",
 		none: ""
 	};
 </script>
@@ -20,12 +24,10 @@
 <style lang="postcss">
 	button {
 		@apply flex justify-center items-center
-		rounded duration-150 gap-2;
+		rounded transition-colors ease-in duration-150 gap-2;
 	}
 
-	button:hover,
-	button:focus,
-	button:focus-within {
-		@apply transition-colors ease-in;
+	button:disabled {
+		@apply cursor-not-allowed opacity-50;
 	}
 </style>
