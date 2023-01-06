@@ -4,7 +4,7 @@
 	export let name: string;
 	export let type: TextFieldType = "text";
 	export let placeholder: string;
-	export let value: string | undefined = undefined;
+	export let value: string = "";
 </script>
 
 <input {name} {type} {placeholder} {value} class={$$props.class} />

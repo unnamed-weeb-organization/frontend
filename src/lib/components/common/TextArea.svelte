@@ -1,7 +1,7 @@
 <script lang="ts">
 	export let name: string;
 	export let placeholder: string;
-	export let value: string | undefined = undefined;
+	export let value: string = "";
 </script>
 
 <textarea {name} {placeholder} {value} class={$$props.class} />
