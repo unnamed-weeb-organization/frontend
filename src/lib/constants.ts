@@ -1,7 +1,7 @@
 import type { Cookies } from "@sveltejs/kit";
 
 export const APP_NAME = "unnamed_weeb_music_database";
-export const API_URL_DEV = "http://localhost:6001/graphql";
+export const API_URL_DEV = "http://0.0.0.0:6001/graphql";
 export const API_URL_PROD = "";
 
 export enum HTTPCode {

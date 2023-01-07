@@ -1,9 +1,11 @@
-import { sveltekit } from "@sveltejs/kit/vite";
+import houdini from "houdini/vite";
+import type { UserConfig } from "vite";
 import svg from "@poppanator/sveltekit-svg";
+import { sveltekit } from "@sveltejs/kit/vite";
 
-/** @type {import("vite").UserConfig} */
-const config = {
+const config: UserConfig = {
 	plugins: [
+		houdini(),
 		sveltekit(),
 		svg({
 			includePaths: ["./src/lib/assets/icons/"],
@@ -24,10 +26,7 @@ const config = {
 				]
 			}
 		})
-	],
-	test: {
-		include: ["src/**/*.{test,spec}.{js,ts}"]
-	}
+	]
 };
 
 export default config;

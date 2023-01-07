@@ -1,8 +1,9 @@
+import { resolve } from "node:path";
+import preprocess from "svelte-preprocess";
 import adapter from "@sveltejs/adapter-auto";
 import { vitePreprocess } from "@sveltejs/kit/vite";
-import preprocess from "svelte-preprocess";
 
-/** @type {import('@sveltejs/kit').Config} */
+/** @type {import("@sveltejs/kit").Config} */
 const config = {
 	// Consult https://kit.svelte.dev/docs/integrations#preprocessors
 	// for more information about preprocessors
@@ -12,9 +13,11 @@ const config = {
 			postcss: true
 		})
 	],
-
 	kit: {
-		adapter: adapter()
+		adapter: adapter(),
+		alias: {
+			$houdini: resolve(".", "$houdini")
+		}
 	}
 };
 
