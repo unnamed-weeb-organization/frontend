@@ -1,7 +1,6 @@
 <script lang="ts">
 	import "../app.pcss";
 	import { onMount } from "svelte";
-	import { createClient, setContextClient } from "@urql/svelte";
 	import type { LayoutData } from "./$types";
 	import { page } from "$app/stores";
 	import { dev } from "$app/environment";
@@ -10,11 +9,6 @@
 	import { initializeSettings, preferredTitleLocale } from "$lib/settings";
 
 	import NavigationBar from "$lib/components/NavigationBar.svelte";
-
-	const client = createClient({
-		url: dev ? API_URL_DEV : API_URL_PROD
-	});
-	setContextClient(client);
 
 	export let data: LayoutData;
 
