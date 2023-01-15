@@ -1,4 +1,5 @@
-import { getValidName, Locale, type Name } from "./typings/server/general";
+import type { SessionJWTData } from "$lib/typings/client/locals";
+import { getValidName, Locale, type Name } from "$lib/typings/server/general";
 
 export const getFormattedLength = (time: number) => {
 	const minutes = Math.floor(time / 60);
@@ -45,10 +46,10 @@ export const validateUsername = (username: string) => {
 	return username.match(/^[a-zA-Z0-9]+$/) !== null;
 };
 
-export const concatPageTitle = (t: string | (string | Name)[], pftl: Locale): string | null => {
+export const concatPageTitle = (t: string | (string | Name)[], locale: Locale): string | null => {
 	if (typeof t === "string") return t;
 	else if (Array.isArray(t))
-		return t.map((mo) => (typeof mo === "string" ? mo : getValidName(mo, pftl))).join(" ");
+		return t.map((mo) => (typeof mo === "string" ? mo : getValidName(mo, locale))).join(" ");
 	else return null;
 };
 
@@ -80,4 +81,11 @@ export const validateNameStruct = (name: Name): string | null => {
 	}
 
 	return null;
+};
+
+/**
+ * Uses Node.js Buffer to decode the JWT token. 
+ */
+export const decodeSessionJWT = (token: string): SessionJWTData => {
+	return JSON.parse(Buffer.from(token.split(".")[1], "base64").toString("utf-8"));
 };

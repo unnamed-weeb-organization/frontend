@@ -1,48 +1,63 @@
-import { fail, redirect } from "@sveltejs/kit";
+import { fail, redirect, error } from "@sveltejs/kit";
 import type { Actions, PageServerLoad } from "./$types";
-import { user } from "$lib/placeholders";
 import { Route, RoutePoint } from "$lib/routes";
+import { UserLoginStore, UserRegisterStore } from "$houdini";
 import { getMissingFields, validateEmail, validatePassword, validateUsername } from "$lib/utils";
 import {
-	COOKIE_AUTH_OPTIONS,
+	COOKIE_AUTH_SESSION_OPTIONS,
 	COOKIE_AUTH_PERSISTENT_OPTIONS,
-	COOKIE_USER_ID,
 	COOKIE_USER_REFRESH,
 	COOKIE_USER_SESSION,
+	INVALID_EMAIL,
+	INVALID_PASSWORD_LENGTH,
+	INVALID_USERNAME_SPECIAL_CHARS,
 	HTTPCode
 } from "$lib/constants";
 
 export const actions: Actions = {
 	default: async ({ request, cookies }) => {
 		const data = await request.formData();
-		const fields = {
+		const dataFields = {
 			email: data.get("email")?.toString(),
-			name: data.get("username")?.toString(),
+			username: data.get("username")?.toString(),
 			password: data.get("password")?.toString()
 		};
 
-		const missing = getMissingFields(fields);
+		const missing = getMissingFields(dataFields);
 		if (missing.length > 0) return fail(HTTPCode.UnprocessableEntity, { missing });
 
-		if (validateEmail(fields.email ?? "") === false) {
-			return fail(HTTPCode.UnprocessableEntity, { error: "Invalid email format!" });
+		if (validateEmail(dataFields.email ?? "") === false) {
+			return fail(HTTPCode.UnprocessableEntity, { error: INVALID_EMAIL });
 		}
 
-		if (validateUsername(fields.name ?? "") === false) {
-			return fail(HTTPCode.UnprocessableEntity, {
-				error: "Username should not contain any special characters!"
-			});
+		if (validateUsername(dataFields.username ?? "") === false) {
+			return fail(HTTPCode.UnprocessableEntity, { error: INVALID_USERNAME_SPECIAL_CHARS });
 		}
 
-		if (validatePassword(fields.password ?? "") === false) {
-			return fail(HTTPCode.UnprocessableEntity, {
-				error: "Password must be at least 8 characters long!"
-			});
+		if (validatePassword(dataFields.password ?? "") === false) {
+			return fail(HTTPCode.UnprocessableEntity, { error: INVALID_PASSWORD_LENGTH });
 		}
 
-		cookies.set(COOKIE_USER_ID, user.id, COOKIE_AUTH_PERSISTENT_OPTIONS);
-		cookies.set(COOKIE_USER_SESSION, "SessionToken", COOKIE_AUTH_OPTIONS);
-		cookies.set(COOKIE_USER_REFRESH, "RefreshToken", COOKIE_AUTH_PERSISTENT_OPTIONS);
+		try {
+			const userLoginStore = new UserLoginStore();
+			const userRegisterStore = new UserRegisterStore();
+			const fields = dataFields as Record<keyof typeof dataFields, string>;
+
+			const reg = await userRegisterStore.mutate(fields);
+			if (reg == null) throw Error("Failed to register.");
+
+			const log = await userLoginStore.mutate(fields);
+			if (log == null) throw Error("Failed to login after registering.");
+
+			cookies.set(COOKIE_USER_SESSION, log.login.token, COOKIE_AUTH_SESSION_OPTIONS);
+			cookies.set(
+				COOKIE_USER_REFRESH,
+				log.login.refreshToken,
+				COOKIE_AUTH_PERSISTENT_OPTIONS
+			);
+		} catch (e) {
+			throw error(HTTPCode.InternalServerError, { message: (e as Error)?.message ?? e });
+		}
 
 		throw redirect(
 			HTTPCode.SeeOther,
@@ -51,8 +66,8 @@ export const actions: Actions = {
 	}
 };
 
-export const load = (async ({ cookies }) => {
-	if (cookies.get(COOKIE_USER_SESSION) != null) {
+export const load = (async ({ locals }) => {
+	if (locals.user != null) {
 		throw redirect(HTTPCode.NotModified, Route[RoutePoint.Home].route);
 	}
 

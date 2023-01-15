@@ -1,6 +1,6 @@
 <script lang="ts">
-	import type { ArtTileListData } from "$lib/typings/client/general";
-	import { CTXRouteViewLocation, withParameter } from "$lib/routes.js";
+	import { CTXRouteViewLocation, withParameter } from "$lib/routes";
+	import type { ArtTileListData } from "$lib/typings/client/component";
 	import Button from "$lib/components/common/Button.svelte";
 	import ArtTile from "$lib/components/common/ArtTile.svelte";
 	import RightArrowIcon from "$lib/assets/icons/right-arrow.svg?component";

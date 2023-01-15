@@ -1,6 +1,6 @@
 <script lang="ts">
 	import type { CTXType } from "$lib/typings/server/general";
-	import type { ItemCardData } from "$lib/typings/client/general";
+	import type { ItemCardData } from "$lib/typings/client/component";
 
 	import ItemCard from "$lib/components/common/ItemCard.svelte";
 	import CTXTypeChipset from "$lib/components/CTXTypeChipset.svelte";

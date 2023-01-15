@@ -1,0 +1,172 @@
+schema {
+  query: QueryRoot
+  mutation: MutationRoot
+}
+
+type Artist {
+  altNames: [Name!]
+  artistType: ArtistType!
+  basedIn: String
+  description: String
+  externalSites: [ExternalSite!]
+  foundedIn: DateTime
+  id: String!
+  joinPhrase: String
+  name: Name!
+}
+
+enum ArtistType {
+  """Indicates that the artist is a fictional character."""
+  CHARACTER
+
+  """Indicates that the artist is a choir."""
+  CHOIR
+
+  """Indicates that the artist is a group of people."""
+  GROUP
+
+  """Indicates that the artist is an orchestra."""
+  ORCHESTRA
+
+  """Anything that is not covered by the other types."""
+  OTHER
+
+  """Indicates that the artist is a single person."""
+  SOLO
+}
+
+"""
+Implement the DateTime<Utc> scalar
+
+The input/output is a string in RFC3339 format.
+"""
+scalar DateTime
+
+type ExternalSite {
+  siteType: ExternalSiteType!
+  url: String!
+}
+
+enum ExternalSiteType {
+  APPLE_MUSIC
+  INSTAGRAM
+  MUSIC_BRAINZ
+  SOUND_CLOUD
+  SPOTIFY
+  TWITTER
+  YOU_TUBE
+}
+
+input Login {
+  email: String
+  password: String!
+  username: String
+}
+
+type LoginResponse {
+  refreshToken: String!
+  token: String!
+  user: User!
+}
+
+type MutationRoot {
+  createSong(input: NewSong!): Song!
+  login(input: Login!): LoginResponse!
+  refreshToken(input: RefreshTokenInput!): RefreshedToken!
+  register(input: Register!): User!
+}
+
+"""
+ISO 8601 calendar date without timezone.
+Format: %Y-%m-%d
+
+# Examples
+
+* `1994-11-13`
+* `2000-02-24`
+"""
+scalar NaiveDate
+
+type Name {
+  english: String
+  native: String
+  romanized: String
+}
+
+input NewName {
+  english: String
+  native: String
+  romanized: String
+}
+
+input NewSong {
+  artists: [String!]!
+  name: NewName!
+  releases: [String!]!
+}
+
+type Page {
+  """Get Artists"""
+  artists(id: String, releaseId: String, search: String, songId: String): [Artist!]!
+
+  """Get Releases"""
+  releases(artistId: String, id: String, search: String, songId: String): [Release!]!
+  songs(artistId: String, genres: [String!], id: String, releaseId: String, search: String): [Song!]!
+}
+
+type QueryRoot {
+  artist(id: String, releaseId: String, search: String, songId: String): Artist!
+  page(page: Int, perPage: Int): Page!
+  song(artistId: String, genres: [String!], id: String, releaseId: String, search: String): Song!
+  user(email: String, id: String): User!
+}
+
+input RefreshTokenInput {
+  token: String!
+}
+
+type RefreshedToken {
+  token: String!
+}
+
+input Register {
+  email: String!
+  password: String!
+  username: String!
+}
+
+type Release {
+  externalSites: [ExternalSite!]
+  id: String!
+  label: [String!]
+  length: Int
+  name: Name!
+  releaseDate: NaiveDate!
+  releaseType: ReleaseType!
+  scriptLanguage: [String!]
+  totalTracks: Int!
+}
+
+enum ReleaseType {
+  ALBUM
+  EP
+  SINGLE
+}
+
+type Song {
+  artists: [Artist!]!
+  externalSites: [ExternalSite!]
+  id: String!
+  name: Name!
+  releaseDate: NaiveDate
+  releases: [Release!]!
+  trackLength: Int
+}
+
+type User {
+  createdAt: DateTime!
+  email: String!
+  id: String!
+  updatedAt: DateTime!
+  username: String!
+}
