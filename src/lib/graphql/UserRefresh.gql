@@ -1,0 +1,5 @@
+mutation UserRefresh($refreshToken: String!) {
+	refreshToken(input: { token: $refreshToken }) {
+		token
+	}
+}

@@ -7,7 +7,7 @@ export const isDark = () => {
 	else return window.matchMedia("(prefers-color-scheme: dark)").matches;
 };
 
-export const changeTheme = (dark: boolean) => {
+export const changeTheme = (dark: boolean): boolean => {
 	// Prevents the transitions from happening when the theme is changed.
 	document.documentElement.classList.add("no-transition");
 

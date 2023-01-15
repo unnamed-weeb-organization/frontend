@@ -6,6 +6,17 @@ const config = {
 	apiUrl: "http://0.0.0.0:6001/graphql",
 	plugins: {
 		"houdini-svelte": {}
+	},
+	scalars: {
+        DateTime: {
+            type: 'Date',
+            unmarshal(val) {
+                return new Date(val)
+            },
+            marshal(date) {
+                return date.toISOString()
+            }
+        }
 	}
 };
 

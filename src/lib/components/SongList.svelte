@@ -1,7 +1,7 @@
 <script lang="ts">
 	import type { Song } from "$lib/typings/server/song";
-	import SongListItem from "$lib/components/common/SongListItem.svelte";
 	import type { Artist } from "$lib/typings/server/artist";
+	import SongListItem from "$lib/components/common/SongListItem.svelte";
 
 	export let songs: Song[];
 	export let artists: Map<string, Artist[]>;

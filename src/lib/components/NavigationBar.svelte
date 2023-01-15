@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { APP_NAME } from "$lib/constants";
 	import { RoutePoint, Route, goto } from "$lib/routes";
-	import type { User } from "$lib/typings/server/user";
+	import type { UserCardData } from "$lib/typings/client/component";
 
 	import UserCard from "$lib/components/UserCard.svelte";
 	import Button from "$lib/components/common/Button.svelte";
@@ -10,11 +10,12 @@
 	import AccountIcon from "$lib/assets/icons/account.svg?component";
 	import DownArrow from "$lib/assets/icons/down-arrow.svg?component";
 	import DropdownMenu from "$lib/components/common/DropdownMenu.svelte";
+	import { slide } from "svelte/transition";
 
 	let showMore = false;
 	let showUserCard = false;
 
-	export let user: User | null;
+	export let userCardData: UserCardData | null;
 
 	const moreRouteItems = {
 		Artists: RoutePoint.Artists,
@@ -29,11 +30,13 @@
 	}
 </script>
 
-<nav>
+<nav in:slide={{ duration: 150 }}>
 	<a href={Route[RoutePoint.Home].route} class="font-head select-none">
 		<span class="hidden md:block">{APP_NAME}</span>
 		<span class="md:hidden">
-			{APP_NAME.split("_").map((str) => str[0]).join("")}
+			{APP_NAME.split("_")
+				.map((str) => str[0])
+				.join("")}
 		</span>
 	</a>
 
@@ -75,7 +78,11 @@
 		</Button>
 
 		{#if showUserCard}
-			<UserCard {user} class="top-14 right-2" onDismiss={() => (showUserCard = false)} />
+			<UserCard
+				data={userCardData}
+				class="top-14 right-2"
+				onDismiss={() => (showUserCard = false)}
+			/>
 		{/if}
 	</div>
 </nav>

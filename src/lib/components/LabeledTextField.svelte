@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { slide } from "svelte/transition";
-	import TextField from "./common/TextField.svelte";
+	import TextField from "$lib/components/common/TextField.svelte";
 
 	export let id: TextField["$$prop_def"]["name"];
 	export let inputType: TextField["$$prop_def"]["type"];
@@ -30,7 +30,6 @@
 	}
 
 	.label_container span {
-		content: "pepe";
 		@apply text-red-500 font-normal text-xs;
 	}
 

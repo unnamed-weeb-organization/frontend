@@ -32,7 +32,7 @@
 	</div>
 {:else}
 	<div class="relative flex flex-col h-full">
-		<NavigationBar user={data.user} />
+		<NavigationBar userCardData={data.userCardData ?? null} />
 		<div class="escape_navbar" />
 		<slot />
 	</div>

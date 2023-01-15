@@ -19,7 +19,7 @@ export enum HTTPCode {
 	InternalServerError = 500
 }
 
-export const errorMessages: Partial<Record<HTTPCode, string>> = {
+export const errorMessages: Partial<Record<number, string>> = {
 	400: "Bad request",
 	401: "Not authorized",
 	403: "Forbidden",
@@ -28,7 +28,7 @@ export const errorMessages: Partial<Record<HTTPCode, string>> = {
 	500: "Internal server error"
 };
 
-export const hintMessages: Partial<Record<HTTPCode, string>> = {
+export const hintMessages: Partial<Record<number, string>> = {
 	400: "The request could not be understood by the server due to malformed syntax.",
 	401: "You need to be logged in to access this page.",
 	403: "You do not have permission to access this page.",
@@ -38,6 +38,7 @@ export const hintMessages: Partial<Record<HTTPCode, string>> = {
 };
 
 export const NOT_VERIFIED_RESOURCE_EDIT = "Only verified users can create/edit resources.";
+export const UNEXPECTED_ERROR = "An unexpected error occurred.";
 export const INVALID_ARTIST_TYPE = "The artist type provided is invalid.";
 export const INVALID_COUNTRY = "The country provided is invalid.";
 export const INVALID_DATE = "The date provided is invalid.";
@@ -45,10 +46,10 @@ export const INVALID_EMAIL = "The email provided is invalid.";
 export const INVALID_PASSWORD_LENGTH = "Password must be at least 8 characters long!";
 export const INVALID_USERNAME_SPECIAL_CHARS = "Username should not contain any special characters.";
 
-export const COOKIE_USER_ID = "user-id";
 export const COOKIE_USER_REFRESH = "user-refresh";
 export const COOKIE_USER_SESSION = "user-session";
-export const COOKIE_USER_ISSUED = "user-issued";
+
+export const LOCAL_USER = "user";
 
 export const COOKIE_AUTH_SESSION_OPTIONS: Parameters<Cookies["set"]>[2] = {
 	httpOnly: true,
@@ -56,7 +57,7 @@ export const COOKIE_AUTH_SESSION_OPTIONS: Parameters<Cookies["set"]>[2] = {
 	sameSite: "strict",
 	expires: new Date(Date.now() + 1000 * 60 * 15)
 };
-export const COOKIE_AUTH_PERSISTENT_OPTIONS: Parameters<Cookies["set"]>[2] =
-	COOKIE_AUTH_SESSION_OPTIONS && {
-		expires: new Date(Date.now() + 1000 * 60 * 60 * 24 * 30)
-	};
+export const COOKIE_AUTH_PERSISTENT_OPTIONS: Parameters<Cookies["set"]>[2] = {
+	...COOKIE_AUTH_SESSION_OPTIONS,
+	expires: new Date(Date.now() + 1000 * 60 * 60 * 24 * 30)
+};

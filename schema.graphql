@@ -50,6 +50,7 @@ type ExternalSite {
 enum ExternalSiteType {
   APPLE_MUSIC
   INSTAGRAM
+  MUSIC_BRAINZ
   SOUND_CLOUD
   SPOTIFY
   TWITTER
@@ -62,14 +63,16 @@ input Login {
   username: String
 }
 
-type LoginToken {
+type LoginResponse {
   refreshToken: String!
   token: String!
+  user: User!
 }
 
 type MutationRoot {
   createSong(input: NewSong!): Song!
-  login(input: Login!): LoginToken!
+  login(input: Login!): LoginResponse!
+  refreshToken(input: RefreshTokenInput!): RefreshedToken!
   register(input: Register!): User!
 }
 
@@ -115,6 +118,15 @@ type QueryRoot {
   artist(id: String, releaseId: String, search: String, songId: String): Artist!
   page(page: Int, perPage: Int): Page!
   song(artistId: String, genres: [String!], id: String, releaseId: String, search: String): Song!
+  user(email: String, id: String): User!
+}
+
+input RefreshTokenInput {
+  token: String!
+}
+
+type RefreshedToken {
+  token: String!
 }
 
 input Register {
@@ -155,7 +167,6 @@ type User {
   createdAt: DateTime!
   email: String!
   id: String!
-  passwordHash: String!
   updatedAt: DateTime!
   username: String!
 }
