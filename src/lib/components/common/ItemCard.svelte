@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { CTXRouteViewLocation, withParameter } from "$lib/routes";
-	import type { ItemCardData } from "$lib/typings/client/general";
 	import { getJoiningGrammar } from "$lib/typings/server/general";
+	import type { ItemCardData } from "$lib/typings/client/component";
 
 	export let data: ItemCardData;
 

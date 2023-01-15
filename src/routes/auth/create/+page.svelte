@@ -1,11 +1,9 @@
 <script lang="ts">
-	import { slide } from "svelte/transition";
 	import { page } from "$app/stores";
 	import { enhance, applyAction } from "$app/forms";
 	import { RoutePoint, withParameter } from "$lib/routes";
 
 	import Button from "$lib/components/common/Button.svelte";
-	import TextField from "$lib/components/common/TextField.svelte";
 	import LabeledTextField from "$lib/components/LabeledTextField.svelte";
 
 	const from = $page.url.searchParams.get("from") ?? undefined;

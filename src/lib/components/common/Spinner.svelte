@@ -1,5 +1,5 @@
 <!--
-	Idea and implementation from BetterDiscord's Installer
+	Both idea and the implementation is from BetterDiscord's Installer
 	Source: https://github.com/BetterDiscord/Installer/blob/development/src/renderer/common/Spinner.svelte
 	Source repository is licensed under MIT.
 -->
@@ -11,12 +11,12 @@
 	export let width = 32;
 	export let value: number | null = null;
 
-	let circle;
+	let circle: SVGCircleElement;
 	function updateValue() {
-		const circumference = Math.PI * (circle.getAttribute("r") * 2);
-		if (value < 0) value = 0;
-		if (value > 100) value = 100;
-		circle.style.strokeDashoffset = ((100 - value) / 100) * circumference;
+		const circumference = Math.PI * (Number(circle.getAttribute("r")) * 2);
+		if (value != null && value < 0) value = 0;
+		if (value != null && value > 100) value = 100;
+		circle.style.strokeDashoffset = (((100 - (value ?? 0)) / 100) * circumference).toString();
 	}
 
 	onMount(updateValue);

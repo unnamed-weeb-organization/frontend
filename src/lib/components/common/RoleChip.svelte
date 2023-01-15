@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { Role } from "$lib/typings/server/user";
+	import type { Role } from "$lib/typings/server/user";
 
 	export let role: Role;
 </script>

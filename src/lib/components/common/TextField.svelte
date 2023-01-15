@@ -1,5 +1,5 @@
 <script lang="ts">
-	type TextFieldType = "text" | "email" | "password" | "date";
+	import type { TextFieldType } from "$lib/typings/client/component";
 
 	export let name: string;
 	export let type: TextFieldType = "text";

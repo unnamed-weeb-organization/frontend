@@ -29,3 +29,7 @@ export interface ArtTileListData {
 	imageURL: string;
 	label: string;
 }
+
+export type TextFieldType = "text" | "email" | "password" | "date";
+
+export type NamedGenericSizes = "small" | "medium" | "large";

@@ -5,7 +5,6 @@
 	import { CTXType, getValidName } from "$lib/typings/server/general";
 
 	import SongList from "$lib/components/SongList.svelte";
-	import ExternalSites from "$lib/components/ExternalSites.svelte";
 	import ArtContainer from "$lib/components/common/ArtContainer.svelte";
 	import EntryDetailsLayout from "$lib/components/layouts/EntryDetailsLayout.svelte";
 	import KeyValueColumn from "$lib/components/common/KeyValueColumn.svelte";

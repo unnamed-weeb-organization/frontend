@@ -1,10 +1,11 @@
 <script lang="ts">
 	import { slide } from "svelte/transition";
+	import type { TextFieldType } from "$lib/typings/client/component";
 	import TextField from "$lib/components/common/TextField.svelte";
 
-	export let id: TextField["$$prop_def"]["name"];
-	export let inputType: TextField["$$prop_def"]["type"];
-	export let placeholder: TextField["$$prop_def"]["placeholder"];
+	export let id: string;
+	export let inputType: TextFieldType;
+	export let placeholder: string;
 
 	export let label: string;
 	export let errorHint: string | undefined;

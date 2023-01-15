@@ -5,7 +5,7 @@
 	let buttonElement: HTMLButtonElement | null = null;
 	let dropdownReverse = false;
 
-	export let name: string;
+	export let name: string | null = null;
 	export let options: string[];
 	export let selected: string;
 	export let onSelect: (item: string) => void;
@@ -33,7 +33,9 @@
 	<button bind:this={buttonElement} on:click|preventDefault={() => (isOpen = !isOpen)}>
 		<span class="text-custom-200">{selected}</span>
 	</button>
-	<input name={name} type="hidden" value={selected} />
+	{#if name}
+		<input {name} type="hidden" value={selected} />
+	{/if}
 	{#if isOpen}
 		<DropdownMenu
 			reverse={dropdownReverse}

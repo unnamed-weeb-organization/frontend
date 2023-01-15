@@ -3,11 +3,10 @@
 	import { preferredTitleLocale } from "$lib/settings";
 	import { goto, RoutePoint, withParameter } from "$lib/routes";
 	import { getFormattedDate, getFormattedLength } from "$lib/utils";
-	import type { ArtTileListData } from "$lib/typings/client/general";
+	import type { ArtTileListData } from "$lib/typings/client/component";
 	import { CTXType, getValidName } from "$lib/typings/server/general";
 
 	import ArtTileList from "$lib/components/ArtTileList.svelte";
-	import ExternalSites from "$lib/components/ExternalSites.svelte";
     import ArtContainer from "$lib/components/common/ArtContainer.svelte";
 	import EntryDetailsLayout from "$lib/components/layouts/EntryDetailsLayout.svelte";
 	import KeyValueColumn from "$lib/components/common/KeyValueColumn.svelte";

@@ -4,7 +4,7 @@
 	import { goto, RoutePoint } from "$lib/routes";
 	import { preferredTitleLocale } from "$lib/settings";
 	import { getArtistTypeName } from "$lib/typings/server/artist";
-	import type { ArtTileListData } from "$lib/typings/client/general";
+	import type { ArtTileListData } from "$lib/typings/client/component";
 	import { CTXType, getCountryName, getValidName } from "$lib/typings/server/general";
 
 	import ArtTileList from "$lib/components/ArtTileList.svelte";

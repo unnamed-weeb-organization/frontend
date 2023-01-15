@@ -10,7 +10,6 @@
 	import AccountIcon from "$lib/assets/icons/account.svg?component";
 	import DownArrow from "$lib/assets/icons/down-arrow.svg?component";
 	import DropdownMenu from "$lib/components/common/DropdownMenu.svelte";
-	import { slide } from "svelte/transition";
 
 	let showMore = false;
 	let showUserCard = false;
@@ -30,7 +29,7 @@
 	}
 </script>
 
-<nav in:slide={{ duration: 150 }}>
+<nav>
 	<a href={Route[RoutePoint.Home].route} class="font-head select-none">
 		<span class="hidden md:block">{APP_NAME}</span>
 		<span class="md:hidden">
