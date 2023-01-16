@@ -31,11 +31,10 @@ jobs:
               run: pnpm houdini generate
 
             - name: Run eslint check
-              uses: Krizzu/eslint-check-action@v1.1.0
+              uses: sibiraj-s/action-eslint@v2
               with:
-                  ghToken: ${{ secrets.GITHUB_TOKEN }}
-                  eslintConfig: ./.eslintrc.cjs
-                  eslintExt: js, ts, svelte            
+                github-token: ${{ secrets.GITHUB_TOKEN }}
+                annotations: true
 
             - name: Add Svelte Check annotator
               uses: prgm-dev/svelte-check-pr-annotator@main
