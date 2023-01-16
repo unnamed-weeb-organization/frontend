@@ -34,7 +34,7 @@ jobs:
               uses: sibiraj-s/action-eslint@v2
               with:
                 eslint-args: --config ./.eslintrc.cjs
-                extensions: .
+                extensions: 'js,ts,mjs,mts,svelte'
                 github-token: ${{ secrets.GITHUB_TOKEN }}
                 annotations: true
 
