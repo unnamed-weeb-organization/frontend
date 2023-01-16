@@ -9,7 +9,9 @@
 		default: req + "text-custom-300 fill-current",
 		iconButton: "fill-custom-400 active:bg-custom-secondary",
 		labelButton: textual + "text-accent-300 bg-accent-secondary hover:bg-accent-tertiary",
-		bordered: textual + "text-custom-300 border-2 border-custom-tertiary hover:border-accent-tertiary hover:text-accent-300",
+		bordered:
+			textual +
+			"text-custom-300 border-2 border-custom-tertiary hover:border-accent-tertiary hover:text-accent-300",
 		none: ""
 	};
 </script>

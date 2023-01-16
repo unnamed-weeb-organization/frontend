@@ -20,7 +20,7 @@ const refreshToken = async (refreshToken: string): Promise<string> => {
 	}
 };
 
-export const handle: Handle = async ({ event,  resolve }) => {
+export const handle: Handle = async ({ event, resolve }) => {
 	const refresh = event.cookies.get(COOKIE_USER_REFRESH);
 	let session = event.cookies.get(COOKIE_USER_SESSION);
 

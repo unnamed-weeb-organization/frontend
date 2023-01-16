@@ -8,15 +8,15 @@ const config = {
 		"houdini-svelte": {}
 	},
 	scalars: {
-        DateTime: {
-            type: 'Date',
-            unmarshal(val) {
-                return new Date(val)
-            },
-            marshal(date) {
-                return date.toISOString()
-            }
-        }
+		DateTime: {
+			type: "Date",
+			unmarshal(val) {
+				return new Date(val);
+			},
+			marshal(date) {
+				return date.toISOString();
+			}
+		}
 	}
 };
 

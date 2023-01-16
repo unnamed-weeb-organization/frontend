@@ -1,5 +1,4 @@
 {
-    "cSpell.words": [
-        "weeb"
-    ]
+	"cSpell.words": ["weeb"],
+	"eslint.validate": ["javascript", "typescript", "svelte"]
 }

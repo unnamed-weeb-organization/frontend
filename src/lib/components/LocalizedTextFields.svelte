@@ -26,10 +26,10 @@
 
 	<div class="contents gap-2 md:flex">
 		{#each [...locales.entries()] as [locale, { id, placeholder, value }] (locale)}
-		<label for={id}>
-			<h2>{getLocaleName(locale)}</h2>
-			<input name={id} type="text" {placeholder} class={$$props.class} bind:value />
-		</label>
+			<label for={id}>
+				<h2>{getLocaleName(locale)}</h2>
+				<input name={id} type="text" {placeholder} class={$$props.class} bind:value />
+			</label>
 		{/each}
 	</div>
 </div>

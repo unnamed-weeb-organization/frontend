@@ -6,7 +6,10 @@ import type { Actions, PageServerLoad } from "./$types";
 export const actions: Actions = {
 	default: async ({ request }) => {
 		const data = await request.formData();
-		throw redirect(HTTPCode.SeeOther, data.get("from")?.toString() ?? Route[RoutePoint.Home].route);
+		throw redirect(
+			HTTPCode.SeeOther,
+			data.get("from")?.toString() ?? Route[RoutePoint.Home].route
+		);
 	}
 };
 
@@ -15,4 +18,4 @@ export const load = (async () => {
 		title: "auth/reset",
 		header: "Reset your password"
 	};
-}) satisfies PageServerLoad; 
+}) satisfies PageServerLoad;

@@ -7,27 +7,27 @@
 	import { CTXType, getValidName } from "$lib/typings/server/general";
 
 	import ArtTileList from "$lib/components/ArtTileList.svelte";
-    import ArtContainer from "$lib/components/common/ArtContainer.svelte";
+	import ArtContainer from "$lib/components/common/ArtContainer.svelte";
 	import EntryDetailsLayout from "$lib/components/layouts/EntryDetailsLayout.svelte";
 	import KeyValueColumn from "$lib/components/common/KeyValueColumn.svelte";
 
 	export let data: PageData;
 
-    const detailColumns = [
+	const detailColumns = [
 		["Length", getFormattedLength(data.song.length)],
-        ["Released on", getFormattedDate(data.song.released_on)]
+		["Released on", getFormattedDate(data.song.released_on)]
 	];
 
-    const releaseTileData: ArtTileListData[] = data.releases.map((release) => ({
+	const releaseTileData: ArtTileListData[] = data.releases.map((release) => ({
 		id: release.id,
 		ctx: CTXType.RELEASE,
 		label: getValidName(release.name),
-		imageURL: "",
-     }));
+		imageURL: ""
+	}));
 
-    const goToReleases = () => {
-        goto(RoutePoint.Releases, { song: data.song.id });
-    };
+	const goToReleases = () => {
+		goto(RoutePoint.Releases, { song: data.song.id });
+	};
 </script>
 
 <EntryDetailsLayout id={data.song.id} ctxType={CTXType.SONG} externalSites={data.externalSites}>
@@ -40,14 +40,13 @@
 					<a href={withParameter(RoutePoint.Artist, { id }).route}>
 						{getValidName(name, $preferredTitleLocale)}
 					</a>
-                    {#if i < data.artists.length - 1}
-                        <span class="mr-1">,</span>
-                    {/if}
+					{#if i < data.artists.length - 1}
+						<span class="mr-1">,</span>
+					{/if}
 				{/each}
 			</div>
 		</div>
 	</div>
-
 
 	<div class="contents" slot="column_container">
 		{#each detailColumns as [key, value]}
@@ -57,11 +56,7 @@
 
 	<div class="contents" slot="content_container">
 		<div class="h-fit w-full lg:max-w-3xl 2xl:max-w-4xl md:pr-8 pb-8 md:pb-0">
-			<ArtTileList
-				heading="Releases"
-				tiles={releaseTileData}
-				onAllClick={goToReleases}
-			/>
+			<ArtTileList heading="Releases" tiles={releaseTileData} onAllClick={goToReleases} />
 		</div>
 	</div>
 </EntryDetailsLayout>

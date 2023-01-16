@@ -49,7 +49,7 @@ export enum RoutePoint {
 	AuthLogout,
 	AuthReset,
 	AuthCreate,
-	LandingApproval,
+	LandingApproval
 }
 
 /**
@@ -67,7 +67,7 @@ export const CTXRouteEditLocation: Record<CTXType, RoutePoint> = {
 	[CTXType.RELEASE]: RoutePoint.ReleaseEdit,
 	[CTXType.ANIME]: RoutePoint.AnimeEdit,
 	[CTXType.SONG]: RoutePoint.SongEdit
-}
+};
 
 /**
  * Contains all the routes possible for the application.

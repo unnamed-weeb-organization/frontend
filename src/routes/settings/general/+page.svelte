@@ -10,7 +10,10 @@
 	);
 
 	const onPrefLocaleSelect = (locale_name: string) => {
-		setPreferredTitleLocale(locales.get(locale_name)!);
+		const selected = locales.get(locale_name);
+		if (!selected) return;
+
+		setPreferredTitleLocale(selected);
 		selectedPrefLocale = locale_name;
 	};
 </script>

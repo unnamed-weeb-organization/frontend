@@ -19,7 +19,7 @@
 
 <div class="flex md:hidden items-center justify-center">
 	<Button
-	class="w-8 h-8"
+		class="w-8 h-8"
 		styleType="iconButton"
 		aria-label="Search"
 		on:click={() => (showMobileSearch = !showMobileSearch)}
@@ -33,7 +33,7 @@
 		<div class="flex h-16 items-center px-4 gap-2 z-10">
 			<input bind:value={searchQuery} placeholder="Search" class="flex-1" />
 			<Button
-			class="w-8 h-8"
+				class="w-8 h-8"
 				styleType="iconButton"
 				on:click={() => (showMobileSearch = false)}
 			>

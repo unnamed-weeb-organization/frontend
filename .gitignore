@@ -1,6 +1,7 @@
 .DS_Store
 node_modules
 /build
+$houdini
 /.svelte-kit
 /package
 .env
@@ -9,5 +10,3 @@ node_modules
 vite.config.js.timestamp-*
 vite.config.ts.timestamp-*
 .idea
-
-$houdini
