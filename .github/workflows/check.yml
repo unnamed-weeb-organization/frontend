@@ -1,34 +1,44 @@
 name: Build and check
 on:
-  push:
-    branches: ["dev", "master"]
-  pull_request:
-    branches: ["dev", "master"]
+    push:
+        branches: ["dev", "master"]
+    pull_request:
+        branches: ["dev", "master"]
 
 jobs:
-  build:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v3
+    build:
+        runs-on: ubuntu-latest
+        steps:
+            - uses: actions/checkout@v3
 
-      - name: Install pnpm
-        uses: pnpm/action-setup@v2.2.2
-        with:
-          version: 7
+            - name: Install pnpm
+              uses: pnpm/action-setup@v2.2.2
+              with:
+                  version: 7
 
-      - name: Use Node.js 18
-        uses: actions/setup-node@v3
-        with:
-          node-version: 18
-          cache: "pnpm"
+            - name: Use Node.js 18
+              uses: actions/setup-node@v3
+              with:
+                  node-version: 18
+                  cache: "pnpm"
 
-      - name: Install build dependencies 🧰
-        run: |
-          pnpm install
-          pnpm svelte-kit sync
+            - name: Install build dependencies
+              run: |
+                  pnpm install
+                  pnpm svelte-kit sync
 
-      - name: Add Svelte Check annotator
-        uses: prgm-dev/svelte-check-pr-annotator@main
+            - name: Generate types for graphql schema
+              run: pnpm houdini generate
 
-      - name: Run Svelte-Check
-        run: pnpm run check:ci
+            - name: Run eslint check
+              uses: Krizzu/eslint-check-action@v1.1.0
+              with:
+                  github-token: ${{ secrets.GITHUB_TOKEN }}
+                  eslintConfig: .eslintrc.cjs
+                  eslintExt: js, ts, svelte            
+
+            - name: Add Svelte Check annotator
+              uses: prgm-dev/svelte-check-pr-annotator@main
+
+            - name: Run svelte-check
+              run: pnpm svelte-check --tsconfig ./tsconfig.json --output machine --use-new-transformation true
