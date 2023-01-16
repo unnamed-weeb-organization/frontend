@@ -2,8 +2,8 @@
 	import type { NamedGenericSizes } from "$lib/typings/client/component";
 
 	export let link: string | null;
-	export const imageURL: string = "";
-	export let size: NamedGenericSizes = "large"; 
+	export const imageURL = "";
+	export let size: NamedGenericSizes = "large";
 
 	const sizeConstraints = {
 		large: "w-64 h-64 shadow-md hover:shadow-lg",

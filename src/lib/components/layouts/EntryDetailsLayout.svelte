@@ -38,7 +38,7 @@
 					<span>Edit</span>
 				</a>
 				<Button class="w-fit" label="Report">
-					<ExclamationMarkIcon class="h-5 w-5" />	
+					<ExclamationMarkIcon class="h-5 w-5" />
 				</Button>
 			</div>
 		</div>

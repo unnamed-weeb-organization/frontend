@@ -22,10 +22,8 @@
 		{#each tiles as tile}
 			<ArtTile
 				label={tile.label}
-				imageURL={tile.imageURL}
 				link={withParameter(CTXRouteViewLocation[tile.ctx], { id: tile.id }).route}
 			/>
 		{/each}
 	</div>
 </div>
-

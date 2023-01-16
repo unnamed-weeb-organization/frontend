@@ -11,4 +11,4 @@ export const isRoleHigherThan = (expectedHigher: Role, expectedLower: Role): boo
 	const higherIndex = roles.indexOf(expectedHigher);
 	const lowerIndex = roles.indexOf(expectedLower);
 	return higherIndex > lowerIndex;
-}
+};

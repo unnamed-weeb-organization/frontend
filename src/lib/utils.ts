@@ -84,7 +84,7 @@ export const validateNameStruct = (name: Name): string | null => {
 };
 
 /**
- * Uses Node.js Buffer to decode the JWT token. 
+ * Uses Node.js Buffer to decode the JWT token.
  */
 export const decodeSessionJWT = (token: string): SessionJWTData => {
 	return JSON.parse(Buffer.from(token.split(".")[1], "base64").toString("utf-8"));

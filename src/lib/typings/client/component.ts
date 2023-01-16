@@ -5,10 +5,10 @@ import type { Role } from "$lib/typings/server/user";
 import type { CTXType } from "$lib/typings/server/general";
 
 export interface UserCardData {
-    userId: string;
-    username: string;
-    role: Role;
-    needsReLogin?: boolean;
+	userId: string;
+	username: string;
+	role: Role;
+	needsReLogin?: boolean;
 }
 
 export interface ItemCardData {

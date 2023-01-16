@@ -1,5 +1,9 @@
 <script lang="ts">
-	import { type ExternalSite, ExternalSiteType, getExternalSiteName } from "$lib/typings/server/general";
+	import {
+		type ExternalSite,
+		ExternalSiteType,
+		getExternalSiteName
+	} from "$lib/typings/server/general";
 
 	import YouTubeLogo from "$lib/assets/logos/youtube.svg?component";
 	import AppleMusicLogo from "$lib/assets/logos/apple_music.svg?component";
@@ -16,7 +20,7 @@
 		[ExternalSiteType.SPOTIFY]: SpotifyLogo,
 		[ExternalSiteType.SOUND_CLOUD]: SoundCloudLogo,
 		[ExternalSiteType.TWITTER]: TwitterLogo,
-		[ExternalSiteType.INSTAGRAM]: InstagramLogo,
+		[ExternalSiteType.INSTAGRAM]: InstagramLogo
 	};
 </script>
 
@@ -42,4 +46,3 @@
 		text-sm text-custom-200;
 	}
 </style>
-

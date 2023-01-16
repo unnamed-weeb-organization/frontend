@@ -34,7 +34,7 @@ export const song: Song = {
 		english: "Musician"
 	},
 	length: 150,
-	released_on: new Date("2019-01-01"),
+	released_on: new Date("2019-01-01")
 };
 
 export const externalSites: ExternalSite[] = [

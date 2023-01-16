@@ -9,7 +9,7 @@ SvelteKit frontend for the [`unnamed_weeb_music_database/backend`](https://githu
 
 ## Notes
 
-1. Tailwind's `dark:` modifier doesn't work inside svelte's `<script>` tags, as these classes are scoped. However, as workarounds, you can either use `dark:` directly in the `class=` property, or wrap the `.dark` class within svelte's `:global()` specifier.  
+1. Tailwind's `dark:` modifier doesn't work inside svelte's `<script>` tags, as these classes are scoped. However, as workarounds, you can either use `dark:` directly in the `class=` property, or wrap the `.dark` class within svelte's `:global()` specifier.
 
 ## Acknowledgements
 

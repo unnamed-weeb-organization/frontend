@@ -21,7 +21,11 @@
 	];
 </script>
 
-<EntryDetailsLayout id={data.release.id} ctxType={CTXType.RELEASE} externalSites={data.externalSites}>
+<EntryDetailsLayout
+	id={data.release.id}
+	ctxType={CTXType.RELEASE}
+	externalSites={data.externalSites}
+>
 	<div class="contents" slot="info_container">
 		<ArtContainer imageURL="" link={null} />
 		<div class="title_container">

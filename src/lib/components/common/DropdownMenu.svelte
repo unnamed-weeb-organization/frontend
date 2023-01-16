@@ -5,7 +5,7 @@
 	export let items: string[];
 	export let onDismiss: () => void;
 	export let onSelect: (item: string) => void;
-	export let reverse: boolean = false;
+	export let reverse = false;
 </script>
 
 <div transition:slide={{ duration: 150 }} class="wrapper {$$props.class}" class:reverse>
