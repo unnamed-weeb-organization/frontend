@@ -33,7 +33,7 @@ jobs:
             - name: Run eslint check
               uses: Krizzu/eslint-check-action@v1.1.0
               with:
-                  github-token: ${{ secrets.GITHUB_TOKEN }}
+                  ghToken: ${{ secrets.GITHUB_TOKEN }}
                   eslintConfig: .eslintrc.cjs
                   eslintExt: js, ts, svelte            
 
