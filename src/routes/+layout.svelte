@@ -5,7 +5,7 @@
 	import { dev } from "$app/environment";
 	import type { LayoutData } from "./$types";
 	import { concatPageTitle } from "$lib/utils";
-	import { APP_NAME, BE_SOURCE, FE_SOURCE } from "$lib/constants";
+	import { APP_NAME, DB_SOURCE, FE_SOURCE } from "$lib/constants";
 	import { initializeSettings, preferredTitleLocale } from "$lib/settings";
 
 	import NavigationBar from "$lib/components/NavigationBar.svelte";
@@ -27,7 +27,7 @@
 		<span class="text-custom-200">Will come back online when the backend is live.</span>
 		<div class="flex gap-8 font-mono text-accent-300 mt-8" data-sveltekit-preload-data="off">
 			<a href={FE_SOURCE}>source:frontend</a>
-			<a href={BE_SOURCE}>source:backend</a>
+			<a href={DB_SOURCE}>source:database</a>
 		</div>
 	</div>
 {:else}
