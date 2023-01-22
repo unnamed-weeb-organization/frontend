@@ -1,5 +1,6 @@
 <script lang="ts">
 	import { onMount } from "svelte";
+	import { fade } from "svelte/transition";
 	import { goto, RoutePoint } from "$lib/routes";
 
 	let ticksRemaining = 5;
@@ -15,7 +16,7 @@
 	});
 </script>
 
-<div class="flex flex-col justify-center items-center flex-1 px-4 gap-2 font-head">
+<div class="flex flex-col justify-center items-center flex-1 px-4 gap-2 font-head" in:fade={{duration: 150}}>
 	<h2 class="text-4xl font-medium">Nice!</h2>
 	<span class="text-custom-200 text-center">
 		Your edit will be pushed to a moderator, and will go live after approval.

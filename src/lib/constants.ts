@@ -51,13 +51,17 @@ export const COOKIE_USER_SESSION = "user-session";
 
 export const LOCAL_USER = "user";
 
-export const COOKIE_AUTH_SESSION_OPTIONS: Parameters<Cookies["set"]>[2] = {
-	httpOnly: true,
+export const COOKIE_SESSION_OPTIONS: Parameters<Cookies["set"]>[2] = {
 	path: "/",
+	httpOnly: true,
 	sameSite: "strict",
+	maxAge: 1000 * 60 * 15,
 	expires: new Date(Date.now() + 1000 * 60 * 15)
 };
-export const COOKIE_AUTH_PERSISTENT_OPTIONS: Parameters<Cookies["set"]>[2] = {
-	...COOKIE_AUTH_SESSION_OPTIONS,
-	expires: new Date(Date.now() + 1000 * 60 * 60 * 24 * 30)
+export const COOKIE_PERSISTENT_OPTIONS: Parameters<Cookies["set"]>[2] = {
+	path: "/",
+	httpOnly: true,
+	sameSite: "strict",
+	maxAge: 1000 * 60 * 60 * 24 * 30,
+	expires: new Date(Date.now() + 1000 * 60 * 60 * 24 * 30),
 };

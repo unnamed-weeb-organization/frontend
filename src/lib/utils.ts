@@ -1,3 +1,4 @@
+import { Level } from "$lib/typings/client/general";
 import type { SessionJWTData } from "$lib/typings/client/locals";
 import { getValidName, Locale, type Name } from "$lib/typings/server/general";
 
@@ -61,23 +62,35 @@ export const getRandomizedTempId = () =>
  *
  * @see https://github.com/orgs/unnamed-weeb-organization/projects/2?pane=item&itemId=17019329
  */
-export const validateNameStruct = (name: Name): string | null => {
+export const validateNameStruct = (name: Name): { message: string; level: Level } | null => {
 	const { english, romanized, native } = name;
 
 	if (native && !romanized) {
-		return "Romanized field should not be empty if native is present.";
+		return {
+			level: Level.Error,
+			message: "Romanized field should not be empty if native is present."
+		};
 	}
 
 	if (romanized && !native) {
-		return "Native field should not be empty if romanized is present.";
+		return {
+			level: Level.Error,
+			message: "Native field should not be empty if romanized is present."
+		};
 	}
 
 	if (english && (romanized || native)) {
-		return "Native and romanized fields must be empty if english is present.";
+		return {
+			level: Level.Warn,
+			message: "Only officially accepted translations should be used."
+		};
 	}
 
 	if (!english && !romanized && !native) {
-		return "Must contain either English, or Native and Romanized.";
+		return {
+			level: Level.Error,
+			message: "Must contain either English, or Native and Romanized."
+		};
 	}
 
 	return null;

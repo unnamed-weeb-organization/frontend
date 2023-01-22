@@ -12,11 +12,11 @@ export interface UserCardData {
 }
 
 export interface ItemCardData {
+	id: string;
 	type: CTXType;
 	label: string;
-	imageURL: string;
-	id: string;
-	alt: {
+	imageURL?: string;
+	alt?: {
 		type: CTXType;
 		label: string;
 		id: string;

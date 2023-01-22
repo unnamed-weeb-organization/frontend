@@ -6,7 +6,10 @@ node_modules
 .env
 .env.*
 !.env.example
+
+# Generated files by third-party tools
 $houdini
+schema.graphql
 
 # Ignore files for PNPM, NPM and YARN
 pnpm-lock.yaml

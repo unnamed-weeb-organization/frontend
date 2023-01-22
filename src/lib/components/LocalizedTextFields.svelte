@@ -2,10 +2,12 @@
 	import { slide } from "svelte/transition";
 	import { validateNameStruct } from "$lib/utils";
 	import { getLocaleName, Locale } from "$lib/typings/server/general";
+	import { Level } from "$lib/typings/client/general";
 
 	export let locales: Map<Locale, { id: string; placeholder?: string; value?: string }>;
 
 	let error: string | null = null;
+	let warn: string | null = null;
 	$: {
 		const nameRecord = {
 			english: locales.get(Locale.English)?.value,
@@ -13,7 +15,18 @@
 			romanized: locales.get(Locale.Romanized)?.value
 		};
 
-		error = validateNameStruct(nameRecord);
+		const e = validateNameStruct(nameRecord);
+
+		if (e?.level === Level.Error) {
+			error = e.message;
+			warn = null;
+		} else if (e?.level === Level.Warn) {
+			warn = e.message;
+			error = null;
+		} else {
+			error = null;
+			warn = null;
+		}
 	}
 </script>
 
@@ -21,6 +34,11 @@
 	{#if error}
 		<span transition:slide|local={{ duration: 150 }} class="error">
 			{error}
+		</span>
+	{/if}
+	{#if warn}
+		<span transition:slide|local={{ duration: 150 }} class="warn">
+			{warn}
 		</span>
 	{/if}
 
@@ -54,11 +72,24 @@
 		@apply text-sm text-custom-400 w-32;
 	}
 
+	span.warn,
 	span.error {
-		@apply text-sm font-head text-red-600;
+		@apply text-sm font-head;
+	}
+
+	span.error {
+		@apply text-red-600;
+	}
+
+	span.warn {
+		@apply text-yellow-600;
 	}
 
 	:global(.dark) span.error {
 		@apply text-red-500;
+	}
+
+	:global(.dark) span.warn {
+		@apply text-yellow-500;
 	}
 </style>

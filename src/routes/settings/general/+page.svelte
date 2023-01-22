@@ -1,6 +1,7 @@
 <script lang="ts">
-	import { getLocaleName, getLocales, Locale } from "$lib/typings/server/general";
 	import { preferredTitleLocale, setPreferredTitleLocale } from "$lib/settings";
+	import { getLocaleName, getLocales, Locale } from "$lib/typings/server/general";
+
 	import SelectInput from "$lib/components/common/SelectInput.svelte";
 	import SettingContainer from "$lib/components/common/SettingContainer.svelte";
 

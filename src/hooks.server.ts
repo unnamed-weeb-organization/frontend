@@ -1,7 +1,12 @@
 import { error, type Handle } from "@sveltejs/kit";
 import { setSession, UserRefreshStore } from "$houdini";
 import { decodeSessionJWT } from "$lib/utils";
-import { COOKIE_USER_REFRESH, COOKIE_USER_SESSION, HTTPCode } from "$lib/constants";
+import {
+	COOKIE_SESSION_OPTIONS,
+	COOKIE_USER_REFRESH,
+	COOKIE_USER_SESSION,
+	HTTPCode
+} from "$lib/constants";
 
 /**
  * Refreshes a user's session token.
@@ -34,10 +39,10 @@ export const handle: Handle = async ({ event, resolve }) => {
 		// In case the cookie was not removed after the token expired.
 		if (jwtData.exp < Date.now() / 1000) {
 			session = await refreshToken(refresh);
+			event.cookies.set(COOKIE_USER_SESSION, session, COOKIE_SESSION_OPTIONS);
 		}
 
 		setSession(event, { token: session });
-		event.cookies.set(COOKIE_USER_SESSION, session);
 		event.locals.user = {
 			ulid: jwtData.ulid,
 			access_level: jwtData.access_level

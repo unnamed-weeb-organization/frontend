@@ -4,8 +4,8 @@ import { Route, RoutePoint } from "$lib/routes";
 import { UserLoginStore, UserRegisterStore } from "$houdini";
 import { getMissingFields, validateEmail, validatePassword, validateUsername } from "$lib/utils";
 import {
-	COOKIE_AUTH_SESSION_OPTIONS,
-	COOKIE_AUTH_PERSISTENT_OPTIONS,
+	COOKIE_SESSION_OPTIONS,
+	COOKIE_PERSISTENT_OPTIONS,
 	COOKIE_USER_REFRESH,
 	COOKIE_USER_SESSION,
 	INVALID_EMAIL,
@@ -49,14 +49,17 @@ export const actions: Actions = {
 			const log = await userLoginStore.mutate(fields);
 			if (log == null) throw Error("Failed to login after registering.");
 
-			cookies.set(COOKIE_USER_SESSION, log.login.token, COOKIE_AUTH_SESSION_OPTIONS);
+			cookies.set(COOKIE_USER_SESSION, log.login.token, COOKIE_SESSION_OPTIONS);
 			cookies.set(
 				COOKIE_USER_REFRESH,
 				log.login.refreshToken,
-				COOKIE_AUTH_PERSISTENT_OPTIONS
+				COOKIE_PERSISTENT_OPTIONS
 			);
 		} catch (e) {
-			throw error(HTTPCode.InternalServerError, { message: (e as Error)?.message ?? e });
+			throw error(
+				HTTPCode.InternalServerError,
+				Array.isArray(e) ? e[0]?.message : (e as Error)?.message ?? e?.toString()
+			);
 		}
 
 		throw redirect(

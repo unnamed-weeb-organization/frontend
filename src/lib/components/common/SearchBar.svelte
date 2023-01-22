@@ -6,32 +6,43 @@
 	import CloseIcon from "$lib/assets/icons/close.svg?component";
 	import DismissBackground from "$lib/components/common/DismissBackground.svelte";
 
+	export let value: string;
+	export let placeholder = "Search";
+	export let differentiateMobile = true;
+	export let styleType: "default" | "bordered" = "default";
+
 	let showMobileSearch = false;
-	let searchQuery = "";
+
+	const onMobileSearchButtonClick = (e: MouseEvent) => {
+		e.preventDefault();
+		showMobileSearch = !showMobileSearch;
+	};
 </script>
 
-<div class="desktop_search">
+<div class="desktop_search {styleType}" class:mobileSupport={differentiateMobile}>
 	<Button styleType="none" class="w-5 h-5 fill-custom-400">
 		<SearchIcon class="h-5 w-5" />
 	</Button>
-	<input bind:value={searchQuery} placeholder="Search" />
+	<input bind:value={value} {placeholder} />
 </div>
 
-<div class="flex md:hidden items-center justify-center">
-	<Button
-		class="w-8 h-8"
-		styleType="iconButton"
-		aria-label="Search"
-		on:click={() => (showMobileSearch = !showMobileSearch)}
-	>
-		<SearchIcon class="h-6 w-6" />
-	</Button>
-</div>
+{#if differentiateMobile}
+	<div class="flex md:hidden items-center justify-center">
+		<Button
+			class="w-8 h-8"
+			styleType="iconButton"
+			aria-label="Search"
+			on:click={onMobileSearchButtonClick}
+		>
+			<SearchIcon class="h-6 w-6" />
+		</Button>
+	</div>
+{/if}
 
-{#if showMobileSearch}
+{#if showMobileSearch && differentiateMobile}
 	<div transition:slide={{ duration: 150 }} class="mobile_search">
 		<div class="flex h-16 items-center px-4 gap-2 z-10">
-			<input bind:value={searchQuery} placeholder="Search" class="flex-1" />
+			<input bind:value={value} placeholder="Search" class="flex-1" />
 			<Button
 				class="w-8 h-8"
 				styleType="iconButton"
@@ -47,13 +58,29 @@
 
 <style lang="postcss">
 	.desktop_search {
-		@apply hidden md:flex items-center w-64
-        bg-custom-secondary rounded-md px-2 gap-2
+		@apply flex items-center w-64
+         rounded-md px-2 gap-2
         transition-colors duration-150 ease-in;
 	}
 
-	.desktop_search:active {
+	.desktop_search.mobileSupport {
+		@apply hidden md:flex;
+	}
+
+	.desktop_search.default {
+		@apply bg-custom-secondary;
+	}
+
+	.desktop_search.bordered {
+		@apply border border-custom-tertiary;
+	}
+
+	.desktop_search.default:active {
 		@apply bg-custom-tertiary;
+	}
+
+	.desktop_search.bordered:active {
+		@apply bg-custom-secondary border-transparent;
 	}
 
 	.mobile_search {

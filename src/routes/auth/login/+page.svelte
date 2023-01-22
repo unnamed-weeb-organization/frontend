@@ -1,13 +1,14 @@
 <script lang="ts">
-	import { enhance, applyAction } from "$app/forms";
 	import { page } from "$app/stores";
+	import { enhance, applyAction } from "$app/forms";
 	import { RoutePoint, withParameter } from "$lib/routes";
 	import Button from "$lib/components/common/Button.svelte";
 	import LabeledTextField from "$lib/components/LabeledTextField.svelte";
+	import { authFromSubmitting } from "$lib/stores";
 
-	const from = $page.url.searchParams.get("from") ?? undefined;
-	const forgetPasswordOptions = withParameter(RoutePoint.AuthReset, { from });
-	const createAccountOptions = withParameter(RoutePoint.AuthCreate, { from });
+	const from = $page.url.searchParams.get("from");
+	const forgetPasswordOptions = withParameter(RoutePoint.AuthReset, { from: from ?? undefined });
+	const createAccountOptions = withParameter(RoutePoint.AuthCreate, { from: from ?? undefined });
 	let missing: string[] = [];
 </script>
 
@@ -15,17 +16,27 @@
 	method="POST"
 	class="contents"
 	use:enhance={() => {
+		authFromSubmitting.set(true);
 		return async ({ result }) => {
 			if (result.type === "failure" && result.data?.missing) {
 				missing = result.data.missing;
 				return;
 			}
-
+			
 			applyAction(result);
+			authFromSubmitting.set(false);
 		};
 	}}
 >
 	<input hidden name="from" value={from} />
+
+	<LabeledTextField
+		id="email"
+		inputType="email"
+		label="Email"
+		placeholder="Email"
+		errorHint={missing.includes("email") ? "Required" : undefined}
+	/>
 
 	<LabeledTextField
 		id="username"
