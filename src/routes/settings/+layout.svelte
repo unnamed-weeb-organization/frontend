@@ -1,4 +1,5 @@
 <script lang="ts">
+	import { fade } from "svelte/transition";
 	import { page } from "$app/stores";
 	import { Route, RoutePoint, type RouteOptions } from "$lib/routes";
 
@@ -8,7 +9,7 @@
 	];
 </script>
 
-<div class="flex flex-col md:flex-row w-full h-full md:my-4">
+<div class="flex flex-col md:flex-row w-full h-full md:my-4" in:fade={{ duration: 150 }}>
 	<nav>
 		<h1>Settings</h1>
 		{#each subs as [name, options]}

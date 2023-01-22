@@ -1,1 +1,4 @@
-export {};
+export enum Level {
+    Warn,
+    Error
+}

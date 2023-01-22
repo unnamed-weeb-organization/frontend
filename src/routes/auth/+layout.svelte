@@ -1,6 +1,9 @@
 <script lang="ts">
+	import { fade } from "svelte/transition";
 	import { page } from "$app/stores";
+	import { authFromSubmitting } from "$lib/stores";
 	import { getMissingErrorMessage } from "$lib/utils";
+	import Spinner from "$lib/components/common/Spinner.svelte";
 </script>
 
 <div class="flex flex-col items-center justify-center flex-1 py-4">
@@ -11,7 +14,13 @@
 			{$page.form?.error != null ? $page.form.error : ""}
 		</span>
 	</div>
-	<div class="flex flex-col gap-4 w-4/5 md:w-96 mt-4">
-		<slot />
-	</div>
+	{#if $authFromSubmitting}
+		<div class="flex flex-col items-center justify-center w-64" in:fade={{ duration: 150 }}>
+			<Spinner />
+		</div>
+	{:else}
+		<div class="flex flex-col gap-4 w-4/5 md:w-96 mt-4">
+			<slot />
+		</div>
+	{/if}
 </div>

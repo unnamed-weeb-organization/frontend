@@ -1,23 +1,29 @@
 <script lang="ts">
+	import { fly } from "svelte/transition";
 	import { CTXRouteViewLocation, withParameter } from "$lib/routes";
 	import { getJoiningGrammar } from "$lib/typings/server/general";
 	import type { ItemCardData } from "$lib/typings/client/component";
 
 	export let data: ItemCardData;
 
-	const joiningString = getJoiningGrammar(data.type, data.alt.type);
 	const baseRouteOptions = withParameter(CTXRouteViewLocation[data.type], { id: data.id });
-	const altRouteOptions = withParameter(CTXRouteViewLocation[data.alt.type], { id: data.alt.id });
 </script>
 
-<div class="item_container">
+<div transition:fly|local={{ duration: 150 }} class="item_container">
 	<div class="flex-grow" />
 	<div class="title_container">
 		<a href={baseRouteOptions.route} class="text-custom-200">{data.label}</a>
-		<span class="text-custom-400 text-xs">{joiningString}</span>
-		<a href={altRouteOptions.route} class="text-custom-300 max-w-[50%]">
-			{data.alt.label}
-		</a>
+		{#if data.alt}
+			<span class="text-custom-400 text-xs">
+				{getJoiningGrammar(data.type, data.alt.type)}
+			</span>
+			<a
+				class="text-custom-300 max-w-[50%]"
+				href={withParameter(CTXRouteViewLocation[data.alt.type], { id: data.alt.id }).route}
+			>
+				{data.alt.label}
+			</a>
+		{/if}
 	</div>
 </div>
 

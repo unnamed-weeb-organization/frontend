@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { slide } from "svelte/transition";
+	import { fade, slide } from "svelte/transition";
 	import type { LayoutData } from "./$types";
 	import { page } from "$app/stores";
 	import { enhance } from "$app/forms";
@@ -64,7 +64,7 @@
 	const onArtistTypeSelect = (type_name: string) => (selectArtistType = type_name);
 </script>
 
-<div class="flex flex-col md:flex-row p-4 gap-4">
+<div class="flex flex-col md:flex-row p-4 gap-4" in:fade={{duration: 150}}>
 	<div class="flex flex-col md:w-64 items-center md:items-start">
 		{#if $page.data.header}
 			<h1 class="self-start font-head font-medium text-2xl mb-4">

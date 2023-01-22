@@ -5,6 +5,7 @@ import { getDateFromFormatted, validateNameStruct } from "$lib/utils";
 import { HTTPCode, INVALID_ARTIST_TYPE, INVALID_COUNTRY } from "$lib/constants";
 import { Country, CTXType, getCountryFromName, type Name } from "$lib/typings/server/general";
 import { ArtistType, getArtistTypeFromName, type NewArtist } from "$lib/typings/server/artist";
+import { Level } from "$lib/typings/client/general";
 
 export const actions: Actions = {
 	default: async ({ request }) => {
@@ -18,8 +19,8 @@ export const actions: Actions = {
 		};
 
 		const name_error = validateNameStruct(name);
-		if (name_error) {
-			throw error(HTTPCode.UnprocessableEntity, { message: name_error });
+		if (name_error && name_error.level != Level.Warn) {
+			throw error(HTTPCode.UnprocessableEntity, { message: name_error.message });
 		}
 
 		const altNameMap = new Map<number, Name>();
@@ -41,8 +42,8 @@ export const actions: Actions = {
 			};
 
 			const name_error = validateNameStruct(name);
-			if (name_error) {
-				throw error(HTTPCode.UnprocessableEntity, { message: name_error });
+			if (name_error && name_error.level != Level.Warn) {
+				throw error(HTTPCode.UnprocessableEntity, { message: name_error.message });
 			}
 
 			altNameMap.set(index, name);

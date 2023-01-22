@@ -1,6 +1,8 @@
 <script lang="ts">
-	import type { CTXType, ExternalSite } from "$lib/typings/server/general";
+	import { fade } from "svelte/transition";
 	import { CTXRouteEditLocation, withParameter } from "$lib/routes";
+	import type { CTXType, ExternalSite } from "$lib/typings/server/general";
+
 	import ExternalSites from "$lib/components/ExternalSites.svelte";
 	import Button from "$lib/components/common/Button.svelte";
 
@@ -14,7 +16,7 @@
 	const editRouteOptions = withParameter(CTXRouteEditLocation[ctxType], { id });
 </script>
 
-<div class="flex flex-col md:flex-row w-full py-6">
+<div class="flex flex-col md:flex-row w-full py-6" in:fade={{ duration: 100 }}>
 	<div class="details_container">
 		<div class="info_container">
 			<slot name="info_container" />
