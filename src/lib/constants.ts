@@ -2,7 +2,7 @@ import type { Cookies } from "@sveltejs/kit";
 
 export const APP_NAME = "unnamed_weeb_music_database";
 export const FE_SOURCE = "https://github.com/unnamed-weeb-organization/frontend";
-export const BE_SOURCE = "https://github.com/unnamed-weeb-organization/backend";
+export const DB_SOURCE = "https://github.com/unnamed-weeb-organization/database";
 export const API_URL_DEV = "http://0.0.0.0:6001/graphql";
 export const API_URL_PROD = "";
 
