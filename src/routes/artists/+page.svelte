@@ -6,6 +6,7 @@
 	import { CTXType, getValidName } from "$lib/typings/server/general";
 	import { preferredTitleLocale } from "$lib/settings";
 	import ItemCard from "$lib/components/common/ItemCard.svelte";
+	import { fade } from "svelte/transition";
 
 	export let data: PageData;
 
@@ -16,11 +17,13 @@
 	$: {
 		if (searchString) {
 			Artists = new Array(searchString?.length).fill(artist);
+		} else {
+			Artists = new Array(5).fill(artist);
 		}
 	}
 </script>
 
-<div class="flex flex-col p-4">
+<div class="flex flex-col p-4" in:fade={{ duration: 100 }}>
 	<div class="flex flex-col gap-2 font-head">
 		<h1 class="text-xl text-custom-100">Artists</h1>
 		<SearchBar
@@ -32,7 +35,7 @@
 	</div>
 	<div class="flex flex-row flex-wrap gap-4 mt-4">
 		{#if Artists}
-			{#each Artists as artist}
+			{#each Artists as artist (artist.id)}
 				<ItemCard
 					data={{
 						type: CTXType.ARTIST,

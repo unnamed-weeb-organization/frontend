@@ -15,7 +15,7 @@
 		</span>
 	</div>
 	{#if $authFromSubmitting}
-		<div class="flex flex-col items-center justify-center w-64" in:fade={{ duration: 150 }}>
+		<div class="flex flex-col items-center justify-center w-64 h-64" in:fade={{ duration: 150 }}>
 			<Spinner />
 		</div>
 	{:else}
