@@ -13,6 +13,7 @@
 
 	let showMore = false;
 	let showUserCard = false;
+	let searchQuery = "";
 
 	export let userCardData: UserCardData | null;
 
@@ -65,7 +66,7 @@
 	</div>
 
 	<div class="flex-1" />
-	<SearchBar />
+	<SearchBar bind:value={searchQuery} />
 
 	<div class="account">
 		<Button
