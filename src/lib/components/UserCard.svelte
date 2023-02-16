@@ -42,9 +42,9 @@
 </script>
 
 <div transition:slide={{ duration: 150 }} class="wrapper {$$props.class}">
-	<div class="flex items-center border-b border-b-custom-tertiary px-2 py-4">
+	<div class="flex items-center border-b border-b-custom-tertiary px-4 py-4">
 		{#if data != null}
-			<div class="flex flex-col flex-grow justify-between gap-1 pl-2">
+			<div class="flex flex-col flex-grow justify-between gap-1">
 				<a
 					href={withParameter(RoutePoint.Me).route}
 					class="font-head text-custom-100 select-none">{data.username}</a
@@ -54,7 +54,7 @@
 
 			<Button
 				styleType="none"
-				class="h-8 w-8 fill-custom-300 hover:bg-custom-secondary hover:fill-red-500"
+				class="h-8 w-8 fill-custom-300 hover:fill-red-500"
 				on:click={logout}
 			>
 				<LogoutIcon class="h-5 w-5" />
@@ -68,6 +68,7 @@
 		<Button
 			class="h-10 col-start-1 col-end-3"
 			label="Change Theme Mode"
+			styleType="hoverable"
 			on:click={toggleThemeMode}
 		>
 			{#if isItDark}
@@ -80,16 +81,20 @@
 		<Button
 			class="h-10"
 			label="Edit Profile"
+			styleType="hoverable"
 			on:click={withCloseHook(RoutePoint.SettingsAccount)}
 		>
 			<EditIcon class="h-5 w-5" />
 		</Button>
-		<Button class="h-10" label="Settings" on:click={withCloseHook(RoutePoint.Settings)}>
+		<Button
+			class="h-10"
+			label="Settings"
+			styleType="hoverable"
+			on:click={withCloseHook(RoutePoint.Settings)}
+		>
 			<SettingsIcon class="h-5 w-5" />
 		</Button>
 	</div>
-
-	<div class="elevation-layer elevation-background-1" />
 </div>
 
 <DismissBackground {onDismiss} />
@@ -97,7 +102,8 @@
 <style lang="postcss">
 	.wrapper {
 		@apply absolute z-10 flex flex-col
-        min-w-[16rem] md:min-w-[18rem]
-        bg-custom-background rounded-md shadow-md;
+        min-w-[16rem] md:min-w-[20rem]
+        bg-custom-background rounded-md shadow-md
+		border border-custom-tertiary;
 	}
 </style>

@@ -2,16 +2,12 @@
 	export let label: string | null = null;
 	export let styleType: keyof typeof styles = "default";
 
-	const req = "font-head text-sm ";
-	const textual = req + "rounded px-4 py-1 ";
-
 	const styles = {
-		default: req + "text-custom-300 fill-current",
-		iconButton: "fill-custom-400 active:bg-custom-secondary",
-		labelButton: textual + "text-accent-300 bg-accent-secondary hover:bg-accent-tertiary",
-		bordered:
-			textual +
-			"text-custom-300 border-2 border-custom-tertiary hover:border-accent-tertiary hover:text-accent-300",
+		default: "default",
+		hoverable: "default hoverable",
+		iconButton: "iconButton",
+		labelButton: "padded labelButton",
+		bordered: "default padded bordered",
 		none: ""
 	};
 </script>
@@ -26,10 +22,35 @@
 <style lang="postcss">
 	button {
 		@apply flex justify-center items-center
-		rounded transition-colors ease-in duration-150 gap-2;
+		rounded transition-colors ease-in duration-150 gap-2
+		font-head text-sm;
 	}
 
 	button:disabled {
 		@apply cursor-not-allowed opacity-50;
+	}
+
+	button.padded {
+		@apply px-4 py-1;
+	}
+
+	button.default {
+		@apply text-custom-300 fill-current;
+	}
+
+	button.hoverable {
+		@apply hover:text-accent-300;
+	}
+
+	button.iconButton {
+		@apply fill-custom-400 active:bg-custom-secondary;
+	}
+
+	button.labelButton {
+		@apply text-accent-300 bg-accent-secondary hover:bg-accent-tertiary;
+	}
+
+	button.bordered {
+		@apply border-2 border-custom-tertiary hover:border-accent-tertiary hover:text-accent-300;
 	}
 </style>

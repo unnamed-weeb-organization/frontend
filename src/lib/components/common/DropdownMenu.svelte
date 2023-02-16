@@ -12,7 +12,6 @@
 	{#each items as item}
 		<option on:click|preventDefault={() => onSelect(item)}>{item}</option>
 	{/each}
-	<div class="elevation-layer elevation-background-1" />
 </div>
 
 <DismissBackground {onDismiss} />
@@ -20,8 +19,9 @@
 <style lang="postcss">
 	.wrapper {
 		@apply absolute z-10 max-h-96 min-w-[7rem] max-w-2xl
-        overflow-y-auto bg-custom-background
-        rounded shadow-md flex flex-col;
+        overflow-y-auto bg-custom-secondary
+        rounded shadow-md flex flex-col
+		border border-custom-tertiary;
 	}
 
 	.wrapper.reverse {
@@ -29,10 +29,11 @@
 	}
 
 	option {
-		@apply relative flex flex-grow items-center h-10 px-2 select-none;
+		@apply relative flex flex-grow items-center h-10 px-2 select-none 
+		transition-colors duration-150 ease-in;
 	}
 
 	option:hover {
-		@apply bg-accent-tertiary text-accent-100;
+		@apply bg-accent-secondary text-accent-100;
 	}
 </style>

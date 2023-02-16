@@ -1,4 +1,12 @@
 {
-	"cSpell.words": ["weeb"],
-	"eslint.validate": ["javascript", "typescript", "svelte"]
+	"cSpell.words": [
+		"hoverable",
+		"weeb"
+	],
+	"eslint.validate": ["javascript", "typescript", "svelte"],
+	"editor.codeActionsOnSave": {
+		"source.fixAll": true,
+		"source.organizeImports": false,
+	},
+	"editor.formatOnSave": true,
 }

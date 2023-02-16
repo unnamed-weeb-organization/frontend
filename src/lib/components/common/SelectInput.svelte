@@ -1,5 +1,6 @@
 <script lang="ts">
 	import DropdownMenu from "./DropdownMenu.svelte";
+	import DownArrowIcon from "$lib/assets/icons/down-arrow.svg?component";
 
 	let isOpen = false;
 	let buttonElement: HTMLButtonElement | null = null;
@@ -32,6 +33,11 @@
 <div class="w-full relative">
 	<button bind:this={buttonElement} on:click|preventDefault={() => (isOpen = !isOpen)}>
 		<span class="text-custom-200">{selected}</span>
+		<DownArrowIcon
+			class="h-6 w-6 transition-transform duration-150 fill-custom-300 {isOpen
+				? 'rotate-180'
+				: 'rotate-0'}"
+		/>
 	</button>
 	{#if name}
 		<input {name} type="hidden" value={selected} />
@@ -49,7 +55,7 @@
 
 <style lang="postcss">
 	button {
-		@apply relative flex items-center px-2
+		@apply relative flex items-center justify-between px-2
         outline outline-1 outline-custom-tertiary rounded h-10 w-full;
 	}
 
