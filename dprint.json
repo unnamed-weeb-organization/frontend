@@ -1,10 +1,12 @@
 {
 	"lineWidth": 100,
-
 	"useTabs": true,
+	"newLineKind": "lf",
 	"excludes": [
+		".old/",
+		".svelte-kit/",
 		"**/node_modules",
-		"**/*-lock.json"
+		"**/*-lock.{json,yaml}"
 	],
 	"plugins": [
 		"https://plugins.dprint.dev/typescript-0.88.7.wasm",
