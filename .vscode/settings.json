@@ -1,12 +1,7 @@
 {
-	"cSpell.words": [
-		"hoverable",
-		"weeb"
-	],
-	"eslint.validate": ["javascript", "typescript", "svelte"],
-	"editor.codeActionsOnSave": {
-		"source.fixAll": true,
-		"source.organizeImports": false,
-	},
-	"editor.formatOnSave": true,
+	"editor.defaultFormatter": "dprint.dprint",
+	"files.exclude": {
+		".svelte-kit": false,
+		"node_modules": true
+	}
 }
