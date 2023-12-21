@@ -1,38 +1,18 @@
-# create-svelte
+# unnamed_weeb_music_database/frontend
 
-Everything you need to build a Svelte project, powered by [`create-svelte`](https://github.com/sveltejs/kit/tree/main/packages/create-svelte).
+SvelteKit frontend for the [`unnamed_weeb_music_database/backend`](https://github.com/unnamed-weeb-organization/database)
 
-## Creating a project
+## Getting Started
 
-If you're seeing this, you've probably already done this step. Congrats!
+- `pnpm install` to install dependencies.
+- `pnpm dev` to start the dev server.
 
-```bash
-# create a new project in the current directory
-npm create svelte@latest
+## Acknowledgements
 
-# create a new project in my-app
-npm create svelte@latest my-app
-```
+1. This project uses Unicons [Line Icon Collection](https://iconscout.com/contributors/unicons/icons/unicons-line).
 
-## Developing
+2. Logos listed under [this](./src/lib/assets/logos) directory are under [Public Domain](https://en.wikipedia.org/wiki/Public_domain), as per their listings in respective wikimedia pages.
 
-Once you've created a project and installed dependencies with `npm install` (or `pnpm install` or `yarn`), start a development server:
+## License
 
-```bash
-npm run dev
-
-# or start the server and open the app in a new browser tab
-npm run dev -- --open
-```
-
-## Building
-
-To create a production version of your app:
-
-```bash
-npm run build
-```
-
-You can preview the production build with `npm run preview`.
-
-> To deploy your app, you may need to install an [adapter](https://kit.svelte.dev/docs/adapters) for your target environment.
+This repository is licensed under [GPL3](./LICENSE).
