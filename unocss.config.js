@@ -1,6 +1,25 @@
 import extractorSvelte from "@unocss/extractor-svelte";
-import { defineConfig, presetUno, transformerDirectives, transformerVariantGroup } from "unocss";
+import {
+	defineConfig,
+	presetIcons,
+	presetUno,
+	transformerDirectives,
+	transformerVariantGroup,
+} from "unocss";
 import presetTheme from "unocss-preset-theme";
+
+/**
+ * @typedef {import("@iconify/types").IconifyJSON} IconifyJSON
+ *
+ * @param {string} name - The name of the icon collection.
+ * @returns {() => Promise<IconifyJSON>} - A function that returns a promise of the icon collection.
+ */
+function importCollection(name) {
+	return async () => {
+		const { default: icons } = await import(`@iconify-json/${name}/icons.json`);
+		return icons;
+	};
+}
 
 /**
  * @typedef {import("unocss/preset-uno").Theme} Theme
@@ -10,6 +29,7 @@ const config = defineConfig({
 	extractors: [extractorSvelte()],
 	presets: [
 		presetUno(),
+		presetIcons({ collections: { uil: importCollection("uil") } }),
 		presetTheme({
 			theme: {
 				dark: {
