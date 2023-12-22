@@ -18,7 +18,7 @@
 </script>
 
 <div class="desktop_search {styleType}" class:mobileSupport={differentiateMobile}>
-	<Button styleType="none" class="w-5 h-5 fill-custom-400">
+	<Button styleType="none" class="w-5 h-5 fill-400">
 		<div class="h-5 w-5 i-uil-search" />
 	</Button>
 	<input bind:value {placeholder} />

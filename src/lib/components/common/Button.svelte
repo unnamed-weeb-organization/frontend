@@ -22,7 +22,7 @@
 <style>
 	button {
 		--at-apply: flex justify-center items-center rounded transition-colors ease-in duration-150
-			gap-2 font-head text-sm;
+			gap-2 text-sm;
 	}
 
 	button:disabled {
@@ -38,18 +38,22 @@
 	}
 
 	button.hoverable {
-		--at-apply: hover: text-accent-300;
+		/* prettier-ignore */
+		--at-apply: hover:text-accent-300;
 	}
 
 	button.iconButton {
-		--at-apply: fill-custom-400 active: bg-secondary;
+		/* prettier-ignore */
+		--at-apply: fill-400 active:bg-secondary;
 	}
 
 	button.labelButton {
-		--at-apply: text-accent-300 bg-accent-secondary hover: bg-accent-tertiary;
+		/* prettier-ignore */
+		--at-apply: text-accent-300 bg-accent-secondary hover:bg-accent-tertiary;
 	}
 
 	button.bordered {
-		--at-apply: border-2 border-custom-tertiary hover: border-accent-tertiary hover: text-accent-300;
+		/* prettier-ignore */
+		--at-apply: border-2 border-tertiary hover:border-accent-tertiary hover:text-accent-300;
 	}
 </style>
