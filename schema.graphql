@@ -1,50 +1,38 @@
 schema {
-	query: QueryRoot
-	mutation: MutationRoot
+  query: QueryRoot
+  mutation: MutationRoot
 }
 
 type Artist {
-	altNames: [Name!]
-	artistType: ArtistType!
-	basedIn: String
-	description: String
-	externalSites: [ExternalSite!]
-	foundedIn: DateTime
-	id: String!
-	joinPhrase: String
-	name: Name!
+  altNames: [Name!]
+  artistType: ArtistType!
+  basedIn: String
+  description: String
+  externalSites: [ExternalSite!]
+  foundedIn: DateTime
+  id: String!
+  joinPhrase: String
+  name: Name!
 }
 
 enum ArtistType {
-	"""
-	Indicates that the artist is a fictional character.
-	"""
-	CHARACTER
+  """Indicates that the artist is a fictional character."""
+  CHARACTER
 
-	"""
-	Indicates that the artist is a choir.
-	"""
-	CHOIR
+  """Indicates that the artist is a choir."""
+  CHOIR
 
-	"""
-	Indicates that the artist is a group of people.
-	"""
-	GROUP
+  """Indicates that the artist is a group of people."""
+  GROUP
 
-	"""
-	Indicates that the artist is an orchestra.
-	"""
-	ORCHESTRA
+  """Indicates that the artist is an orchestra."""
+  ORCHESTRA
 
-	"""
-	Anything that is not covered by the other types.
-	"""
-	OTHER
+  """Anything that is not covered by the other types."""
+  OTHER
 
-	"""
-	Indicates that the artist is a single person.
-	"""
-	SOLO
+  """Indicates that the artist is a single person."""
+  SOLO
 }
 
 """
@@ -55,37 +43,37 @@ The input/output is a string in RFC3339 format.
 scalar DateTime
 
 type ExternalSite {
-	siteType: ExternalSiteType!
-	url: String!
+  siteType: ExternalSiteType!
+  url: String!
 }
 
 enum ExternalSiteType {
-	APPLE_MUSIC
-	INSTAGRAM
-	MUSIC_BRAINZ
-	SOUND_CLOUD
-	SPOTIFY
-	TWITTER
-	YOU_TUBE
+  APPLE_MUSIC
+  INSTAGRAM
+  MUSIC_BRAINZ
+  SOUND_CLOUD
+  SPOTIFY
+  TWITTER
+  YOU_TUBE
 }
 
 input Login {
-	email: String
-	password: String!
-	username: String
+  email: String
+  password: String!
+  username: String
 }
 
 type LoginResponse {
-	refreshToken: String!
-	token: String!
-	user: User!
+  refreshToken: String!
+  token: String!
+  user: User!
 }
 
 type MutationRoot {
-	createSong(input: NewSong!): Song!
-	login(input: Login!): LoginResponse!
-	refreshToken(input: RefreshTokenInput!): RefreshedToken!
-	register(input: Register!): User!
+  createSong(input: NewSong!): Song!
+  login(input: Login!): LoginResponse!
+  refreshToken(input: RefreshTokenInput!): RefreshedToken!
+  register(input: Register!): User!
 }
 
 """
@@ -100,105 +88,95 @@ Format: %Y-%m-%d
 scalar NaiveDate
 
 type Name {
-	english: String
-	native: String
-	romanized: String
+  english: String
+  native: String
+  romanized: String
 }
 
 input NewName {
-	english: String
-	native: String
-	romanized: String
+  english: String
+  native: String
+  romanized: String
 }
 
 input NewSong {
-	artists: [String!]!
-	name: NewName!
-	releases: [String!]!
+  artists: [String!]!
+  name: NewName!
+  releases: [String!]!
 }
 
 type Page {
-	"""
-	Get Artists
-	"""
-	artists(id: String, releaseId: String, search: String, songId: String): [Artist!]!
+  """Get Artists"""
+  artists(id: String, releaseId: String, search: String, songId: String): [Artist!]!
 
-	"""
-	Get Releases
-	"""
-	releases(artistId: String, id: String, search: String, songId: String): [Release!]!
-	songs(
-		artistId: String
-		genres: [String!]
-		id: String
-		releaseId: String
-		search: String
-	): [Song!]!
+  """Get Releases"""
+  releases(artistId: String, id: String, search: String, songId: String): [Release!]!
+  songs(artistId: String, genres: [String!], id: String, releaseId: String, search: String): [Song!]!
 }
 
 type QueryRoot {
-	artist(id: String, releaseId: String, search: String, songId: String): Artist!
-	page(page: Int, perPage: Int): Page!
-	song(artistId: String, genres: [String!], id: String, releaseId: String, search: String): Song!
-	user(email: String, id: String): User!
+  artist(id: String, releaseId: String, search: String, songId: String): Artist!
+  page(page: Int, perPage: Int): Page!
+  song(artistId: String, genres: [String!], id: String, releaseId: String, search: String): Song!
+  user(email: String, id: String): User!
 }
 
 input RefreshTokenInput {
-	token: String!
+  token: String!
 }
 
 type RefreshedToken {
-	token: String!
+  token: String!
 }
 
 input Register {
-	email: String!
-	password: String!
-	username: String!
+  email: String!
+  password: String!
+  username: String!
 }
 
 type Release {
-	externalSites: [ExternalSite!]
-	id: String!
-	label: [String!]
-	length: Int
-	name: Name!
-	releaseDate: NaiveDate!
-	releaseType: ReleaseType!
-	scriptLanguage: [String!]
-	tags: [Tag!]!
-	totalTracks: Int!
+  externalSites: [ExternalSite!]
+  id: String!
+  label: [String!]
+  length: Int
+  name: Name!
+  releaseDate: NaiveDate!
+  releaseType: ReleaseType!
+  scriptLanguage: [String!]
+  tags: [Tag!]!
+  totalTracks: Int!
 }
 
 enum ReleaseType {
-	ALBUM
-	EP
-	SINGLE
+  ALBUM
+  EP
+  SINGLE
 }
 
 type Song {
-	artists: [Artist!]!
-	externalSites: [ExternalSite!]
-	id: String!
-	name: Name!
-	releaseDate: NaiveDate
-	releases: [Release!]!
-	tags: [Tag!]!
-	trackLength: Int
+  artists: [Artist!]!
+  externalSites: [ExternalSite!]
+  id: String!
+  name: Name!
+  releaseDate: NaiveDate
+  releases: [Release!]!
+  tags: [Tag!]!
+  trackLength: Int
 }
 
 type Tag {
-	createdAt: DateTime!
-	description: String
-	id: Int!
-	name: String!
-	updatedAt: DateTime!
+  createdAt: DateTime!
+  description: String
+  id: Int!
+  name: String!
+  updatedAt: DateTime!
 }
 
 type User {
-	createdAt: DateTime!
-	email: String!
-	id: String!
-	updatedAt: DateTime!
-	username: String!
+  createdAt: DateTime!
+  email: String!
+  id: String!
+  updatedAt: DateTime!
+  username: String!
 }

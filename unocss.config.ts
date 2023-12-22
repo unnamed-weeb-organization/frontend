@@ -1,4 +1,5 @@
 import type { IconifyJSON } from "@iconify/types";
+import { FileSystemIconLoader } from "@iconify/utils/lib/loader/node-loaders";
 import extractorSvelte from "@unocss/extractor-svelte";
 import {
 	type Awaitable,
@@ -18,11 +19,18 @@ function importCollection(name: string): () => Awaitable<IconifyJSON> {
 	};
 }
 
+// write a script to load a file from fs svg file, strip it'
 export default defineConfig<Theme>({
 	extractors: [extractorSvelte()],
 	presets: [
 		presetUno(),
-		presetIcons({ collections: { uil: importCollection("uil") } }),
+		presetIcons({
+			collections: {
+				uil: importCollection("uil"),
+				// logos: importCollection("icons"),
+				extra: FileSystemIconLoader("./assets/logos"),
+			},
+		}),
 		presetTheme<Theme>({
 			theme: {
 				dark: {

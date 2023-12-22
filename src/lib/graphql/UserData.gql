@@ -1,0 +1,7 @@
+query UserData($id: String!) {
+	user(id: $id) {
+		id
+		username
+		createdAt
+	}
+}

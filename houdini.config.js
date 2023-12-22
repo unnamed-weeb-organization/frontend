@@ -8,6 +8,17 @@ const config = {
 	"plugins": {
 		"houdini-svelte": {},
 	},
+	scalars: {
+		DateTime: {
+			type: "Date",
+			unmarshal(val) {
+				return new Date(val);
+			},
+			marshal(date) {
+				return date.toISOString();
+			},
+		},
+	},
 };
 
 export default config;
