@@ -12,7 +12,7 @@
 	import { concatPageTitle } from "$lib/utils";
 	import { initializeSettings, preferredTitleLocale } from "$lib/settings";
 
-	import NavigationBar from "$lib/components/NavigationBar.svelte";
+	import NavigationBar from "$lib/components/NavigationBar/index.svelte";
 
 	export let data: LayoutData;
 

@@ -14,11 +14,11 @@
 	<div class="title_container">
 		<a href={baseRouteOptions.route} class="text-200">{data.label}</a>
 		{#if data.alt}
-			<span class="text-400 text-xs">
+			<span class="text-xs text-400">
 				{getJoiningGrammar(data.type, data.alt.type)}
 			</span>
 			<a
-				class="text-300 max-w-[50%]"
+				class="max-w-[50%] text-300"
 				href={withParameter(CTXRouteViewLocation[data.alt.type], { id: data.alt.id }).route}
 			>
 				{data.alt.label}

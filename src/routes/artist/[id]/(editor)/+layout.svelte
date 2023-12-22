@@ -63,32 +63,32 @@
 	const onArtistTypeSelect = (type_name: string) => (selectArtistType = type_name);
 </script>
 
-<div class="flex flex-col md:flex-row p-4 gap-4" in:fade={{ duration: 150 }}>
-	<div class="flex flex-col md:w-64 items-center md:items-start">
+<div class="flex flex-col gap-4 p-4 md:flex-row" in:fade={{ duration: 150 }}>
+	<div class="flex flex-col items-center md:w-64 md:items-start">
 		{#if $page.data.header}
-			<h1 class="self-start font-head font-medium text-2xl mb-4">
+			<h1 class="font-head mb-4 self-start text-2xl font-medium">
 				{concatPageTitle($page.data.header, $preferredTitleLocale)}
 			</h1>
 		{/if}
 		<ArtContainer size="large" imageURL="" link={null} />
 	</div>
 
-	<form method="POST" class="flex flex-col flex-1" use:enhance>
+	<form method="POST" class="flex flex-1 flex-col" use:enhance>
 		<h1 class="mb-2">Name</h1>
 		<LocalizedTextFields locales={nameMap} />
 
-		<h1 class="mt-4 mb-2">Alternative names</h1>
+		<h1 class="mb-2 mt-4">Alternative names</h1>
 		{#each [...altNameMap.entries()] as [id, locales] (id)}
-			<div transition:slide|local={{ duration: 150 }} class="flex items-center gap-2 mb-3 -ml-2">
+			<div transition:slide|local={{ duration: 150 }} class="mb-3 flex items-center gap-2 -ml-2">
 				<Button
-					class="w-10 h-10"
+					class="h-10 w-10"
 					styleType="iconButton"
 					on:click={(e) => {
 						e.preventDefault();
 						deleteArtistAltName(id);
 					}}
 				>
-					<div class="h-6 w-6 fill-red-600 dark:fill-red-500 i-uil-trash" />
+					<div class="i-uil-trash h-6 w-6 fill-red-600 dark:fill-red-500" />
 				</Button>
 
 				<LocalizedTextFields {locales} />
@@ -103,7 +103,7 @@
 			}}
 		/>
 
-		<h1 class="mt-4 mb-2">Type</h1>
+		<h1 class="mb-2 mt-4">Type</h1>
 		<SelectInput
 			name="type"
 			selected={selectArtistType}
@@ -111,14 +111,14 @@
 			onSelect={onArtistTypeSelect}
 		/>
 
-		<h1 class="mt-4 mb-2">Description</h1>
+		<h1 class="mb-2 mt-4">Description</h1>
 		<TextArea
 			name="description"
 			value={data.artist?.description}
 			placeholder="Something about the artist."
 		/>
 
-		<h1 class="mt-4 mb-2">Based on</h1>
+		<h1 class="mb-2 mt-4">Based on</h1>
 		<SelectInput
 			name="based_on"
 			selected={selectBasedOn}
@@ -126,7 +126,7 @@
 			onSelect={onBasedOnSelect}
 		/>
 
-		<h1 class="mt-4 mb-2">Founded on</h1>
+		<h1 class="mb-2 mt-4">Founded on</h1>
 		<TextField
 			name="founded_on"
 			type="date"
@@ -134,7 +134,7 @@
 			placeholder="e.g. 2007-01-01"
 		/>
 
-		<div class="contents md:flex flex-1 justify-end">
+		<div class="contents flex-1 justify-end md:flex">
 			<Button class="mt-8 md:w-24" styleType="labelButton" label="Confirm" />
 		</div>
 	</form>

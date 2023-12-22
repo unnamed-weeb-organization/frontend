@@ -35,17 +35,17 @@
 	};
 </script>
 
-<div transition:slide={{ duration: 150 }} class="wrapper {$$props.class}">
+<div transition:slide={{ duration: 150 }} class="wrapper{$$props.class}">
 	<div class="flex items-center border-b border-b-tertiary px-4 py-4">
 		{#if data != null}
-			<div class="flex flex-col flex-grow justify-between gap-1">
-				<a href={withParameter(RoutePoint.Me).route} class="text-100 select-none">{data.username}</a
+			<div class="flex flex-grow flex-col justify-between gap-1">
+				<a href={withParameter(RoutePoint.Me).route} class="select-none text-100">{data.username}</a
 				>
 				<RoleChip role={data.role} />
 			</div>
 
 			<Button styleType="none" class="h-8 w-8 fill-300 hover:fill-red-500" on:click={logout}>
-				<div class="h-5 w-5 i-uil-signout" />
+				<div class="i-uil-signout h-5 w-5" />
 			</Button>
 		{:else}
 			<Button class="flex-1" styleType="labelButton" label="Sign In" on:click={login} />
@@ -54,15 +54,15 @@
 
 	<div class="grid grid-cols-2">
 		<Button
-			class="h-10 col-start-1 col-end-3"
+			class="col-start-1 col-end-3 h-10"
 			label="Change Theme Mode"
 			styleType="hoverable"
 			on:click={toggleThemeMode}
 		>
 			{#if isItDark}
-				<div class="h-5 w-5 i-uil-brightness" />
+				<div class="i-uil-brightness h-5 w-5" />
 			{:else}
-				<div class="h-5 w-5 i-uil-brightness-empty" />
+				<div class="i-uil-brightness-empty h-5 w-5" />
 			{/if}
 		</Button>
 
@@ -72,7 +72,7 @@
 			styleType="hoverable"
 			on:click={withCloseHook(RoutePoint.SettingsAccount)}
 		>
-			<div class="h-5 w-5 i-uil-edit" />
+			<div class="i-uil-edit h-5 w-5" />
 		</Button>
 		<Button
 			class="h-10"
@@ -80,7 +80,7 @@
 			styleType="hoverable"
 			on:click={withCloseHook(RoutePoint.Settings)}
 		>
-			<div class="h-5 w-5 i-uil-cog" />
+			<div class="i-uil-cog h-5 w-5" />
 		</Button>
 	</div>
 </div>

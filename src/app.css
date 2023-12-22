@@ -39,3 +39,11 @@ html.dark {
 html.light {
 	color-scheme: light;
 }
+
+input,
+button,
+option {
+	appearance: none;
+	outline: none;
+	background-color: transparent;
+}

@@ -6,7 +6,7 @@
 	export let link: string;
 </script>
 
-<div class="flex flex-col w-fit gap-1 items-center">
+<div class="w-fit flex flex-col items-center gap-1">
 	<ArtContainer {link} size="medium" />
-	<a href={link} class="font-sans text-sm text-200">{label}</a>
+	<a href={link} class="text-sm text-200 font-sans">{label}</a>
 </div>

@@ -20,7 +20,7 @@
 </script>
 
 <div class="contents">
-	<h1 class="font-head text-xl font-medium mt-2 md:mt-0 mb-4">General</h1>
+	<h1 class="font-head mb-4 mt-2 text-xl font-medium md:mt-0">General</h1>
 
 	<SettingContainer
 		heading="Prefered Title Locale"

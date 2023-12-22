@@ -24,7 +24,7 @@
 </script>
 
 <div class="flex flex-col p-4" in:fade={{ duration: 100 }}>
-	<div class="flex flex-col gap-2 font-head">
+	<div class="font-head flex flex-col gap-2">
 		<h1 class="text-xl text-100">Artists</h1>
 		<SearchBar
 			bind:value={searchString}
@@ -33,7 +33,7 @@
 			styleType="bordered"
 		/>
 	</div>
-	<div class="flex flex-row flex-wrap gap-4 mt-4">
+	<div class="mt-4 flex flex-row flex-wrap gap-4">
 		{#if Artists}
 			{#each Artists as artist (artist.id)}
 				<ItemCard

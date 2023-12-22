@@ -56,13 +56,13 @@
 		errorHint={missing.includes("password") ? "Required" : undefined}
 	/>
 
-	<div class="flex justify-between items-center">
+	<div class="flex items-center justify-between">
 		<a class="linked" href={loginOptions.route}>Already have an account?</a>
 		<Button class="w-24" label="Create" styleType="labelButton" />
 	</div>
 
-	<div class="relative p-2 mt-8 font-head rounded border-2 border-accent-tertiary">
-		<h2 class="mb-2 font-head text-sm">Guidlines for password creation</h2>
+	<div class="font-head relative mt-8 border-2 border-accent-tertiary rounded p-2">
+		<h2 class="font-head mb-2 text-sm">Guidlines for password creation</h2>
 		<ul class="list-disc">
 			<li>Must be at least 8 characters long</li>
 			<li>Refrain from using common passwords (e.g. password, p@ssword et al)</li>

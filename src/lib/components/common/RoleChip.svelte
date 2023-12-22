@@ -5,7 +5,7 @@
 </script>
 
 <option
-	class="flex items-center w-fit px-2 font-head text-sm bg-accent-secondary rounded text-accent-200 select-none"
+	class="font-head w-fit flex select-none items-center rounded bg-accent-secondary px-2 text-sm text-accent-200"
 >
 	{role}
 </option>

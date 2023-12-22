@@ -9,15 +9,15 @@
 	export let tiles: ArtTileListData[];
 </script>
 
-<div class="flex flex-col w-fit max-w-full">
-	<div class="flex justify-between items-center pb-1">
-		<h3 class="font-medium text-base">{heading}</h3>
+<div class="max-w-full w-fit flex flex-col">
+	<div class="flex items-center justify-between pb-1">
+		<h3 class="text-base font-medium">{heading}</h3>
 		<Button styleType="iconButton" on:click={onAllClick}>
-			<div class="h-8 w-8 i-uil-arrow-right" />
+			<div class="i-uil-arrow-right h-8 w-8" />
 		</Button>
 	</div>
 
-	<div class="flex overflow-x-auto gap-2">
+	<div class="flex gap-2 overflow-x-auto">
 		{#each tiles as tile}
 			<ArtTile
 				label={tile.label}

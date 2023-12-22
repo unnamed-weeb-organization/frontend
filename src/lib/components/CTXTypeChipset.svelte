@@ -19,7 +19,7 @@
 	}
 </script>
 
-<div class="flex gap-1 {$$props.class}">
+<div class="flex gap-1{$$props.class}">
 	{#each ctxTypes as ctxType}
 		<CTXTypeChip
 			{ctxType}

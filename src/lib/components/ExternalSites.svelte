@@ -17,12 +17,12 @@
 	};
 </script>
 
-<div class="wrapper {$$props.class}">
-	<span class="font-medium text-base pb-1">External Sites</span>
+<div class="wrapper{$$props.class}">
+	<span class="pb-1 text-base font-medium">External Sites</span>
 
 	{#each sites as site}
 		<a target="_blank" rel="noreferrer" href={site.url} data-sveltekit-preload-code="off">
-			<div class="h-5 w-5 ${siteItemMap[site.type]}" />
+			<div class="$ h-5 w-5{siteItemMap[site.type]}" />
 			<span>{getExternalSiteName(site.type)}</span>
 		</a>
 	{/each}

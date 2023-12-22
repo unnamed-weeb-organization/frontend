@@ -19,7 +19,7 @@
 <style>
 	.wrapper {
 		--at-apply: absolute z-10 max-h-96 min-w-[7rem] max-w-2xl overflow-y-auto bg-secondary rounded
-			shadow-md flex flex-col border border-custom-tertiary;
+			shadow-md flex flex-col border border-tertiary;
 	}
 
 	.wrapper.reverse {
@@ -27,8 +27,8 @@
 	}
 
 	option {
-		--at-apply: relative flex flex-grow items-center h-10 px-2 select-none transition-colors
-			duration-150 ease-in;
+		--at-apply: relative flex flex-grow items-center h-10 px-2 select-none text-sm text-200
+			transition-colors duration-150 ease-in;
 	}
 
 	option:hover {

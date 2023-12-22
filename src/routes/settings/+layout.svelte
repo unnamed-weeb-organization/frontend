@@ -9,7 +9,7 @@
 	];
 </script>
 
-<div class="flex flex-col md:flex-row w-full h-full md:my-4" in:fade={{ duration: 150 }}>
+<div class="h-full w-full flex flex-col md:my-4 md:flex-row" in:fade={{ duration: 150 }}>
 	<nav>
 		<h1>Settings</h1>
 		{#each subs as [name, options]}
@@ -18,7 +18,7 @@
 			</a>
 		{/each}
 	</nav>
-	<div class="flex flex-col px-4 pt-2 flex-1">
+	<div class="flex flex-1 flex-col px-4 pt-2">
 		<slot />
 	</div>
 </div>

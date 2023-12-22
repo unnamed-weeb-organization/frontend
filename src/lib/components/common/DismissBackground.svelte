@@ -9,7 +9,9 @@
 </script>
 
 <div
-	on:click|preventDefault={onDismiss}
+	role="button"
+	tabindex="-1"
 	on:keypress={onDismiss}
-	class="z-0 fixed top-0 left-0 opacity-0 w-[100vw] h-[100vh] {styles[styleType]}"
+	on:click|preventDefault={onDismiss}
+	class="fixed left-0 top-0 z-0 h-[100vh] w-[100vw] opacity-0{styles[styleType]}"
 />

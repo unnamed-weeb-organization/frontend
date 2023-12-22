@@ -29,11 +29,11 @@
 	}
 </script>
 
-<div class="w-full relative">
+<div class="relative w-full">
 	<button bind:this={buttonElement} on:click|preventDefault={() => (isOpen = !isOpen)}>
 		<span class="text-200">{selected}</span>
 		<div
-			class="h-6 w-6 transition-transform duration-150 i-uil-arrow-down fill-300 {isOpen
+			class="i-uil-arrow-down h-6 w-6 fill-300 transition-transform duration-150{isOpen
 				? 'rotate-180'
 				: 'rotate-0'}"
 		/>
@@ -44,7 +44,7 @@
 	{#if isOpen}
 		<DropdownMenu
 			reverse={dropdownReverse}
-			class="drp w-full left-0 text-sm {dropdownReverse ? 'bottom-11' : 'top-11'}"
+			class="drp left-0 w-full text-sm{dropdownReverse ? 'bottom-11' : 'top-11'}"
 			items={options}
 			onSelect={onItemSelect}
 			onDismiss={() => (isOpen = false)}

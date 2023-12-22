@@ -17,40 +17,42 @@
 	};
 </script>
 
-<div class="desktop_search {styleType}" class:mobileSupport={differentiateMobile}>
-	<Button styleType="none" class="w-5 h-5 fill-400">
-		<div class="h-5 w-5 i-uil-search" />
-	</Button>
-	<input bind:value {placeholder} />
+<div class="relative h-8 max-w-xs flex items-center">
+	<div class="i-uil-search absolute inset-y-auto left-2 h-5 w-5 text-300" />
+	<input
+		bind:value
+		{placeholder}
+		class="h-8 inline-flex rounded bg-secondary pb-[1px] pl-10 placeholder:(text-sm text-300) focus:(ring-1 ring-accent-300)"
+	/>
 </div>
 
-{#if differentiateMobile}
-	<div class="flex md:hidden items-center justify-center">
+<!-- {#if differentiateMobile}
+	<div class="flex items-center justify-center md:hidden">
 		<Button
-			class="w-8 h-8"
+			class="h-8 w-8"
 			styleType="iconButton"
 			aria-label="Search"
 			on:click={onMobileSearchButtonClick}
 		>
-			<div class="h-6 w-6 i-uil-search" />
+			<div class="i-uil-search h-6 w-6" />
 		</Button>
 	</div>
 {/if}
 
 {#if showMobileSearch && differentiateMobile}
 	<div transition:slide={{ duration: 150 }} class="mobile_search">
-		<div class="flex h-16 items-center px-4 gap-2 z-10">
+		<div class="z-10 h-16 flex items-center gap-2 px-4">
 			<input bind:value placeholder="Search" class="flex-1" />
-			<Button class="w-8 h-8" styleType="iconButton" on:click={() => (showMobileSearch = false)}>
-				<div class="h-6 w-6 i-uil-x" />
+			<Button class="h-8 w-8" styleType="iconButton" on:click={() => (showMobileSearch = false)}>
+				<div class="i-uil-x h-6 w-6" />
 			</Button>
 		</div>
 
 		<DismissBackground styleType="dimmed" onDismiss={() => (showMobileSearch = false)} />
 	</div>
-{/if}
+{/if} -->
 
-<style>
+<!-- <style>
 	.desktop_search {
 		--at-apply: flex items-center w-64 rounded-md px-2 gap-2 transition-colors duration-150 ease-in;
 	}
@@ -89,4 +91,4 @@
 	input::placeholder {
 		--at-apply: text-400;
 	}
-</style>
+</style> -->

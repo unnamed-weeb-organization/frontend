@@ -54,7 +54,7 @@
 		errorHint={missing.includes("password") ? "Required" : undefined}
 	/>
 
-	<div class="flex justify-between items-center">
+	<div class="flex items-center justify-between">
 		<label class="inline">
 			<input type="checkbox" name="remember" />
 			<span>Remember me</span>
@@ -62,7 +62,7 @@
 		<a class="linked" href={forgetPasswordOptions.route}>Forget password</a>
 	</div>
 
-	<div class="flex justify-between items-center mt-4">
+	<div class="mt-4 flex items-center justify-between">
 		<a class="linked" href={createAccountOptions.route}>Don't have an account?</a>
 		<Button class="w-24" label="Continue" styleType="labelButton" />
 	</div>

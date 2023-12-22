@@ -14,7 +14,7 @@
 
 <!-- TODO: Responsive images and such -->
 <a href={link}>
-	<div class="container {sizeConstraints[size]} {$$props.class}" />
+	<div class="container{sizeConstraints[size]} {$$props.class}" />
 </a>
 
 <style>

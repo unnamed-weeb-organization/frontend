@@ -30,7 +30,7 @@
 	}
 </script>
 
-<div class="flex flex-col gap-2 flex-1 {$$props.class}">
+<div class="flex flex-1 flex-col gap-2{$$props.class}">
 	{#if error}
 		<span transition:slide|local={{ duration: 150 }} class="error">
 			{error}

@@ -55,7 +55,7 @@
 	</div>
 
 	<div class="contents" slot="content_container">
-		<div class="h-fit w-full lg:max-w-3xl 2xl:max-w-4xl md:pr-8 pb-8 md:pb-0">
+		<div class="h-fit w-full pb-8 2xl:max-w-4xl lg:max-w-3xl md:pb-0 md:pr-8">
 			<ArtTileList heading="Releases" tiles={releaseTileData} onAllClick={goToReleases} />
 		</div>
 	</div>

@@ -46,7 +46,7 @@
 		<SongList
 			songs={data.songs}
 			artists={data.artists}
-			class="h-fit lg:max-w-3xl 2xl:max-w-4xl md:pr-8"
+			class="h-fit 2xl:max-w-4xl lg:max-w-3xl md:pr-8"
 		/>
 	</div>
 </EntryDetailsLayout>

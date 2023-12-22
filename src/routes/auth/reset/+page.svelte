@@ -34,7 +34,7 @@
 		errorHint={missing.includes("email") ? "Required" : undefined}
 	/>
 
-	<div class="flex justify-between items-center">
+	<div class="flex items-center justify-between">
 		<a class="linked" href={loginOptions.route}>Back to login</a>
 		<Button class="w-24" label="Reset" styleType="labelButton" />
 	</div>
