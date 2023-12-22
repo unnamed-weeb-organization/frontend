@@ -8,8 +8,8 @@
 	import { page } from "$app/stores";
 	import type { LayoutData } from "./$types";
 
-	import { concatPageTitle } from "$lib/utils";
 	import { APP_NAME } from "$lib/constants";
+	import { concatPageTitle } from "$lib/utils";
 	import { initializeSettings, preferredTitleLocale } from "$lib/settings";
 
 	import NavigationBar from "$lib/components/NavigationBar.svelte";
@@ -17,6 +17,13 @@
 	export let data: LayoutData;
 
 	onMount(() => {
+		initializeSettings();
+	});
+</script>
+
+<svelte:head>
+	<title>{concatPageTitle($page.data.title ?? APP_NAME, $preferredTitleLocale)}</title>
+	<script>
 		const isDark =
 			"is-theme-mode-dark" in localStorage
 				? localStorage.getItem("is-theme-mode-dark") === "true"
@@ -24,17 +31,8 @@
 
 		document.documentElement.classList.add(isDark ? "dark" : "light");
 		document.documentElement.classList.remove("no-transition");
-
-		initializeSettings();
-	});
-</script>
-
-<svelte:head>
-	<title>{concatPageTitle($page.data.title ?? APP_NAME, $preferredTitleLocale)}</title>
+	</script>
 </svelte:head>
 
-<div class="relative flex flex-col h-full">
-	<NavigationBar userCardData={data.userCardData ?? null} />
-	<div class="escape_navbar" />
-	<slot />
-</div>
+<NavigationBar userCardData={data.userCardData ?? null} />
+<slot />
