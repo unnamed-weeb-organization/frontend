@@ -1,11 +1,11 @@
-/* Rubik normal [400], medium [500] */
+/* Inter normal [400], medium [500] */
 @import "@fontsource/inter/400.css";
 @import "@fontsource/inter/500.css";
 
 /* Noto Sans JP for Japanese support */
 /* @import "@fontsource/noto-sans-jp"; */
 
-/* :root {
+:root {
 	--at-apply: text-100 font-sans;
 }
 
@@ -30,62 +30,12 @@ body {
 
 ::-webkit-scrollbar-thumb {
 	--at-apply: bg-tertiary;
-} */
-
-:root {
-	--navbar_height: 4rem;
-
-	color: var(--100);
-	background-color: var(--background);
-	font-family: "Noto Sans", "Noto Sans JP", sans-serif;
 }
 
-:root.no-transition * {
-	transition: none !important;
-}
-
-html,
-body {
-	height: 100%;
-	width: 100%;
-}
-
-input,
-textarea {
-	caret-color: var(--accent-200);
-	background-color: var(--secondary);
-	border: none;
-	outline: none;
-}
-
-input[type="checkbox"] {
-	appearance: none;
-	--at-apply: flex justify-center items-center w-4 h-4 bg-custom-secondary rounded;
-}
-
-input[type="checkbox"]:checked {
-	--at-apply: bg-accent-tertiary text-accent-200;
-}
-
-input[type="checkbox"]:checked::before {
-	content: "✓";
-	--at-apply: text-xs;
-}
-
-.dark input[type="date"] {
+html.dark {
 	color-scheme: dark;
 }
 
-::selection {
-	background-color: var(--accent-tertiary);
-	color: var(--accent-100);
-}
-
-::-webkit-scrollbar {
-	background-color: var(--secondary);
-	width: 0.75rem;
-}
-
-::-webkit-scrollbar-thumb {
-	background-color: var(--tertiary);
+html.light {
+	color-scheme: light;
 }
