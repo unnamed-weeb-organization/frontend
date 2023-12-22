@@ -25,7 +25,7 @@
 
 <div class="flex flex-col p-4" in:fade={{ duration: 100 }}>
 	<div class="flex flex-col gap-2 font-head">
-		<h1 class="text-xl text-custom-100">Artists</h1>
+		<h1 class="text-xl text-100">Artists</h1>
 		<SearchBar
 			bind:value={searchString}
 			differentiateMobile={false}

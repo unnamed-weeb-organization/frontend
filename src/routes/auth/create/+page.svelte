@@ -73,10 +73,10 @@
 
 <style>
 	li {
-		--at-apply: ml-6 text-sm text-custom-300;
+		--at-apply: ml-6 text-sm text-300;
 	}
 
 	.linked {
-		--at-apply: font-head text-sm text-custom-300;
+		--at-apply: font-head text-sm text-300;
 	}
 </style>

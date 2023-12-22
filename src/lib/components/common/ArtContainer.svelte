@@ -19,6 +19,6 @@
 
 <style>
 	.container {
-		--at-apply: bg-custom-secondary rounded transition-shadow duration-150 ease-in-out;
+		--at-apply: bg-secondary rounded transition-shadow duration-150 ease-in-out;
 	}
 </style>

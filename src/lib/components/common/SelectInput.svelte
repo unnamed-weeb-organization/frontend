@@ -31,9 +31,9 @@
 
 <div class="w-full relative">
 	<button bind:this={buttonElement} on:click|preventDefault={() => (isOpen = !isOpen)}>
-		<span class="text-custom-200">{selected}</span>
+		<span class="text-200">{selected}</span>
 		<div
-			class="h-6 w-6 transition-transform duration-150 i-uil-arrow-down fill-custom-300 {isOpen
+			class="h-6 w-6 transition-transform duration-150 i-uil-arrow-down fill-300 {isOpen
 				? 'rotate-180'
 				: 'rotate-0'}"
 		/>
@@ -44,7 +44,7 @@
 	{#if isOpen}
 		<DropdownMenu
 			reverse={dropdownReverse}
-			class="drp w-full left-0 font-head text-sm {dropdownReverse ? 'bottom-11' : 'top-11'}"
+			class="drp w-full left-0 text-sm {dropdownReverse ? 'bottom-11' : 'top-11'}"
 			items={options}
 			onSelect={onItemSelect}
 			onDismiss={() => (isOpen = false)}
@@ -59,10 +59,10 @@
 	}
 
 	button:active {
-		--at-apply: outline-none bg-custom-secondary;
+		--at-apply: outline-none bg-secondary;
 	}
 
 	span {
-		--at-apply: font-head text-sm text-custom-200;
+		--at-apply: font-head text-sm text-200;
 	}
 </style>

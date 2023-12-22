@@ -56,36 +56,37 @@
 	}
 
 	.desktop_search.mobileSupport {
-		--at-apply: hidden md: flex;
+		/* prettier-ignore */
+		--at-apply: hidden md:flex;
 	}
 
 	.desktop_search.default {
-		--at-apply: bg-custom-secondary;
+		--at-apply: bg-secondary;
 	}
 
 	.desktop_search.bordered {
-		--at-apply: border border-custom-tertiary;
+		--at-apply: border border-tertiary;
 	}
 
 	.desktop_search.default:active {
-		--at-apply: bg-custom-tertiary;
+		--at-apply: bg-tertiary;
 	}
 
 	.desktop_search.bordered:active {
-		--at-apply: bg-custom-secondary border-transparent;
+		--at-apply: bg-secondary border-transparent;
 	}
 
 	.mobile_search {
-		--at-apply: absolute top-0 left-0 w-full h-full bg-custom-background flex flex-col z-10;
+		--at-apply: absolute top-0 left-0 w-full h-full bg-background flex flex-col z-10;
 	}
 
 	input {
 		background: none;
 		border-radius: inherit;
-		--at-apply: h-8 flex-grow text-custom-200 font-head text-sm;
+		--at-apply: h-8 flex-grow text-200 text-sm;
 	}
 
 	input::placeholder {
-		--at-apply: text-custom-400;
+		--at-apply: text-400;
 	}
 </style>

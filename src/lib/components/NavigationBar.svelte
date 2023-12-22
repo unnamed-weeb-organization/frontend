@@ -29,7 +29,7 @@
 </script>
 
 <nav>
-	<a href={Route[RoutePoint.Home].route} class="font-head select-none">
+	<a href={Route[RoutePoint.Home].route} class="select-none">
 		<span class="hidden md:block">{APP_NAME}</span>
 		<span class="md:hidden">
 			{APP_NAME.split("_")
@@ -69,7 +69,7 @@
 	<div class="account">
 		<Button
 			aria-label="Account"
-			class="h-10 w-10 bg-custom-secondary focus-within:bg-custom-tertiary focus-within:fill-custom-200"
+			class="h-10 w-10 bg-secondary focus-within:bg-tertiary focus-within:fill-200"
 			on:click={() => (showUserCard = !showUserCard)}
 		>
 			<div class="h-9 w-9 i-uil-user" />
@@ -87,8 +87,8 @@
 
 <style>
 	nav {
-		--at-apply: fixed top-0 left-0 w-full flex items-center bg-custom-background px-6 border-b-2
-			border-b-custom-tertiary gap-4 z-30;
+		--at-apply: fixed top-0 left-0 w-full flex items-center bg-background px-6 border-b-2
+			border-b-tertiary gap-4 z-30;
 		height: var(--navbar_height);
 	}
 
@@ -101,16 +101,18 @@
 	}
 
 	.links > a {
-		--at-apply: hidden lg: block text-custom-400 hover: text-custom-300;
+		/* prettier-ignore */
+		--at-apply: hidden lg:block text-400 hover:text-300;
 	}
 
 	.more {
-		--at-apply: flex lg: hidden items-center -ml-2 pl-2 rounded fill-current font-head text-custom-400
-			hover: text-custom-300 hover: bg-custom-secondary;
+		/* prettier-ignore */
+		--at-apply: flex lg:hidden items-center -ml-2 pl-2 rounded fill-current
+		text-400 hover:text-300 hover:bg-secondary;
 	}
 
 	.more.expanded {
-		--at-apply: bg-custom-secondary text-custom-300;
+		--at-apply: bg-secondary text-300;
 	}
 
 	.account {

@@ -8,5 +8,5 @@
 
 <div class="flex flex-col w-fit gap-1 items-center">
 	<ArtContainer {link} size="medium" />
-	<a href={link} class="font-sans text-sm text-custom-200">{label}</a>
+	<a href={link} class="font-sans text-sm text-200">{label}</a>
 </div>

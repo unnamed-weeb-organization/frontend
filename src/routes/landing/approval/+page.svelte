@@ -21,10 +21,10 @@
 	in:fade={{ duration: 150 }}
 >
 	<h2 class="text-4xl font-medium">Nice!</h2>
-	<span class="text-custom-200 text-center">
+	<span class="text-200 text-center">
 		Your edit will be pushed to a moderator, and will go live after approval.
 	</span>
-	<span class="text-custom-400 text-center">
+	<span class="text-400 text-center">
 		You will be redirected to the home page in {ticksRemaining} seconds.
 	</span>
 </div>

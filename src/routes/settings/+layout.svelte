@@ -25,20 +25,23 @@
 
 <style>
 	nav {
-		--at-apply: flex items-center md: items-start md: flex-col md: w-56 mx-2 md: mx-0 px-2 py-2 md:
-			py-0 border-b-2 md: border-b-0 md: border-r-2 border-custom-tertiary font-head;
+		/* prettier-ignore */
+		--at-apply: flex items-center md:items-start md:flex-col md:w-56 mx-2 md:mx-0 px-2 py-2 md:
+			py-0 border-b-2 md:border-b-0 md:border-r-2 border-custom-tertiary font-head;
 	}
 
 	nav h1 {
-		--at-apply: hidden md: block md: pb-2 font-head font-medium text-sm;
+		/* prettier-ignore */
+		--at-apply: hidden md:block md:pb-2 font-medium text-sm;
 	}
 
 	nav a {
-		--at-apply: flex items-center md: w-full px-4 md: px-0 md: pl-4 h-8 rounded transition-colors
-			duration-150 hover: bg-custom-secondary text-sm text-custom-200;
+		/* prettier-ignore */
+		--at-apply: flex items-center md:w-full px-4 md:px-0 md:pl-4 h-8 rounded transition-colors
+			duration-150 hover: bg-secondary text-sm text-200;
 	}
 
 	nav a.current {
-		--at-apply: bg-custom-tertiary text-custom-100;
+		--at-apply: bg-tertiary text-100;
 	}
 </style>

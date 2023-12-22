@@ -18,8 +18,8 @@
 
 <style>
 	.wrapper {
-		--at-apply: absolute z-10 max-h-96 min-w-[7rem] max-w-2xl overflow-y-auto bg-custom-secondary
-			rounded shadow-md flex flex-col border border-custom-tertiary;
+		--at-apply: absolute z-10 max-h-96 min-w-[7rem] max-w-2xl overflow-y-auto bg-secondary rounded
+			shadow-md flex flex-col border border-custom-tertiary;
 	}
 
 	.wrapper.reverse {

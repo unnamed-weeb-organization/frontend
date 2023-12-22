@@ -53,14 +53,15 @@
 
 <style>
 	.title_container {
-		--at-apply: flex flex-col items-center md: items-start font-head;
+		/* prettier-ignore */
+		--at-apply: flex flex-col items-center md:items-start font-head;
 	}
 
 	.title_container h1 {
-		--at-apply: text-4xl font-medium text-custom-100;
+		--at-apply: text-4xl font-medium text-100;
 	}
 
 	.title_container a {
-		--at-apply: text-sm text-custom-200;
+		--at-apply: text-sm text-200;
 	}
 </style>

@@ -6,7 +6,7 @@
 <div class="flex gap-4">
 	<div class="flex flex-col flex-1">
 		<h2 class="font-head text-base">{heading}</h2>
-		<span class="font-head text-sm text-custom-300">
+		<span class="font-head text-sm text-300">
 			{#each description as line}
 				{line}<br />
 			{/each}

@@ -67,10 +67,10 @@
 	}
 
 	.title_container h1 {
-		--at-apply: text-4xl font-medium text-custom-100;
+		--at-apply: text-4xl font-medium text-100;
 	}
 
 	.title_container .artists {
-		--at-apply: flex pt-1 text-sm text-custom-200;
+		--at-apply: flex pt-1 text-sm text-200;
 	}
 </style>

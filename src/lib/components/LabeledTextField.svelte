@@ -27,7 +27,7 @@
 	}
 
 	.label_container {
-		--at-apply: flex flex-row gap-2 font-head;
+		--at-apply: flex flex-row gap-2;
 	}
 
 	.label_container span {
@@ -35,6 +35,6 @@
 	}
 
 	h2 {
-		--at-apply: font-head text-sm text-custom-200;
+		--at-apply: text-sm text-200;
 	}
 </style>

@@ -7,8 +7,8 @@
 </script>
 
 <div class="flex flex-col justify-center items-center h-full font-head">
-	<h1 class="text-custom-100 font-medium text-2xl">{errorMessages[$page.status]}</h1>
-	<h2 class="text-custom-200 text-sm text-center mb-4">{hintMessages[$page.status]}</h2>
+	<h1 class="text-100 font-medium text-2xl">{errorMessages[$page.status]}</h1>
+	<h2 class="text-200 text-sm text-center mb-4">{hintMessages[$page.status]}</h2>
 	{#if $page.status === 401}
 		<Button
 			label="Login"

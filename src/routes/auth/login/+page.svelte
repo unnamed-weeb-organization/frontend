@@ -74,10 +74,10 @@
 	}
 
 	label.inline span {
-		--at-apply: font-head font-normal text-sm text-custom-300;
+		--at-apply: font-head font-normal text-sm text-300;
 	}
 
 	.linked {
-		--at-apply: font-head text-sm text-custom-300;
+		--at-apply: font-head text-sm text-300;
 	}
 </style>

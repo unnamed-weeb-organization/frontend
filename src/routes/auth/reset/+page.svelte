@@ -42,6 +42,6 @@
 
 <style>
 	.linked {
-		--at-apply: font-head text-sm text-custom-300;
+		--at-apply: font-head text-sm text-300;
 	}
 </style>

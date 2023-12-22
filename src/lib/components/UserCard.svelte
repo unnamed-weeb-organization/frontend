@@ -36,16 +36,15 @@
 </script>
 
 <div transition:slide={{ duration: 150 }} class="wrapper {$$props.class}">
-	<div class="flex items-center border-b border-b-custom-tertiary px-4 py-4">
+	<div class="flex items-center border-b border-b-tertiary px-4 py-4">
 		{#if data != null}
 			<div class="flex flex-col flex-grow justify-between gap-1">
-				<a href={withParameter(RoutePoint.Me).route} class="font-head text-custom-100 select-none"
-					>{data.username}</a
+				<a href={withParameter(RoutePoint.Me).route} class="text-100 select-none">{data.username}</a
 				>
 				<RoleChip role={data.role} />
 			</div>
 
-			<Button styleType="none" class="h-8 w-8 fill-custom-300 hover:fill-red-500" on:click={logout}>
+			<Button styleType="none" class="h-8 w-8 fill-300 hover:fill-red-500" on:click={logout}>
 				<div class="h-5 w-5 i-uil-signout" />
 			</Button>
 		{:else}
@@ -90,7 +89,8 @@
 
 <style>
 	.wrapper {
-		--at-apply: absolute z-10 flex flex-col min-w-[16rem] md: min-w-[20rem] bg-custom-background
-			rounded-md shadow-md border border-custom-tertiary;
+		/* prettier-ignore */
+		--at-apply: absolute z-10 flex flex-col min-w-[16rem]  rounded-md shadow-md
+		border border-tertiary bg-background md:min-w-[20rem];
 	}
 </style>

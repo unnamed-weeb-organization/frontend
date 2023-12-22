@@ -12,13 +12,13 @@
 <div transition:fly|local={{ duration: 150 }} class="item_container">
 	<div class="flex-grow" />
 	<div class="title_container">
-		<a href={baseRouteOptions.route} class="text-custom-200">{data.label}</a>
+		<a href={baseRouteOptions.route} class="text-200">{data.label}</a>
 		{#if data.alt}
-			<span class="text-custom-400 text-xs">
+			<span class="text-400 text-xs">
 				{getJoiningGrammar(data.type, data.alt.type)}
 			</span>
 			<a
-				class="text-custom-300 max-w-[50%]"
+				class="text-300 max-w-[50%]"
 				href={withParameter(CTXRouteViewLocation[data.alt.type], { id: data.alt.id }).route}
 			>
 				{data.alt.label}
@@ -29,10 +29,10 @@
 
 <style>
 	.item_container {
-		--at-apply: flex flex-col h-52 w-64 bg-custom-secondary rounded-md overflow-hidden;
+		--at-apply: flex flex-col h-52 w-64 bg-secondary rounded-md overflow-hidden;
 	}
 
 	.title_container {
-		--at-apply: flex gap-1 items-center h-8 px-2 bg-custom-tertiary font-sans text-sm text-ellipsis;
+		--at-apply: flex gap-1 items-center h-8 px-2 bg-tertiary font-sans text-sm text-ellipsis;
 	}
 </style>

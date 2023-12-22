@@ -18,7 +18,7 @@
 </script>
 
 <div class="wrapper {$$props.class}">
-	<span class="font-head font-medium text-base pb-1">External Sites</span>
+	<span class="font-medium text-base pb-1">External Sites</span>
 
 	{#each sites as site}
 		<a target="_blank" rel="noreferrer" href={site.url} data-sveltekit-preload-code="off">
@@ -34,6 +34,6 @@
 	}
 
 	.wrapper a {
-		--at-apply: flex items-center gap-2 py-2 w-fit text-sm text-custom-200;
+		--at-apply: flex items-center gap-2 py-2 w-fit text-sm text-200;
 	}
 </style>

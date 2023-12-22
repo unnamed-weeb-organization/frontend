@@ -11,7 +11,7 @@
 
 <div class="flex flex-col w-fit max-w-full">
 	<div class="flex justify-between items-center pb-1">
-		<h3 class="font-head font-medium text-base">{heading}</h3>
+		<h3 class="font-medium text-base">{heading}</h3>
 		<Button styleType="iconButton" on:click={onAllClick}>
 			<div class="h-8 w-8 i-uil-arrow-right" />
 		</Button>

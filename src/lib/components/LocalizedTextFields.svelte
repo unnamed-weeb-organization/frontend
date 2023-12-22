@@ -54,25 +54,25 @@
 
 <style>
 	label {
-		--at-apply: h-10 min-h-[2.5rem] flex flex-1 items-center gap-2 px-2 rounded bg-custom-secondary
-			font-head text-sm transition-colors duration-150 ease-in-out;
+		--at-apply: h-10 min-h-[2.5rem] flex flex-1 items-center gap-2 px-2 rounded bg-secondary text-sm
+			transition-colors duration-150 ease-in-out;
 	}
 
 	label:focus-within {
-		--at-apply: bg-custom-tertiary outline-2 outline-accent-100;
+		--at-apply: bg-tertiary outline-2 outline-accent-100;
 	}
 
 	input {
-		--at-apply: w-full text-custom-200 bg-transparent;
+		--at-apply: w-full text-200 bg-transparent;
 	}
 
 	h2 {
-		--at-apply: text-sm text-custom-400 w-32;
+		--at-apply: text-sm text-400 w-32;
 	}
 
 	span.warn,
 	span.error {
-		--at-apply: text-sm font-head;
+		--at-apply: text-sm;
 	}
 
 	span.error {

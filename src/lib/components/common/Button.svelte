@@ -34,7 +34,7 @@
 	}
 
 	button.default {
-		--at-apply: text-custom-300 fill-current;
+		--at-apply: text-300 fill-current;
 	}
 
 	button.hoverable {
@@ -42,7 +42,7 @@
 	}
 
 	button.iconButton {
-		--at-apply: fill-custom-400 active: bg-custom-secondary;
+		--at-apply: fill-custom-400 active: bg-secondary;
 	}
 
 	button.labelButton {
