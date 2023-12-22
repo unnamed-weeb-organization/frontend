@@ -4,6 +4,7 @@
 	"newLineKind": "lf",
 	"excludes": [
 		".old/",
+		".bkg/",
 		".svelte-kit/",
 		"**/node_modules",
 		"**/*-lock.{json,yaml}"

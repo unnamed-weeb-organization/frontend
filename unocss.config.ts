@@ -1,5 +1,7 @@
+import type { IconifyJSON } from "@iconify/types";
 import extractorSvelte from "@unocss/extractor-svelte";
 import {
+	type Awaitable,
 	defineConfig,
 	presetIcons,
 	presetUno,
@@ -7,47 +9,40 @@ import {
 	transformerVariantGroup,
 } from "unocss";
 import presetTheme from "unocss-preset-theme";
+import type { Theme } from "unocss/preset-uno";
 
-/**
- * @typedef {import("@iconify/types").IconifyJSON} IconifyJSON
- *
- * @param {string} name - The name of the icon collection.
- * @returns {() => Promise<IconifyJSON>} - A function that returns a promise of the icon collection.
- */
-function importCollection(name) {
+function importCollection(name: string): () => Awaitable<IconifyJSON> {
 	return async () => {
 		const { default: icons } = await import(`@iconify-json/${name}/icons.json`);
 		return icons;
 	};
 }
 
-/**
- * @typedef {import("unocss/preset-uno").Theme} Theme
- * @type {import("unocss").UserConfig<Theme>}
- */
-const config = defineConfig({
+export default defineConfig<Theme>({
 	extractors: [extractorSvelte()],
 	presets: [
 		presetUno(),
 		presetIcons({ collections: { uil: importCollection("uil") } }),
-		presetTheme({
+		presetTheme<Theme>({
 			theme: {
 				dark: {
-					"background": "#1c1c1c",
-					"secondary": "#282828",
-					"tertiary": "#333333",
-					"400": "#8d8d8d",
-					"300": "#b0b0b0",
-					"200": "#dddddd",
-					"100": "#f4f4f4",
-					accent: {
-						"background": "#0f1b2d",
-						"secondary": "#10243e",
-						"tertiary": "#102a4c",
-						"400": "#0954a5",
-						"300": "#0091ff",
-						"200": "#52a9ff",
-						"100": "#eaf6ff",
+					colors: {
+						"background": "#1c1c1c",
+						"secondary": "#282828",
+						"tertiary": "#333333",
+						"400": "#8d8d8d",
+						"300": "#b0b0b0",
+						"200": "#dddddd",
+						"100": "#f4f4f4",
+						accent: {
+							"background": "#0f1b2d",
+							"secondary": "#10243e",
+							"tertiary": "#102a4c",
+							"400": "#0954a5",
+							"300": "#0091ff",
+							"200": "#52a9ff",
+							"100": "#eaf6ff",
+						},
 					},
 				},
 				light: {
@@ -81,5 +76,3 @@ const config = defineConfig({
 		},
 	},
 });
-
-export default config;
