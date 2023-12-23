@@ -6,8 +6,6 @@
 	import LinkSet from "$lib/components/NavigationBar/LinkSet.svelte";
 	import AccountButton from "$lib/components/NavigationBar/AccountButton.svelte";
 
-	let searchQuery = "";
-
 	export let userCardData: UserCardData | null;
 </script>
 
@@ -24,6 +22,6 @@
 	<LinkSet />
 
 	<div class="flex-1" />
-	<SearchBar bind:value={searchQuery} />
+	<SearchBar />
 	<AccountButton {userCardData} />
 </nav>

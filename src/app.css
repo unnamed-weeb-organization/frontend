@@ -42,8 +42,14 @@ html.light {
 
 input,
 button,
-option {
+option,
+select {
 	appearance: none;
 	outline: none;
 	background-color: transparent;
+}
+
+html.no-transition * {
+	transition-duration: 0 !important;
+	transition-property: none !important;
 }

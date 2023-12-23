@@ -7,7 +7,7 @@ export const isDark = () => {
 	else return window.matchMedia("(prefers-color-scheme: dark)").matches;
 };
 
-export const changeTheme = (dark: boolean): boolean => {
+export const changeTheme = (dark: boolean) => {
 	// Prevents the transitions from happening when the theme is changed.
 	document.documentElement.classList.add("no-transition");
 
@@ -17,6 +17,4 @@ export const changeTheme = (dark: boolean): boolean => {
 	// Triggers a reflow to make sure the transitions are stopped, in order to re-activate again.
 	document.documentElement.offsetHeight;
 	document.documentElement.classList.remove("no-transition");
-
-	return dark;
 };

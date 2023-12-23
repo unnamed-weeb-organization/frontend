@@ -3,8 +3,8 @@
 	import DismissBackground from "$lib/components/common/DismissBackground.svelte";
 
 	let showMobileSearch = false;
+	let value = "";
 
-	export let value: string;
 	export let placeholder = "Search";
 </script>
 

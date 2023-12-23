@@ -19,11 +19,15 @@ function importCollection(name: string): () => Awaitable<IconifyJSON> {
 	};
 }
 
+function makeShortcuts(...values: string[]) {
+	return values.join(" ");
+}
+
 // write a script to load a file from fs svg file, strip it'
 export default defineConfig<Theme>({
 	extractors: [extractorSvelte()],
 	presets: [
-		presetUno(),
+		presetUno({ dark: "class" }),
 		presetIcons({
 			collections: {
 				uil: importCollection("uil"),
@@ -78,9 +82,31 @@ export default defineConfig<Theme>({
 	],
 	transformers: [transformerDirectives(), transformerVariantGroup()],
 	theme: {
+		easing: {
+			emphasized: "cubic-bezier(0.4, 0.0, 0.2, 1.0)",
+			standard: "cubic-bezier(0.2, 0.0, 0, 1.0)",
+		},
+		duration: {
+			standard: "300ms",
+			emphasized: "500ms",
+		},
 		fontFamily: {
 			sans: "Inter, Noto Sans JP, sans-serif",
 			mono: "JetBrains Mono, Fira Code, monospace",
 		},
+	},
+	shortcuts: {
+		"use-transition-standard": "duration-standard ease-standard",
+		"use-transition-emphasized": "duration-emphasized ease-emphasized",
+
+		"button-layout": "inline-flex items-center justify-center use-transition-standard",
+		"button-label-secondary": makeShortcuts(
+			"button-layout py-1 text-sm text-accent-200 bg-accent-secondary",
+			" transition-colors hover:(bg-accent-tertiary text-accent-100)",
+		),
+		"button-icon-label-300": makeShortcuts(
+			"button-layout h-10 gap-2 text-sm text-300",
+			"transition-colors hover:text-accent-300",
+		),
 	},
 });

@@ -1,10 +1,10 @@
 <script lang="ts">
 	import type { UserCardData } from "$lib/typings/client/component";
 
-	import UserCard from "$lib/components/UserCard.svelte";
+	import UserCard from "$lib/components/NavigationBar/UserCard.svelte";
 	import Button from "$lib/components/common/Button.svelte";
 
-	let showUserCard = false;
+	let showUserCard = true;
 
 	export let userCardData: UserCardData | null;
 </script>
@@ -19,6 +19,6 @@
 	</Button>
 
 	{#if showUserCard}
-		<UserCard data={userCardData} class="right-2 top-14" onDismiss={() => (showUserCard = false)} />
+		<UserCard user={userCardData} onDismiss={() => (showUserCard = false)} />
 	{/if}
 </div>
