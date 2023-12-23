@@ -14,8 +14,8 @@
 </script>
 
 <div class="item">
-	<span class="text-xs text-custom-400">{itemNo}</span>
-	<a class="text-custom-200" href={songRouteOptions.route}>
+	<span class="text-xs text-400">{itemNo}</span>
+	<a class="text-200" href={songRouteOptions.route}>
 		{getValidName(song.name, $preferredTitleLocale)}
 	</a>
 	<div class="flex flex-1 justify-end">
@@ -32,19 +32,17 @@
 	<span>{getFormattedLength(song.length)}</span>
 </div>
 
-<style lang="postcss">
+<style>
 	.item {
-		@apply relative flex items-center h-12
-        transition-colors duration-150
-        text-sm text-custom-300
-        border-b-2 border-custom-secondary px-2 gap-4;
+		--at-apply: relative flex items-center h-12 transition-colors duration-150 text-sm text-300
+			border-b-2 border-custom-secondary px-2 gap-4;
 	}
 
 	.item:hover {
-		@apply bg-custom-secondary;
+		--at-apply: bg-secondary;
 	}
 
 	.item:last-child {
-		@apply border-b-0;
+		--at-apply: border-b-0;
 	}
 </style>

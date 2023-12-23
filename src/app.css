@@ -1,0 +1,49 @@
+/* Inter normal [400], medium [500] */
+@import "@fontsource/inter/400.css";
+@import "@fontsource/inter/500.css";
+
+/* Noto Sans JP for Japanese support */
+/* @import "@fontsource/noto-sans-jp"; */
+
+:root {
+	--at-apply: text-100 font-sans;
+}
+
+html {
+	--at-apply: h-[100vh] max-h-[100vh];
+}
+
+body {
+	--at-apply: h-full max-h-[100vh] bg-background text-100;
+}
+
+::selection {
+	background-color: var(--accent-tertiary);
+	color: var(--accent-100);
+	--at-apply: bg-accent-tertiary text-accent-100;
+}
+
+::-webkit-scrollbar {
+	width: 0.75rem;
+	--at-apply: bg-secondary;
+}
+
+::-webkit-scrollbar-thumb {
+	--at-apply: bg-tertiary;
+}
+
+html.dark {
+	color-scheme: dark;
+}
+
+html.light {
+	color-scheme: light;
+}
+
+input,
+button,
+option {
+	appearance: none;
+	outline: none;
+	background-color: transparent;
+}

@@ -2,47 +2,38 @@
 	import {
 		type ExternalSite,
 		ExternalSiteType,
-		getExternalSiteName
+		getExternalSiteName,
 	} from "$lib/typings/server/general";
-
-	import YouTubeLogo from "$lib/assets/logos/youtube.svg?component";
-	import AppleMusicLogo from "$lib/assets/logos/apple_music.svg?component";
-	import SpotifyLogo from "$lib/assets/logos/spotify.svg?component";
-	import SoundCloudLogo from "$lib/assets/logos/soundcloud.svg?component";
-	import TwitterLogo from "$lib/assets/logos/twitter.svg?component";
-	import InstagramLogo from "$lib/assets/logos/instagram.svg?component";
 
 	export let sites: ExternalSite[];
 
-	const siteItemMap = {
-		[ExternalSiteType.YOU_TUBE]: YouTubeLogo,
-		[ExternalSiteType.APPLE_MUSIC]: AppleMusicLogo,
-		[ExternalSiteType.SPOTIFY]: SpotifyLogo,
-		[ExternalSiteType.SOUND_CLOUD]: SoundCloudLogo,
-		[ExternalSiteType.TWITTER]: TwitterLogo,
-		[ExternalSiteType.INSTAGRAM]: InstagramLogo
+	const siteItemMap: Record<ExternalSiteType, string> = {
+		[ExternalSiteType.YOU_TUBE]: "i-uil-extra-youtube",
+		[ExternalSiteType.APPLE_MUSIC]: "i-uil-extra-apple-music",
+		[ExternalSiteType.SPOTIFY]: "i-uil-extra-spotify",
+		[ExternalSiteType.SOUND_CLOUD]: "i-uil-extra-soundcloud",
+		[ExternalSiteType.TWITTER]: "i-uil-extra-twitter",
+		[ExternalSiteType.INSTAGRAM]: "i-uil-extra-instagram",
 	};
 </script>
 
-<div class="wrapper {$$props.class}">
-	<span class="font-head font-medium text-base pb-1">External Sites</span>
+<div class="wrapper{$$props.class}">
+	<span class="pb-1 text-base font-medium">External Sites</span>
 
 	{#each sites as site}
 		<a target="_blank" rel="noreferrer" href={site.url} data-sveltekit-preload-code="off">
-			<svelte:component this={siteItemMap[site.type]} class="h-5 w-5" />
+			<div class="$ h-5 w-5{siteItemMap[site.type]}" />
 			<span>{getExternalSiteName(site.type)}</span>
 		</a>
 	{/each}
 </div>
 
-<style lang="postcss">
+<style>
 	.wrapper {
-		@apply flex flex-col w-fit;
+		--at-apply: flex flex-col w-fit;
 	}
 
 	.wrapper a {
-		@apply flex items-center gap-2
-        py-2 w-fit
-		text-sm text-custom-200;
+		--at-apply: flex items-center gap-2 py-2 w-fit text-sm text-200;
 	}
 </style>

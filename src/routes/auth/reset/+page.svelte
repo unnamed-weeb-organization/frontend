@@ -34,14 +34,14 @@
 		errorHint={missing.includes("email") ? "Required" : undefined}
 	/>
 
-	<div class="flex justify-between items-center">
+	<div class="flex items-center justify-between">
 		<a class="linked" href={loginOptions.route}>Back to login</a>
 		<Button class="w-24" label="Reset" styleType="labelButton" />
 	</div>
 </form>
 
-<style lang="postcss">
+<style>
 	.linked {
-		@apply font-head text-sm text-custom-300;
+		--at-apply: font-head text-sm text-300;
 	}
 </style>

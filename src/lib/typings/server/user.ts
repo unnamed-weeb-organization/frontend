@@ -3,7 +3,7 @@ export enum Role {
 	User = "User",
 	Contributor = "Contributor",
 	Moderator = "Moderator",
-	Admin = "Admin"
+	Admin = "Admin",
 }
 
 export const isRoleHigherThan = (expectedHigher: Role, expectedLower: Role): boolean => {

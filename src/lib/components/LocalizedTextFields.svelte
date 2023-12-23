@@ -12,7 +12,7 @@
 		const nameRecord = {
 			english: locales.get(Locale.English)?.value,
 			native: locales.get(Locale.Native)?.value,
-			romanized: locales.get(Locale.Romanized)?.value
+			romanized: locales.get(Locale.Romanized)?.value,
 		};
 
 		const e = validateNameStruct(nameRecord);
@@ -30,7 +30,7 @@
 	}
 </script>
 
-<div class="flex flex-col gap-2 flex-1 {$$props.class}">
+<div class="flex flex-1 flex-col gap-2{$$props.class}">
 	{#if error}
 		<span transition:slide|local={{ duration: 150 }} class="error">
 			{error}
@@ -52,44 +52,42 @@
 	</div>
 </div>
 
-<style lang="postcss">
+<style>
 	label {
-		@apply h-10 min-h-[2.5rem] flex flex-1 items-center gap-2 
-        px-2 rounded bg-custom-secondary
-        font-head text-sm
-    	transition-colors duration-150 ease-in-out;
+		--at-apply: h-10 min-h-[2.5rem] flex flex-1 items-center gap-2 px-2 rounded bg-secondary text-sm
+			transition-colors duration-150 ease-in-out;
 	}
 
 	label:focus-within {
-		@apply bg-custom-tertiary outline-2 outline-accent-100;
+		--at-apply: bg-tertiary outline-2 outline-accent-100;
 	}
 
 	input {
-		@apply w-full text-custom-200 bg-transparent;
+		--at-apply: w-full text-200 bg-transparent;
 	}
 
 	h2 {
-		@apply text-sm text-custom-400 w-32;
+		--at-apply: text-sm text-400 w-32;
 	}
 
 	span.warn,
 	span.error {
-		@apply text-sm font-head;
+		--at-apply: text-sm;
 	}
 
 	span.error {
-		@apply text-red-600;
+		--at-apply: text-red-600;
 	}
 
 	span.warn {
-		@apply text-yellow-600;
+		--at-apply: text-yellow-600;
 	}
 
 	:global(.dark) span.error {
-		@apply text-red-500;
+		--at-apply: text-red-500;
 	}
 
 	:global(.dark) span.warn {
-		@apply text-yellow-500;
+		--at-apply: text-yellow-500;
 	}
 </style>

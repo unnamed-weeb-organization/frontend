@@ -1,6 +1,6 @@
 export enum Country {
 	JP = "JP",
-	KR = "KR"
+	KR = "KR",
 }
 
 export const getCountries = (): Country[] => {
@@ -32,7 +32,7 @@ export const getCountryFromName = (name: string): Country => {
 export enum Locale {
 	Native = "native",
 	Romanized = "romanized",
-	English = "english"
+	English = "english",
 }
 
 export const getLocales = (): Locale[] => {
@@ -54,11 +54,10 @@ export type Name = Partial<Record<Locale, string>>;
 
 // TODO: Non-null plus based on preference.
 export const getValidName = (name: Name, preferedLocale: Locale = Locale.Native): string => {
-	const nm =
-		name[preferedLocale] ||
-		name[Locale.English] ||
-		name[Locale.Romanized] ||
-		name[Locale.Native];
+	const nm = name[preferedLocale]
+		|| name[Locale.English]
+		|| name[Locale.Romanized]
+		|| name[Locale.Native];
 
 	if (!nm) throw new Error("No valid name found");
 	else return nm;
@@ -68,7 +67,7 @@ export enum CTXType {
 	RELEASE = "RELEASE",
 	ARTIST = "ARTIST",
 	ANIME = "ANIME",
-	SONG = "SONG"
+	SONG = "SONG",
 }
 
 export const getCTXTypes = (): CTXType[] => {
@@ -130,7 +129,7 @@ export enum ExternalSiteType {
 	SPOTIFY,
 	SOUND_CLOUD,
 	TWITTER,
-	INSTAGRAM
+	INSTAGRAM,
 }
 
 export interface ExternalSite {

@@ -15,14 +15,14 @@
 
 	const detailColumns = [
 		["Length", getFormattedLength(data.song.length)],
-		["Released on", getFormattedDate(data.song.released_on)]
+		["Released on", getFormattedDate(data.song.released_on)],
 	];
 
 	const releaseTileData: ArtTileListData[] = data.releases.map((release) => ({
 		id: release.id,
 		ctx: CTXType.RELEASE,
 		label: getValidName(release.name),
-		imageURL: ""
+		imageURL: "",
 	}));
 
 	const goToReleases = () => {
@@ -55,23 +55,22 @@
 	</div>
 
 	<div class="contents" slot="content_container">
-		<div class="h-fit w-full lg:max-w-3xl 2xl:max-w-4xl md:pr-8 pb-8 md:pb-0">
+		<div class="h-fit w-full pb-8 2xl:max-w-4xl lg:max-w-3xl md:pb-0 md:pr-8">
 			<ArtTileList heading="Releases" tiles={releaseTileData} onAllClick={goToReleases} />
 		</div>
 	</div>
 </EntryDetailsLayout>
 
-<style lang="postcss">
+<style>
 	.title_container {
-		@apply flex flex-col items-center md:items-start
-        font-head;
+		--at-apply: flex flex-col items-center md: items-start font-head;
 	}
 
 	.title_container h1 {
-		@apply text-4xl font-medium text-custom-100;
+		--at-apply: text-4xl font-medium text-100;
 	}
 
 	.title_container .artists {
-		@apply flex pt-1 text-sm text-custom-200;
+		--at-apply: flex pt-1 text-sm text-200;
 	}
 </style>

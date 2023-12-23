@@ -8,12 +8,12 @@
 	<span>{value}</span>
 </div>
 
-<style lang="postcss">
+<style>
 	.column_item {
-		@apply flex flex-col font-head text-sm text-custom-200;
+		--at-apply: flex flex-col font-head text-sm text-200;
 	}
 
 	.column_item > :first-child {
-		@apply text-custom-300;
+		--at-apply: text-300;
 	}
 </style>

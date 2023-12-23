@@ -6,18 +6,16 @@
 
 <textarea {name} {placeholder} {value} class={$$props.class} />
 
-<style lang="postcss">
+<style>
 	textarea {
-		@apply w-full h-20 p-2 rounded
-        transition-colors duration-150
-        font-head text-sm text-custom-200;
+		--at-apply: w-full h-20 p-2 rounded transition-colors duration-150 text-sm text-200;
 	}
 
 	textarea::placeholder {
-		@apply font-head text-sm text-custom-400;
+		--at-apply: text-sm text-400;
 	}
 
 	textarea:focus {
-		@apply bg-custom-tertiary;
+		--at-apply: bg-tertiary;
 	}
 </style>

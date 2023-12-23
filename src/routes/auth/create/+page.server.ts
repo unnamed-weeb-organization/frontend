@@ -1,18 +1,18 @@
-import { fail, redirect, error } from "@sveltejs/kit";
-import type { Actions, PageServerLoad } from "./$types";
-import { Route, RoutePoint } from "$lib/routes";
 import { UserLoginStore, UserRegisterStore } from "$houdini";
-import { getMissingFields, validateEmail, validatePassword, validateUsername } from "$lib/utils";
 import {
-	COOKIE_SESSION_OPTIONS,
 	COOKIE_PERSISTENT_OPTIONS,
+	COOKIE_SESSION_OPTIONS,
 	COOKIE_USER_REFRESH,
 	COOKIE_USER_SESSION,
+	HTTPCode,
 	INVALID_EMAIL,
 	INVALID_PASSWORD_LENGTH,
 	INVALID_USERNAME_SPECIAL_CHARS,
-	HTTPCode
 } from "$lib/constants";
+import { Route, RoutePoint } from "$lib/routes";
+import { getMissingFields, validateEmail, validatePassword, validateUsername } from "$lib/utils";
+import { error, fail, redirect } from "@sveltejs/kit";
+import type { Actions, PageServerLoad } from "./$types";
 
 export const actions: Actions = {
 	default: async ({ request, cookies }) => {
@@ -20,7 +20,7 @@ export const actions: Actions = {
 		const dataFields = {
 			email: data.get("email")?.toString(),
 			username: data.get("username")?.toString(),
-			password: data.get("password")?.toString()
+			password: data.get("password")?.toString(),
 		};
 
 		const missing = getMissingFields(dataFields);
@@ -53,20 +53,20 @@ export const actions: Actions = {
 			cookies.set(
 				COOKIE_USER_REFRESH,
 				log.login.refreshToken,
-				COOKIE_PERSISTENT_OPTIONS
+				COOKIE_PERSISTENT_OPTIONS,
 			);
 		} catch (e) {
 			throw error(
 				HTTPCode.InternalServerError,
-				Array.isArray(e) ? e[0]?.message : (e as Error)?.message ?? e?.toString()
+				Array.isArray(e) ? e[0]?.message : (e as Error)?.message ?? e?.toString(),
 			);
 		}
 
 		throw redirect(
 			HTTPCode.SeeOther,
-			data.get("from")?.toString() ?? Route[RoutePoint.Home].route
+			data.get("from")?.toString() ?? Route[RoutePoint.Home].route,
 		);
-	}
+	},
 };
 
 export const load = (async ({ locals }) => {
@@ -76,6 +76,6 @@ export const load = (async ({ locals }) => {
 
 	return {
 		title: "auth/create",
-		header: "Create an account"
+		header: "Create an account",
 	};
 }) satisfies PageServerLoad;

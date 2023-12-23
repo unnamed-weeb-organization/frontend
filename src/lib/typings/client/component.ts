@@ -1,8 +1,8 @@
 /*
  * Should only include types required by specific components.
  */
-import type { Role } from "$lib/typings/server/user";
 import type { CTXType } from "$lib/typings/server/general";
+import type { Role } from "$lib/typings/server/user";
 
 export interface UserCardData {
 	userId: string;

@@ -1,6 +1,6 @@
-import { redirect } from "@sveltejs/kit";
 import { HTTPCode } from "$lib/constants";
 import { Route, RoutePoint } from "$lib/routes";
+import { redirect } from "@sveltejs/kit";
 import type { Actions, PageServerLoad } from "./$types";
 
 export const actions: Actions = {
@@ -8,14 +8,14 @@ export const actions: Actions = {
 		const data = await request.formData();
 		throw redirect(
 			HTTPCode.SeeOther,
-			data.get("from")?.toString() ?? Route[RoutePoint.Home].route
+			data.get("from")?.toString() ?? Route[RoutePoint.Home].route,
 		);
-	}
+	},
 };
 
 export const load = (async () => {
 	return {
 		title: "auth/reset",
-		header: "Reset your password"
+		header: "Reset your password",
 	};
 }) satisfies PageServerLoad;

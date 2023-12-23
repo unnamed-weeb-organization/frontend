@@ -1,7 +1,7 @@
+import { HTTPCode, NOT_VERIFIED_RESOURCE_EDIT } from "$lib/constants";
+import { isRoleHigherThan, Role } from "$lib/typings/server/user";
 import { error } from "@sveltejs/kit";
 import type { LayoutServerLoad } from "./$types";
-import { isRoleHigherThan, Role } from "$lib/typings/server/user";
-import { HTTPCode, NOT_VERIFIED_RESOURCE_EDIT } from "$lib/constants";
 
 export const load = (async ({ locals }) => {
 	if (!locals.user) {

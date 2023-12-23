@@ -3,7 +3,7 @@ import type { Country, Name } from "$lib/typings/server/general";
 export enum ArtistType {
 	SOLO = "SOLO",
 	GROUP = "GROUP",
-	CHARACTER = "CHARACTER"
+	CHARACTER = "CHARACTER",
 }
 
 export const getArtistTypes = (): ArtistType[] => {

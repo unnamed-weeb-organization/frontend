@@ -1,11 +1,11 @@
+import { HTTPCode, INVALID_ARTIST_TYPE, INVALID_COUNTRY } from "$lib/constants";
+import { RoutePoint, withParameter } from "$lib/routes";
+import { Level } from "$lib/typings/client/general";
+import { ArtistType, getArtistTypeFromName, type NewArtist } from "$lib/typings/server/artist";
+import { Country, CTXType, getCountryFromName, type Name } from "$lib/typings/server/general";
+import { getDateFromFormatted, validateNameStruct } from "$lib/utils";
 import { error, redirect } from "@sveltejs/kit";
 import type { Actions } from "./$types";
-import { RoutePoint, withParameter } from "$lib/routes";
-import { getDateFromFormatted, validateNameStruct } from "$lib/utils";
-import { HTTPCode, INVALID_ARTIST_TYPE, INVALID_COUNTRY } from "$lib/constants";
-import { Country, CTXType, getCountryFromName, type Name } from "$lib/typings/server/general";
-import { ArtistType, getArtistTypeFromName, type NewArtist } from "$lib/typings/server/artist";
-import { Level } from "$lib/typings/client/general";
 
 export const actions: Actions = {
 	default: async ({ request }) => {
@@ -15,7 +15,7 @@ export const actions: Actions = {
 		const name: Name = {
 			english: data.get("name.english") as string,
 			romanized: data.get("name.romanized") as string,
-			native: data.get("name.native") as string
+			native: data.get("name.native") as string,
 		};
 
 		const name_error = validateNameStruct(name);
@@ -38,7 +38,7 @@ export const actions: Actions = {
 			const name: Name = {
 				english: english?.length === 0 ? undefined : english,
 				romanized: romanized?.length === 0 ? undefined : romanized,
-				native: native?.length === 0 ? undefined : native
+				native: native?.length === 0 ? undefined : native,
 			};
 
 			const name_error = validateNameStruct(name);
@@ -79,14 +79,14 @@ export const actions: Actions = {
 			founded_on,
 			description,
 			type: artistType,
-			alt_names: [...altNameMap.values()]
+			alt_names: [...altNameMap.values()],
 		};
 
 		console.log("Artist", newArtist);
 
 		throw redirect(
 			HTTPCode.SeeOther,
-			withParameter(RoutePoint.LandingApproval, { ctx: CTXType.ARTIST, id: "1" }).route
+			withParameter(RoutePoint.LandingApproval, { ctx: CTXType.ARTIST, id: "1" }).route,
 		);
-	}
+	},
 };

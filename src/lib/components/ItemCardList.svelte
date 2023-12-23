@@ -11,8 +11,8 @@
 </script>
 
 <div class="flex flex-col">
-	<div class="flex flex-wrap mb-2">
-		<span class="font-head font-medium select-none mr-2">{label}</span>
+	<div class="mb-2 flex flex-wrap">
+		<span class="mr-2 select-none font-medium">{label}</span>
 		<CTXTypeChipset singular={true} selected={[selected]} />
 	</div>
 	<div class="grid grid-flow-col justify-start gap-2 overflow-x-auto">

@@ -9,15 +9,13 @@
 	{getCTXTypeName(ctxType)}
 </option>
 
-<style lang="postcss">
+<style>
 	.chip {
-		@apply flex items-center w-fit h-fit px-1 rounded
-        font-head text-xs text-custom-400 select-none
-        border border-custom-400
-		transition-colors duration-150;
+		--at-apply: flex items-center w-fit h-fit px-1 rounded font-head text-xs text-400 select-none
+			border border-custom-400 transition-colors duration-150;
 	}
 
 	.chip.selected {
-		@apply bg-accent-tertiary text-accent-100 border-accent-400;
+		--at-apply: bg-accent-tertiary text-accent-100 border-accent-400;
 	}
 </style>

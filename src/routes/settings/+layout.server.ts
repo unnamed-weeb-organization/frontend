@@ -2,6 +2,6 @@ import type { LayoutServerLoad } from "./$types";
 
 export const load = (async () => {
 	return {
-		title: "Settings"
+		title: "Settings",
 	};
 }) satisfies LayoutServerLoad;

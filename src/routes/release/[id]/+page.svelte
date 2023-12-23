@@ -17,7 +17,7 @@
 		["Type", data.release.release_type],
 		["Language", "Japanese"],
 		["Tracks", "9"],
-		["Length", "47 Minutes, 52 Seconds"]
+		["Length", "47 Minutes, 52 Seconds"],
 	];
 </script>
 
@@ -46,22 +46,22 @@
 		<SongList
 			songs={data.songs}
 			artists={data.artists}
-			class="h-fit lg:max-w-3xl 2xl:max-w-4xl md:pr-8"
+			class="h-fit 2xl:max-w-4xl lg:max-w-3xl md:pr-8"
 		/>
 	</div>
 </EntryDetailsLayout>
 
-<style lang="postcss">
+<style>
 	.title_container {
-		@apply flex flex-col items-center md:items-start
-        font-head;
+		/* prettier-ignore */
+		--at-apply: flex flex-col items-center md:items-start font-head;
 	}
 
 	.title_container h1 {
-		@apply text-4xl font-medium text-custom-100;
+		--at-apply: text-4xl font-medium text-100;
 	}
 
 	.title_container a {
-		@apply text-sm text-custom-200;
+		--at-apply: text-sm text-200;
 	}
 </style>

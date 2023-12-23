@@ -1,12 +1,12 @@
-import { error, type Handle } from "@sveltejs/kit";
 import { setSession, UserRefreshStore } from "$houdini";
-import { decodeSessionJWT } from "$lib/utils";
 import {
 	COOKIE_SESSION_OPTIONS,
 	COOKIE_USER_REFRESH,
 	COOKIE_USER_SESSION,
-	HTTPCode
+	HTTPCode,
 } from "$lib/constants";
+import { decodeSessionJWT } from "$lib/utils";
+import { error, type Handle } from "@sveltejs/kit";
 
 /**
  * Refreshes a user's session token.
@@ -17,9 +17,9 @@ const refreshToken = async (refreshToken: string): Promise<string> => {
 	try {
 		const tokenStore = new UserRefreshStore();
 		const ref = await tokenStore.mutate({ refreshToken });
-		if (!ref) throw Error("No refresh token found");
+		if (!ref.data) throw Error("No refresh token found");
 
-		return ref.refreshToken.token;
+		return ref.data.refreshToken.token;
 	} catch (e) {
 		throw error(HTTPCode.InternalServerError, (e as Error).toString());
 	}
@@ -45,7 +45,7 @@ export const handle: Handle = async ({ event, resolve }) => {
 		setSession(event, { token: session });
 		event.locals.user = {
 			ulid: jwtData.ulid,
-			access_level: jwtData.access_level
+			access_level: jwtData.access_level,
 		};
 	}
 

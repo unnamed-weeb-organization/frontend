@@ -9,18 +9,16 @@
 
 <input {name} {type} {placeholder} {value} class={$$props.class} />
 
-<style lang="postcss">
+<style>
 	input {
-		@apply w-full h-10 px-2 rounded
-        transition-colors duration-150
-        font-head text-sm text-custom-200;
+		--at-apply: w-full h-10 px-2 rounded transition-colors duration-150 text-sm text-200;
 	}
 
 	input::placeholder {
-		@apply font-head text-sm text-custom-400;
+		--at-apply: text-sm text-400;
 	}
 
 	input:focus {
-		@apply bg-custom-tertiary;
+		--at-apply: bg-tertiary;
 	}
 </style>

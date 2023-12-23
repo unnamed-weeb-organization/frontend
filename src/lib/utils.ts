@@ -49,9 +49,9 @@ export const validateUsername = (username: string) => {
 
 export const concatPageTitle = (t: string | (string | Name)[], locale: Locale): string | null => {
 	if (typeof t === "string") return t;
-	else if (Array.isArray(t))
+	else if (Array.isArray(t)) {
 		return t.map((mo) => (typeof mo === "string" ? mo : getValidName(mo, locale))).join(" ");
-	else return null;
+	} else return null;
 };
 
 export const getRandomizedTempId = () =>
@@ -68,28 +68,28 @@ export const validateNameStruct = (name: Name): { message: string; level: Level 
 	if (native && !romanized) {
 		return {
 			level: Level.Error,
-			message: "Romanized field should not be empty if native is present."
+			message: "Romanized field should not be empty if native is present.",
 		};
 	}
 
 	if (romanized && !native) {
 		return {
 			level: Level.Error,
-			message: "Native field should not be empty if romanized is present."
+			message: "Native field should not be empty if romanized is present.",
 		};
 	}
 
 	if (english && (romanized || native)) {
 		return {
 			level: Level.Warn,
-			message: "Only officially accepted translations should be used."
+			message: "Only officially accepted translations should be used.",
 		};
 	}
 
 	if (!english && !romanized && !native) {
 		return {
 			level: Level.Error,
-			message: "Must contain either English, or Native and Romanized."
+			message: "Must contain either English, or Native and Romanized.",
 		};
 	}
 

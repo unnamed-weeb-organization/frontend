@@ -1,15 +1,15 @@
-import { error, fail, redirect } from "@sveltejs/kit";
-import type { Actions, PageServerLoad } from "./$types";
-import { getMissingFields } from "$lib/utils";
-import { Route, RoutePoint } from "$lib/routes";
 import { UserLoginStore } from "$houdini";
 import {
-	COOKIE_SESSION_OPTIONS,
 	COOKIE_PERSISTENT_OPTIONS,
+	COOKIE_SESSION_OPTIONS,
 	COOKIE_USER_REFRESH,
 	COOKIE_USER_SESSION,
-	HTTPCode
+	HTTPCode,
 } from "$lib/constants";
+import { Route, RoutePoint } from "$lib/routes";
+import { getMissingFields } from "$lib/utils";
+import { error, fail, redirect } from "@sveltejs/kit";
+import type { Actions, PageServerLoad } from "./$types";
 
 export const actions: Actions = {
 	default: async ({ request, cookies }) => {
@@ -17,7 +17,7 @@ export const actions: Actions = {
 		const dataFields = {
 			username: data.get("username")?.toString(),
 			email: data.get("email")?.toString(),
-			password: data.get("password")?.toString()
+			password: data.get("password")?.toString(),
 		};
 
 		const missing = getMissingFields(dataFields);
@@ -37,27 +37,27 @@ export const actions: Actions = {
 		} catch (e) {
 			throw error(
 				HTTPCode.InternalServerError,
-				Array.isArray(e) ? e[0]?.message : (e as Error)?.message ?? e?.toString()
+				Array.isArray(e) ? e[0]?.message : (e as Error)?.message ?? e?.toString(),
 			);
 		}
 
 		throw redirect(
 			HTTPCode.SeeOther,
-			data.get("from")?.toString() ?? Route[RoutePoint.Home].route
+			data.get("from")?.toString() ?? Route[RoutePoint.Home].route,
 		);
-	}
+	},
 };
 
 export const load = (async ({ cookies, url }) => {
 	if (cookies.get(COOKIE_USER_SESSION) != null) {
 		throw redirect(
 			HTTPCode.NotModified,
-			url.searchParams.get("from") ?? Route[RoutePoint.Home].route
+			url.searchParams.get("from") ?? Route[RoutePoint.Home].route,
 		);
 	}
 
 	return {
 		title: "auth/login",
-		header: "Login"
+		header: "Login",
 	};
 }) satisfies PageServerLoad;

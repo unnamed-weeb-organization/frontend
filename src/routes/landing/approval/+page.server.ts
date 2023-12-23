@@ -1,9 +1,9 @@
+import { HTTPCode, NOT_VERIFIED_RESOURCE_EDIT } from "$lib/constants";
+import { CTXRouteViewLocation, withParameter } from "$lib/routes";
+import type { CTXType } from "$lib/typings/server/general";
+import { isRoleHigherThan, Role } from "$lib/typings/server/user";
 import { error, redirect } from "@sveltejs/kit";
 import type { PageServerLoad } from "./$types";
-import type { CTXType } from "$lib/typings/server/general";
-import { CTXRouteViewLocation, withParameter } from "$lib/routes";
-import { isRoleHigherThan, Role } from "$lib/typings/server/user";
-import { HTTPCode, NOT_VERIFIED_RESOURCE_EDIT } from "$lib/constants";
 
 export const load = (async ({ url, locals }) => {
 	if (!locals.user) {

@@ -1,6 +1,6 @@
-import type { PageLoad } from "./$types";
+import { artist, externalSites, release, song } from "$lib/placeholders";
 import type { Artist } from "$lib/typings/server/artist";
-import { release, artist, song, externalSites } from "$lib/placeholders";
+import type { PageLoad } from "./$types";
 
 // TODO: Replace placeholder data with graphql requests.
 export const load = (async () => {
@@ -11,7 +11,7 @@ export const load = (async () => {
 		externalSites,
 		songs: new Array(9).fill(song),
 		artists: new Map<string, Artist[]>(
-			new Array(9).fill(song).map((song) => [song.id, [artist, artist]])
-		)
+			new Array(9).fill(song).map((song) => [song.id, [artist, artist]]),
+		),
 	};
 }) satisfies PageLoad;

@@ -2,8 +2,6 @@
 	import { slide } from "svelte/transition";
 	import Button from "$lib/components/common/Button.svelte";
 
-	import SearchIcon from "$lib/assets/icons/magnifier.svg?component";
-	import CloseIcon from "$lib/assets/icons/close.svg?component";
 	import DismissBackground from "$lib/components/common/DismissBackground.svelte";
 
 	export let value: string;
@@ -19,82 +17,78 @@
 	};
 </script>
 
-<div class="desktop_search {styleType}" class:mobileSupport={differentiateMobile}>
-	<Button styleType="none" class="w-5 h-5 fill-custom-400">
-		<SearchIcon class="h-5 w-5" />
-	</Button>
-	<input bind:value={value} {placeholder} />
+<div class="relative h-8 max-w-xs flex items-center">
+	<div class="i-uil-search absolute inset-y-auto left-2 h-5 w-5 text-300" />
+	<input
+		bind:value
+		{placeholder}
+		class="h-8 inline-flex rounded bg-secondary pb-[1px] pl-10 placeholder:(text-sm text-300) focus:(ring-1 ring-accent-300)"
+	/>
 </div>
 
-{#if differentiateMobile}
-	<div class="flex md:hidden items-center justify-center">
+<!-- {#if differentiateMobile}
+	<div class="flex items-center justify-center md:hidden">
 		<Button
-			class="w-8 h-8"
+			class="h-8 w-8"
 			styleType="iconButton"
 			aria-label="Search"
 			on:click={onMobileSearchButtonClick}
 		>
-			<SearchIcon class="h-6 w-6" />
+			<div class="i-uil-search h-6 w-6" />
 		</Button>
 	</div>
 {/if}
 
 {#if showMobileSearch && differentiateMobile}
 	<div transition:slide={{ duration: 150 }} class="mobile_search">
-		<div class="flex h-16 items-center px-4 gap-2 z-10">
-			<input bind:value={value} placeholder="Search" class="flex-1" />
-			<Button
-				class="w-8 h-8"
-				styleType="iconButton"
-				on:click={() => (showMobileSearch = false)}
-			>
-				<CloseIcon class="h-6 w-6" />
+		<div class="z-10 h-16 flex items-center gap-2 px-4">
+			<input bind:value placeholder="Search" class="flex-1" />
+			<Button class="h-8 w-8" styleType="iconButton" on:click={() => (showMobileSearch = false)}>
+				<div class="i-uil-x h-6 w-6" />
 			</Button>
 		</div>
 
 		<DismissBackground styleType="dimmed" onDismiss={() => (showMobileSearch = false)} />
 	</div>
-{/if}
+{/if} -->
 
-<style lang="postcss">
+<!-- <style>
 	.desktop_search {
-		@apply flex items-center w-64
-         rounded-md px-2 gap-2
-        transition-colors duration-150 ease-in;
+		--at-apply: flex items-center w-64 rounded-md px-2 gap-2 transition-colors duration-150 ease-in;
 	}
 
 	.desktop_search.mobileSupport {
-		@apply hidden md:flex;
+		/* prettier-ignore */
+		--at-apply: hidden md:flex;
 	}
 
 	.desktop_search.default {
-		@apply bg-custom-secondary;
+		--at-apply: bg-secondary;
 	}
 
 	.desktop_search.bordered {
-		@apply border border-custom-tertiary;
+		--at-apply: border border-tertiary;
 	}
 
 	.desktop_search.default:active {
-		@apply bg-custom-tertiary;
+		--at-apply: bg-tertiary;
 	}
 
 	.desktop_search.bordered:active {
-		@apply bg-custom-secondary border-transparent;
+		--at-apply: bg-secondary border-transparent;
 	}
 
 	.mobile_search {
-		@apply absolute top-0 left-0 w-full h-full bg-custom-background flex flex-col z-10;
+		--at-apply: absolute top-0 left-0 w-full h-full bg-background flex flex-col z-10;
 	}
 
 	input {
 		background: none;
 		border-radius: inherit;
-		@apply h-8 flex-grow
-        text-custom-200 font-head text-sm;
+		--at-apply: h-8 flex-grow text-200 text-sm;
 	}
 
 	input::placeholder {
-		@apply text-custom-400;
+		--at-apply: text-400;
 	}
-</style>
+</style> -->

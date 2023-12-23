@@ -8,7 +8,7 @@
 		iconButton: "iconButton",
 		labelButton: "padded labelButton",
 		bordered: "default padded bordered",
-		none: ""
+		none: "",
 	};
 </script>
 
@@ -19,38 +19,41 @@
 	{/if}
 </button>
 
-<style lang="postcss">
+<style>
 	button {
-		@apply flex justify-center items-center
-		rounded transition-colors ease-in duration-150 gap-2
-		font-head text-sm;
+		--at-apply: flex justify-center items-center rounded transition-colors ease-in duration-150
+			gap-2 text-sm;
 	}
 
 	button:disabled {
-		@apply cursor-not-allowed opacity-50;
+		--at-apply: cursor-not-allowed opacity-50;
 	}
 
 	button.padded {
-		@apply px-4 py-1;
+		--at-apply: px-4 py-1;
 	}
 
 	button.default {
-		@apply text-custom-300 fill-current;
+		--at-apply: text-300 fill-current;
 	}
 
 	button.hoverable {
-		@apply hover:text-accent-300;
+		/* prettier-ignore */
+		--at-apply: hover:text-accent-300;
 	}
 
 	button.iconButton {
-		@apply fill-custom-400 active:bg-custom-secondary;
+		/* prettier-ignore */
+		--at-apply: fill-400 active:bg-secondary;
 	}
 
 	button.labelButton {
-		@apply text-accent-300 bg-accent-secondary hover:bg-accent-tertiary;
+		/* prettier-ignore */
+		--at-apply: text-accent-300 bg-accent-secondary hover:bg-accent-tertiary;
 	}
 
 	button.bordered {
-		@apply border-2 border-custom-tertiary hover:border-accent-tertiary hover:text-accent-300;
+		/* prettier-ignore */
+		--at-apply: border-2 border-tertiary hover:border-accent-tertiary hover:text-accent-300;
 	}
 </style>

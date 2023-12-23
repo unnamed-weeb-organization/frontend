@@ -1,4 +1,4 @@
 export enum Level {
-    Warn,
-    Error
+	Warn,
+	Error,
 }

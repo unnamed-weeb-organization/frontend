@@ -1,12 +1,25 @@
 {
-	"cSpell.words": [
-		"hoverable",
-		"weeb"
+	"editor.rulers": [100],
+	"editor.defaultFormatter": "dprint.dprint",
+
+	"licenser.author": "unnamed-weeb-organization",
+	"licenser.license": "GPLv3",
+
+	"eslint.validate": [
+		"javascript",
+		"typescript",
+		"svelte"
 	],
-	"eslint.validate": ["javascript", "typescript", "svelte"],
-	"editor.codeActionsOnSave": {
-		"source.fixAll": true,
-		"source.organizeImports": false,
+
+	"files.exclude": {
+		".svelte-kit": true,
+		"$houdini": true,
+		"node_modules": true
 	},
-	"editor.formatOnSave": true,
+	"cSpell.words": [
+		"fontsource",
+		"Iconify",
+		"SOUNDCLOUD",
+		"unocss"
+	]
 }

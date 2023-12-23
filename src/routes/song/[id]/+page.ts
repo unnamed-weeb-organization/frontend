@@ -9,6 +9,6 @@ export const load = (async () => {
 		song,
 		externalSites,
 		artists: new Array(2).fill(artist) as Artist[],
-		releases: new Array(4).fill(release) as Release[]
+		releases: new Array(4).fill(release) as Release[],
 	};
 }) satisfies PageLoad;

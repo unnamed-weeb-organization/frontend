@@ -9,12 +9,6 @@
 	import RoleChip from "$lib/components/common/RoleChip.svelte";
 	import Button from "$lib/components/common/Button.svelte";
 
-	import SettingsIcon from "$lib/assets/icons/settings.svg?component";
-	import BrightnessHighIcon from "$lib/assets/icons/brightness-high.svg?component";
-	import BrightnessLowIcon from "$lib/assets/icons/brightness-low.svg?component";
-	import LogoutIcon from "$lib/assets/icons/logout.svg?component";
-	import EditIcon from "$lib/assets/icons/edit.svg?component";
-
 	export let onDismiss: () => void;
 	export let data: UserCardData | null;
 
@@ -41,23 +35,17 @@
 	};
 </script>
 
-<div transition:slide={{ duration: 150 }} class="wrapper {$$props.class}">
-	<div class="flex items-center border-b border-b-custom-tertiary px-4 py-4">
+<div transition:slide={{ duration: 150 }} class="wrapper{$$props.class}">
+	<div class="flex items-center border-b border-b-tertiary px-4 py-4">
 		{#if data != null}
-			<div class="flex flex-col flex-grow justify-between gap-1">
-				<a
-					href={withParameter(RoutePoint.Me).route}
-					class="font-head text-custom-100 select-none">{data.username}</a
+			<div class="flex flex-grow flex-col justify-between gap-1">
+				<a href={withParameter(RoutePoint.Me).route} class="select-none text-100">{data.username}</a
 				>
 				<RoleChip role={data.role} />
 			</div>
 
-			<Button
-				styleType="none"
-				class="h-8 w-8 fill-custom-300 hover:fill-red-500"
-				on:click={logout}
-			>
-				<LogoutIcon class="h-5 w-5" />
+			<Button styleType="none" class="h-8 w-8 fill-300 hover:fill-red-500" on:click={logout}>
+				<div class="i-uil-signout h-5 w-5" />
 			</Button>
 		{:else}
 			<Button class="flex-1" styleType="labelButton" label="Sign In" on:click={login} />
@@ -66,15 +54,15 @@
 
 	<div class="grid grid-cols-2">
 		<Button
-			class="h-10 col-start-1 col-end-3"
+			class="col-start-1 col-end-3 h-10"
 			label="Change Theme Mode"
 			styleType="hoverable"
 			on:click={toggleThemeMode}
 		>
 			{#if isItDark}
-				<BrightnessHighIcon class="h-5 w-5" />
+				<div class="i-uil-brightness h-5 w-5" />
 			{:else}
-				<BrightnessLowIcon class="h-5 w-5" />
+				<div class="i-uil-brightness-empty h-5 w-5" />
 			{/if}
 		</Button>
 
@@ -84,7 +72,7 @@
 			styleType="hoverable"
 			on:click={withCloseHook(RoutePoint.SettingsAccount)}
 		>
-			<EditIcon class="h-5 w-5" />
+			<div class="i-uil-edit h-5 w-5" />
 		</Button>
 		<Button
 			class="h-10"
@@ -92,18 +80,17 @@
 			styleType="hoverable"
 			on:click={withCloseHook(RoutePoint.Settings)}
 		>
-			<SettingsIcon class="h-5 w-5" />
+			<div class="i-uil-cog h-5 w-5" />
 		</Button>
 	</div>
 </div>
 
 <DismissBackground {onDismiss} />
 
-<style lang="postcss">
+<style>
 	.wrapper {
-		@apply absolute z-10 flex flex-col
-        min-w-[16rem] md:min-w-[20rem]
-        bg-custom-background rounded-md shadow-md
-		border border-custom-tertiary;
+		/* prettier-ignore */
+		--at-apply: absolute z-10 flex flex-col min-w-[16rem]  rounded-md shadow-md
+		border border-tertiary bg-background md:min-w-[20rem];
 	}
 </style>

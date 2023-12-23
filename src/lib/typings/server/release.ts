@@ -3,7 +3,7 @@ import type { Name } from "$lib/typings/server/general";
 export enum ReleaseType {
 	Album = "Album",
 	EP = "EP",
-	Single = "Single"
+	Single = "Single",
 }
 
 export interface Release {

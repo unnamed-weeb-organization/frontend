@@ -22,7 +22,7 @@
 				missing = result.data.missing;
 				return;
 			}
-			
+
 			applyAction(result);
 			authFromSubmitting.set(false);
 		};
@@ -54,7 +54,7 @@
 		errorHint={missing.includes("password") ? "Required" : undefined}
 	/>
 
-	<div class="flex justify-between items-center">
+	<div class="flex items-center justify-between">
 		<label class="inline">
 			<input type="checkbox" name="remember" />
 			<span>Remember me</span>
@@ -62,22 +62,22 @@
 		<a class="linked" href={forgetPasswordOptions.route}>Forget password</a>
 	</div>
 
-	<div class="flex justify-between items-center mt-4">
+	<div class="mt-4 flex items-center justify-between">
 		<a class="linked" href={createAccountOptions.route}>Don't have an account?</a>
 		<Button class="w-24" label="Continue" styleType="labelButton" />
 	</div>
 </form>
 
-<style lang="postcss">
+<style>
 	label.inline {
-		@apply flex flex-row w-fit items-center gap-2;
+		--at-apply: flex flex-row w-fit items-center gap-2;
 	}
 
 	label.inline span {
-		@apply font-head font-normal text-sm text-custom-300;
+		--at-apply: font-head font-normal text-sm text-300;
 	}
 
 	.linked {
-		@apply font-head text-sm text-custom-300;
+		--at-apply: font-head text-sm text-300;
 	}
 </style>

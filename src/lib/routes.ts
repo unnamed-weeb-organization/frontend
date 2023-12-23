@@ -49,7 +49,7 @@ export enum RoutePoint {
 	AuthLogout,
 	AuthReset,
 	AuthCreate,
-	LandingApproval
+	LandingApproval,
 }
 
 /**
@@ -59,14 +59,14 @@ export const CTXRouteViewLocation: Record<CTXType, RoutePoint> = {
 	[CTXType.ARTIST]: RoutePoint.Artist,
 	[CTXType.RELEASE]: RoutePoint.Release,
 	[CTXType.ANIME]: RoutePoint.Anime,
-	[CTXType.SONG]: RoutePoint.Song
+	[CTXType.SONG]: RoutePoint.Song,
 };
 
 export const CTXRouteEditLocation: Record<CTXType, RoutePoint> = {
 	[CTXType.ARTIST]: RoutePoint.ArtistEdit,
 	[CTXType.RELEASE]: RoutePoint.ReleaseEdit,
 	[CTXType.ANIME]: RoutePoint.AnimeEdit,
-	[CTXType.SONG]: RoutePoint.SongEdit
+	[CTXType.SONG]: RoutePoint.SongEdit,
 };
 
 /**
@@ -108,7 +108,7 @@ export const Route: Record<RoutePoint, RouteOptions> = {
 	[RoutePoint.AuthReset]: { route: "/auth/reset" },
 	[RoutePoint.AuthCreate]: { route: "/auth/create" },
 
-	[RoutePoint.LandingApproval]: { route: "/landing/approval", authenticated: true }
+	[RoutePoint.LandingApproval]: { route: "/landing/approval", authenticated: true },
 };
 
 export const getMatchedRoute = (pathname: string): RouteOptions => {
@@ -147,7 +147,7 @@ export type RouteParameters = {
  */
 export function withParameter<T extends RoutePoint>(
 	routePoint: T,
-	params?: RouteParameters[T]
+	params?: RouteParameters[T],
 ): RouteOptions {
 	// How the heck do I clone this object?
 	const option: RouteOptions = Object.create(Route[routePoint]);
@@ -181,7 +181,7 @@ export function withParameter<T extends RoutePoint>(
 export const goto = async <T extends RoutePoint>(
 	routePoint: T,
 	params?: RouteParameters[T],
-	options?: Parameters<typeof sGoto>[1]
+	options?: Parameters<typeof sGoto>[1],
 ) => {
 	await sGoto(withParameter(routePoint, params).route, options);
 };

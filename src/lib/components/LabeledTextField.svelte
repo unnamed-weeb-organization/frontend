@@ -21,20 +21,20 @@
 	<TextField type={inputType} name={id} {placeholder} />
 </label>
 
-<style lang="postcss">
+<style>
 	label {
-		@apply flex flex-col gap-1 w-full;
+		--at-apply: flex flex-col gap-1 w-full;
 	}
 
 	.label_container {
-		@apply flex flex-row gap-2 font-head;
+		--at-apply: flex flex-row gap-2;
 	}
 
 	.label_container span {
-		@apply text-red-500 font-normal text-xs;
+		--at-apply: text-red-500 font-normal text-xs;
 	}
 
 	h2 {
-		@apply font-head text-sm text-custom-200;
+		--at-apply: text-sm text-200;
 	}
 </style>

@@ -18,14 +18,14 @@
 	const detailColumns: Array<[string, string | number | null]> = [
 		["Type", getArtistTypeName(data.artist.type)],
 		["Location", data.artist.based_on ? getCountryName(data.artist.based_on) : null],
-		["Founded on", data.artist.founded_on ? getFormattedDate(data.artist.founded_on) : null]
+		["Founded on", data.artist.founded_on ? getFormattedDate(data.artist.founded_on) : null],
 	];
 
 	const releaseTileData: ArtTileListData[] = data.releases.map((release) => ({
 		id: release.id,
 		ctx: CTXType.RELEASE,
 		label: getValidName(release.name, $preferredTitleLocale),
-		imageURL: ""
+		imageURL: "",
 	}));
 
 	const goToReleaseList = () => {
@@ -58,24 +58,23 @@
 	</div>
 
 	<div class="contents" slot="content_container">
-		<div class="h-fit w-full lg:max-w-3xl 2xl:max-w-4xl md:pr-8 pb-8 md:pb-0">
+		<div class="h-fit w-full pb-8 2xl:max-w-4xl lg:max-w-3xl md:pb-0 md:pr-8">
 			<ArtTileList heading="Releases" tiles={releaseTileData} onAllClick={goToReleaseList} />
 		</div>
 	</div>
 </EntryDetailsLayout>
 
-<style lang="postcss">
+<style>
 	.title_container {
-		@apply flex flex-col items-center md:items-start
-        font-head;
+		/* prettier-ignore */
+		--at-apply: flex flex-col items-center md:items-start font-head;
 	}
 
 	.title_container h1 {
-		@apply text-4xl font-medium text-custom-100;
+		--at-apply: text-4xl font-medium text-100;
 	}
 
 	.alt_name_container {
-		@apply flex items-center h-6
-        text-sm text-custom-300;
+		--at-apply: flex items-center h-6 text-sm text-300;
 	}
 </style>

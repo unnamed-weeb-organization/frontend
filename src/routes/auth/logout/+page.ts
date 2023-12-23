@@ -1,8 +1,8 @@
-import { redirect } from "@sveltejs/kit";
 import { browser } from "$app/environment";
-import type { PageLoad } from "./$types";
-import { Route, RoutePoint } from "$lib/routes";
 import { HTTPCode, LOCAL_USER } from "$lib/constants";
+import { Route, RoutePoint } from "$lib/routes";
+import { redirect } from "@sveltejs/kit";
+import type { PageLoad } from "./$types";
 
 export const load = (async ({ url }) => {
 	if (browser) {

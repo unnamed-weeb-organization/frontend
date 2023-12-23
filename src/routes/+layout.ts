@@ -1,16 +1,16 @@
-import { error } from "@sveltejs/kit";
-import { UserDataStore } from "$houdini";
 import { browser } from "$app/environment";
-import type { LayoutLoad } from "./$types";
+import { UserDataStore } from "$houdini";
 import { HTTPCode, LOCAL_USER, UNEXPECTED_ERROR } from "$lib/constants";
 import type { UserCardData } from "$lib/typings/client/component";
 import type { LocalStorageUser } from "$lib/typings/client/locals";
+import { error } from "@sveltejs/kit";
+import type { LayoutLoad } from "./$types";
 
 export const load = (async (event) => {
 	if (!browser) return { user: null };
 
 	const {
-		data: { localsUser }
+		data: { localsUser },
 	} = event;
 
 	let userCardData: UserCardData | null = null;
@@ -26,7 +26,7 @@ export const load = (async (event) => {
 			userCardData = {
 				role: localsUser.access_level,
 				userId: localsUser.ulid,
-				username: localStorageUser.username
+				username: localStorageUser.username,
 			};
 		}
 	}
@@ -36,7 +36,7 @@ export const load = (async (event) => {
 			userId: localStorageUser.ulid,
 			role: localStorageUser.role,
 			username: localStorageUser.username,
-			needsReLogin: true
+			needsReLogin: true,
 		};
 	}
 
@@ -46,27 +46,27 @@ export const load = (async (event) => {
 
 		if (userData.errors || !userData.data) {
 			throw error(HTTPCode.NotAuthorized, {
-				message: userData.errors?.at(0)?.message ?? UNEXPECTED_ERROR
+				message: userData.errors?.at(0)?.message ?? UNEXPECTED_ERROR,
 			});
 		}
 
 		userCardData = {
 			userId: localsUser.ulid,
 			role: localsUser.access_level,
-			username: userData.data.user.username
+			username: userData.data.user.username,
 		};
 
 		const newLocalStorageUser: LocalStorageUser = {
 			ulid: localsUser.ulid,
 			role: localsUser.access_level,
 			username: userData.data.user.username,
-			createdAt: userData.data.user.createdAt.getTime()
+			createdAt: userData.data.user.createdAt.getTime(),
 		};
 
 		localStorage.setItem(LOCAL_USER, JSON.stringify(newLocalStorageUser));
 	}
 
 	return {
-		userCardData
+		userCardData,
 	};
 }) satisfies LayoutLoad;

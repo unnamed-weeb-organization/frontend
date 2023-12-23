@@ -1,6 +1,5 @@
 <script lang="ts">
 	import DropdownMenu from "./DropdownMenu.svelte";
-	import DownArrowIcon from "$lib/assets/icons/down-arrow.svg?component";
 
 	let isOpen = false;
 	let buttonElement: HTMLButtonElement | null = null;
@@ -30,11 +29,11 @@
 	}
 </script>
 
-<div class="w-full relative">
+<div class="relative w-full">
 	<button bind:this={buttonElement} on:click|preventDefault={() => (isOpen = !isOpen)}>
-		<span class="text-custom-200">{selected}</span>
-		<DownArrowIcon
-			class="h-6 w-6 transition-transform duration-150 fill-custom-300 {isOpen
+		<span class="text-200">{selected}</span>
+		<div
+			class="i-uil-arrow-down h-6 w-6 fill-300 transition-transform duration-150{isOpen
 				? 'rotate-180'
 				: 'rotate-0'}"
 		/>
@@ -45,7 +44,7 @@
 	{#if isOpen}
 		<DropdownMenu
 			reverse={dropdownReverse}
-			class="drp w-full left-0 font-head text-sm {dropdownReverse ? 'bottom-11' : 'top-11'}"
+			class="drp left-0 w-full text-sm{dropdownReverse ? 'bottom-11' : 'top-11'}"
 			items={options}
 			onSelect={onItemSelect}
 			onDismiss={() => (isOpen = false)}
@@ -53,17 +52,17 @@
 	{/if}
 </div>
 
-<style lang="postcss">
+<style>
 	button {
-		@apply relative flex items-center justify-between px-2
-        outline outline-1 outline-custom-tertiary rounded h-10 w-full;
+		--at-apply: relative flex items-center justify-between px-2 outline outline-1
+			outline-custom-tertiary rounded h-10 w-full;
 	}
 
 	button:active {
-		@apply outline-none bg-custom-secondary;
+		--at-apply: outline-none bg-secondary;
 	}
 
 	span {
-		@apply font-head text-sm text-custom-200;
+		--at-apply: font-head text-sm text-200;
 	}
 </style>
