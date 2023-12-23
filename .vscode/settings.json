@@ -5,6 +5,12 @@
 	"licenser.author": "unnamed-weeb-organization",
 	"licenser.license": "GPLv3",
 
+	"eslint.validate": [
+		"javascript",
+		"typescript",
+		"svelte"
+	],
+
 	"files.exclude": {
 		".svelte-kit": true,
 		"$houdini": true,
